@@ -1,0 +1,50 @@
+---
+import { isDev } from "@/core/configuration/app-configuration"
+import { nonDefaultLocales } from "@/core/configuration/i18n-configuration"
+import { titleMessages } from "@/core/kit/title-kit"
+import Layout from "@/core/layouts/Layout.astro"
+import { AppEntry } from "@/pages/_app/entry"
+import { handleSsrRequest } from "@/pages/_app/handle-ssr-request"
+import type { GetStaticPaths } from "astro"
+import type { ComponentProps } from "astro/types"
+
+// Context
+type Props = ComponentProps<typeof Layout>
+
+export const prerender = !isDev // Live render in dev
+
+export const getStaticPaths = (() => {
+  // Locales
+  const locales = [...nonDefaultLocales, undefined]
+
+  // Routes
+  const routes = [undefined, "new", "settings/preferences"]
+
+  // Paths
+  return locales.flatMap((locale) =>
+    routes.map((ssg) => ({
+      params: { locale, ssg },
+      props: {
+        title: ssg
+          ? titleMessages.get()[ssg as keyof (typeof titleMessages)["get"]]
+          : ssg,
+      },
+    }))
+  )
+}) satisfies GetStaticPaths
+
+// Handle redirect response
+const { redirectResponse, getServerRouter, scriptHtml } =
+  await handleSsrRequest(Astro)
+
+if (redirectResponse) return redirectResponse
+
+// Page props
+const { props } = Astro
+---
+
+<Layout {...props}>
+  <AppEntry client:load getServerRouter={getServerRouter} />
+
+  <Fragment set:html={scriptHtml} />
+</Layout>

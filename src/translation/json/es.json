@@ -1,0 +1,56 @@
+{
+  "error:main-section": {
+    "title": "¡Ups!",
+    "description": "Parece que ha ocurrido algún error inesperado. Intenta recargar la página.",
+    "backToHome": "Volver al inicio"
+  },
+  "not-found:main-section": {
+    "title": "¡Ups!",
+    "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
+    "backToHome": "Volver al inicio"
+  },
+  "settings:tabs": {
+    "preferences": "Preferencias"
+  },
+  "home:header:create-quiz": {
+    "create": "Crear"
+  },
+  "home:header:user-menu": {
+    "settings": "Configuración"
+  },
+  "settings": {
+    "title": "Configuración"
+  },
+  "settings:preferences": {
+    "description": "Mejora tu experiencia ajustando tus preferencias."
+  },
+  "settings:preferences:options": {
+    "languageTitle": "Idioma",
+    "languageDescription": "Selecciona tu idioma preferido para la aplicación.",
+    "languageLabel": "Idioma preferido",
+    "themeTitle": "Tema",
+    "themeDescription": "Elige entre tema claro, oscuro o el predeterminado del sistema.",
+    "themeLabel": "Modo de tema"
+  },
+  "settings:preferences:options:theme": {
+    "system": "Sistema",
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "title": {
+    "new": "Crear nuevo Quiz",
+    "settings/preferences": "Preferencias"
+  },
+  "quiz:model:error": {
+    "questionTitleRequired": "El título de la pregunta es obligatorio",
+    "answerTextRequired": "La respuesta no puede estar vacía",
+    "minAnswers": "Debe haber al menos dos respuestas",
+    "quizNameRequired": "El nombre del cuestionario es obligatorio",
+    "minQuestions": "El cuestionario debe tener al menos una pregunta"
+  },
+  "confirm-dialog": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "loading": "Cargando..."
+  }
+}
