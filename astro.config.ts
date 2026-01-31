@@ -14,6 +14,7 @@ import checker from "vite-plugin-checker"
 import svgr from "vite-plugin-svgr"
 import {
   defaultLocale,
+  keyValueLocales,
   locales,
   type NonDefaultLocale,
 } from "./src/core/configuration/i18n-configuration"
@@ -50,6 +51,17 @@ export default defineConfig({
         if (item.url === `${site}/`) item.priority = 1
 
         return item
+      },
+      filter(page) {
+        const pageUrl = new URL(page, site)
+
+        if (pageUrl.pathname.endsWith("/_shell")) return false
+
+        return true
+      },
+      i18n: {
+        defaultLocale,
+        locales: keyValueLocales,
       },
     }),
     react({

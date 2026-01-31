@@ -1,7 +1,7 @@
 ---
 import Styles from "@/core/components/atoms/Styles.astro"
 import Sonner from "@/core/components/molecules/Sonner.astro"
-import { site } from "@/core/configuration/app-configuration"
+import { site, siteUrl } from "@/core/configuration/app-configuration"
 import {
   appName,
   author,
@@ -33,10 +33,14 @@ const {
 const fullTitle = getTitle(title)
 
 // Site
-const { url, site: urlSite } = Astro
+const { url } = Astro
+
+// Url
+const { hostname } = Astro.url
+const isProdHostname = hostname === siteUrl.hostname
 
 // Open graph image
-let ogImageUrl = getImagePath({ url, site: urlSite })
+let ogImageUrl = getImagePath({ url, site: siteUrl })
 
 if (!ogImageUrl.endsWith("index.png"))
   ogImageUrl = ogImageUrl.replace(/\.png$/, "") + "/index.png"
@@ -143,6 +147,18 @@ if (!ogImageUrl.endsWith("index.png"))
     <script src="@/pwa.ts"></script>
     <script src="@/translation/store/i18n-store.ts"></script>
     <script src="@/core/scripts/cloudflare-email-decoder.ts"></script>
+    {
+      isProdHostname && (
+        <script
+          is:inline
+          defer
+          id="umami-script"
+          src="https://umami.martindotpy.dev/script.js"
+          data-website-id="493f7f6b-71bb-4e6f-a8f2-d4ab1d54602f"
+        />
+      )
+    }
+    <script src="@/core/scripts/umami-identify.ts"></script>
   </head>
 
   <body class="flex min-h-svh flex-col overflow-y-scroll!">

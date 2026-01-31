@@ -18,3 +18,6 @@ export const {
     MODE: z.enum(["development", "production", "test"]).default("development"),
   }) satisfies z.ZodType<KeyEnv>
 ).parse(import.meta.env)
+
+// Url
+export const siteUrl = new URL(site)

@@ -18,7 +18,7 @@ export const getStaticPaths = (() => {
   const locales = [...nonDefaultLocales, undefined]
 
   // Routes
-  const routes = [undefined, "new", "settings/preferences"]
+  const routes = [undefined, "quiz/new", "settings/preferences"]
 
   // Paths
   return locales.flatMap((locale) =>
