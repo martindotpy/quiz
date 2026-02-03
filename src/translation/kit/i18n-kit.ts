@@ -2,7 +2,7 @@ import {
   nonDefaultLocales,
   type NonDefaultLocale,
 } from "@/core/configuration/i18n-configuration"
-import { getI18nInstance } from "astro-nanostores-i18n:runtime"
+import { getFormatterInstance, getI18nInstance } from "astro-nanostores-i18n:runtime"
 
 // Kit
 
@@ -29,3 +29,4 @@ export function getLocaleParam(locale: string) {
 }
 
 export const i18nInstance = getI18nInstance()
+export const formatterInstance = getFormatterInstance()

@@ -69,5 +69,9 @@
   "quiz:reset-quiz-draft": {
     "confirmTitle": "Restablecer borrador del Quiz",
     "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."
+  },
+  "quiz:item": {
+    "modified": "Modificado {time}",
+    "created": "Creado: {time}"
   }
 }

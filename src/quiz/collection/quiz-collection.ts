@@ -27,5 +27,24 @@ export const quizCollection = createCollection(
 
       updatedQuiz.updatedAt = now
     },
+
+    parser: {
+      parse: (data) => {
+        const raw = JSON.parse(data)
+
+        const parsed = Object.keys(raw as object).reduce(
+          (acc, key) => {
+            const data = Quiz.parse(raw[key].data)
+            acc[key] = { ...raw[key], data }
+
+            return acc
+          },
+          {} as Record<string, object>
+        )
+
+        return parsed
+      },
+      stringify: JSON.stringify,
+    },
   })
 )

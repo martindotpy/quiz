@@ -17,7 +17,8 @@ export function useLiveQuiz() {
             like(quizzes.name, qLikeExpression),
             like(quizzes.description, qLikeExpression)
           )
-        ),
+        )
+        .orderBy(({ quizzes }) => quizzes.updatedAt, "desc"),
     [qLikeExpression]
   )
 
