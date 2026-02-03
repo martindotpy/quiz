@@ -23,7 +23,6 @@ export function HomeHeader() {
           {!creationMode ? (
             <>
               <CreateQuiz />
-              <UserMenu />
             </>
           ) : (
             <>
@@ -32,6 +31,8 @@ export function HomeHeader() {
               <InsertQuiz />
             </>
           )}
+
+          <UserMenu />
         </div>
       </header>
 

@@ -52,5 +52,13 @@
     "confirm": "Confirmar",
     "cancel": "Cancelar",
     "loading": "Cargando..."
+  },
+  "quiz:update-title-and-description": {
+    "trigger": "Título y descripción",
+    "title": "Actualizar título y descripción",
+    "description": "Actualiza el título y la descripción de tu cuestionario.",
+    "nameLabel": "Título",
+    "descriptionLabel": "Descripción",
+    "save": "Guardar"
   }
 }

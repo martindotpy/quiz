@@ -1,5 +1,5 @@
-import { persistentJSON } from "@/core/kit/store-kit"
 import { Quiz } from "@/quiz/model/quiz-model"
+import { persistentJSON } from "@nanostores/persistent"
 import { v7 as uuidv7 } from "uuid"
 
 // Initial values
