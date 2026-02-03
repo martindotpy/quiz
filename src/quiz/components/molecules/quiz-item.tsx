@@ -14,7 +14,7 @@ import { Link } from "@tanstack/react-router"
 // i18n
 const quizItemMessages = i18nInstance("quiz:item", {
   modified: params("Modified {time}"),
-  created: params("Created: {time}"),
+  created: params("Created on {time}"),
 })
 
 // Now
