@@ -3,6 +3,7 @@ import { useLiveQuiz } from "@/quiz/hook/use-live-quiz"
 
 // Component
 export function QuizGrid() {
+  // Quizzes
   const { quizzes } = useLiveQuiz()
 
   return (

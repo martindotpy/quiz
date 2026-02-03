@@ -72,6 +72,14 @@
   },
   "quiz:item": {
     "modified": "Modificado {time}",
-    "created": "Creado el {time}"
+    "created": "Creado el {time}",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleteConfirmTitle": "Eliminar Quiz",
+    "deleteConfirmDescription": "¿Estás seguro de que quieres eliminar este Quiz? Esta acción no se puede deshacer.",
+    "deleteConfirmLabel": "Eliminar",
+    "deleteLoading": "Eliminando Quiz...",
+    "deleteSuccess": "¡Quiz eliminado con éxito!",
+    "deleteError": "Error al eliminar el Quiz"
   }
 }

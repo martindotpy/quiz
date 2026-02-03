@@ -144,3 +144,9 @@
     @apply scroll-smooth;
   }
 }
+
+@custom-variant h-sm (@media (height >= 40rem));
+@custom-variant h-md (@media (height >= 48rem));
+@custom-variant h-lg (@media (height >= 64rem));
+@custom-variant h-xl (@media (height >= 80rem));
+@custom-variant h-2xl (@media (height >= 96rem));
