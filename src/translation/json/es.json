@@ -60,5 +60,14 @@
     "nameLabel": "Título",
     "descriptionLabel": "Descripción",
     "save": "Guardar"
+  },
+  "quiz:insert-quiz": {
+    "save": "Guardar",
+    "saveSuccess": "¡Quiz guardado con éxito!",
+    "saveError": "No se pudo guardar el Quiz. Por favor, intenta de nuevo."
+  },
+  "quiz:reset-quiz-draft": {
+    "confirmTitle": "Restablecer borrador del Quiz",
+    "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."
   }
 }
