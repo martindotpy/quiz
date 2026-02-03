@@ -30,10 +30,10 @@ export type QuizQuestion = z.infer<typeof QuizQuestion>
 
 export const Quiz = z.object({
   id: z.uuidv7(),
-  description: z.optional(z.string()),
   name: z
     .string()
     .min(1, { error: () => quizModelErrorMessages.get().quizNameRequired }),
+  description: z.optional(z.string()),
   questions: z.array(QuizQuestion).min(1, {
     error: () => quizModelErrorMessages.get().minQuestions,
   }),
