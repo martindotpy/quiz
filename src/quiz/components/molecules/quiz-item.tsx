@@ -103,10 +103,17 @@ export function QuizItem({ quiz }: QuizItemProps) {
           />
 
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>
-              <TbEdit />
-              {messages.edit}
-            </DropdownMenuItem>
+            <DropdownMenuItem
+              render={
+                <Link
+                  to="/{-$locale}/quiz/$quizId/edit"
+                  params={{ quizId: quiz.id }}
+                >
+                  <TbEdit />
+                  {messages.edit}
+                </Link>
+              }
+            />
 
             <DropdownMenuItem
               variant="destructive"

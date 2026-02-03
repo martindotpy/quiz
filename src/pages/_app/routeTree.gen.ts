@@ -16,6 +16,7 @@ import { Route as Char123LocaleChar125MainSettingsRouteImport } from "./routes/{
 import { Route as Char123LocaleChar125MainSettingsPreferencesRouteImport } from "./routes/{-$locale}/_main/settings.preferences"
 import { Route as Char123LocaleChar125MainQuizNewRouteImport } from "./routes/{-$locale}/_main/quiz.new"
 import { Route as Char123LocaleChar125MainQuizQuizIdRouteImport } from "./routes/{-$locale}/_main/quiz.$quizId"
+import { Route as Char123LocaleChar125MainQuizQuizIdEditRouteImport } from "./routes/{-$locale}/_main/quiz.$quizId.edit"
 
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
@@ -58,21 +59,29 @@ const Char123LocaleChar125MainQuizQuizIdRoute =
     path: "/quiz/$quizId",
     getParentRoute: () => Char123LocaleChar125MainRouteRoute,
   } as any)
+const Char123LocaleChar125MainQuizQuizIdEditRoute =
+  Char123LocaleChar125MainQuizQuizIdEditRouteImport.update({
+    id: "/edit",
+    path: "/edit",
+    getParentRoute: () => Char123LocaleChar125MainQuizQuizIdRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   "/{-$locale}": typeof Char123LocaleChar125MainRouteRouteWithChildren
   "/{-$locale}/settings": typeof Char123LocaleChar125MainSettingsRouteWithChildren
   "/{-$locale}/": typeof Char123LocaleChar125MainIndexRoute
-  "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRoute
+  "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/quiz/new": typeof Char123LocaleChar125MainQuizNewRoute
   "/{-$locale}/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
+  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
 }
 export interface FileRoutesByTo {
   "/{-$locale}": typeof Char123LocaleChar125MainIndexRoute
   "/{-$locale}/settings": typeof Char123LocaleChar125MainSettingsRouteWithChildren
-  "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRoute
+  "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/quiz/new": typeof Char123LocaleChar125MainQuizNewRoute
   "/{-$locale}/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
+  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,9 +89,10 @@ export interface FileRoutesById {
   "/{-$locale}/_main": typeof Char123LocaleChar125MainRouteRouteWithChildren
   "/{-$locale}/_main/settings": typeof Char123LocaleChar125MainSettingsRouteWithChildren
   "/{-$locale}/_main/": typeof Char123LocaleChar125MainIndexRoute
-  "/{-$locale}/_main/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRoute
+  "/{-$locale}/_main/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/_main/quiz/new": typeof Char123LocaleChar125MainQuizNewRoute
   "/{-$locale}/_main/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
+  "/{-$locale}/_main/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -93,6 +103,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/quiz/$quizId"
     | "/{-$locale}/quiz/new"
     | "/{-$locale}/settings/preferences"
+    | "/{-$locale}/quiz/$quizId/edit"
   fileRoutesByTo: FileRoutesByTo
   to:
     | "/{-$locale}"
@@ -100,6 +111,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/quiz/$quizId"
     | "/{-$locale}/quiz/new"
     | "/{-$locale}/settings/preferences"
+    | "/{-$locale}/quiz/$quizId/edit"
   id:
     | "__root__"
     | "/{-$locale}"
@@ -109,6 +121,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/_main/quiz/$quizId"
     | "/{-$locale}/_main/quiz/new"
     | "/{-$locale}/_main/settings/preferences"
+    | "/{-$locale}/_main/quiz/$quizId/edit"
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,6 +179,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof Char123LocaleChar125MainQuizQuizIdRouteImport
       parentRoute: typeof Char123LocaleChar125MainRouteRoute
     }
+    "/{-$locale}/_main/quiz/$quizId/edit": {
+      id: "/{-$locale}/_main/quiz/$quizId/edit"
+      path: "/edit"
+      fullPath: "/{-$locale}/quiz/$quizId/edit"
+      preLoaderRoute: typeof Char123LocaleChar125MainQuizQuizIdEditRouteImport
+      parentRoute: typeof Char123LocaleChar125MainQuizQuizIdRoute
+    }
   }
 }
 
@@ -184,10 +204,25 @@ const Char123LocaleChar125MainSettingsRouteWithChildren =
     Char123LocaleChar125MainSettingsRouteChildren,
   )
 
+interface Char123LocaleChar125MainQuizQuizIdRouteChildren {
+  Char123LocaleChar125MainQuizQuizIdEditRoute: typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+}
+
+const Char123LocaleChar125MainQuizQuizIdRouteChildren: Char123LocaleChar125MainQuizQuizIdRouteChildren =
+  {
+    Char123LocaleChar125MainQuizQuizIdEditRoute:
+      Char123LocaleChar125MainQuizQuizIdEditRoute,
+  }
+
+const Char123LocaleChar125MainQuizQuizIdRouteWithChildren =
+  Char123LocaleChar125MainQuizQuizIdRoute._addFileChildren(
+    Char123LocaleChar125MainQuizQuizIdRouteChildren,
+  )
+
 interface Char123LocaleChar125MainRouteRouteChildren {
   Char123LocaleChar125MainSettingsRoute: typeof Char123LocaleChar125MainSettingsRouteWithChildren
   Char123LocaleChar125MainIndexRoute: typeof Char123LocaleChar125MainIndexRoute
-  Char123LocaleChar125MainQuizQuizIdRoute: typeof Char123LocaleChar125MainQuizQuizIdRoute
+  Char123LocaleChar125MainQuizQuizIdRoute: typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   Char123LocaleChar125MainQuizNewRoute: typeof Char123LocaleChar125MainQuizNewRoute
 }
 
@@ -197,7 +232,7 @@ const Char123LocaleChar125MainRouteRouteChildren: Char123LocaleChar125MainRouteR
       Char123LocaleChar125MainSettingsRouteWithChildren,
     Char123LocaleChar125MainIndexRoute: Char123LocaleChar125MainIndexRoute,
     Char123LocaleChar125MainQuizQuizIdRoute:
-      Char123LocaleChar125MainQuizQuizIdRoute,
+      Char123LocaleChar125MainQuizQuizIdRouteWithChildren,
     Char123LocaleChar125MainQuizNewRoute: Char123LocaleChar125MainQuizNewRoute,
   }
 
