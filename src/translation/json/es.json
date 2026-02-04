@@ -70,6 +70,9 @@
     "confirmTitle": "Restablecer borrador del Quiz",
     "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."
   },
+  "quiz:grid": {
+    "noQuizzes": "No tienes quizzes creados aún"
+  },
   "quiz:item": {
     "modified": "Modificado {time}",
     "created": "Creado el {time}",
