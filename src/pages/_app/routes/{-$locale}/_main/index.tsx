@@ -11,7 +11,7 @@ export const Route = createFileRoute("/{-$locale}/_main/")({
 function IndexComponent() {
   return (
     <>
-      <h1 className="mt-2 text-2xl font-bold">Mis quizzes</h1>
+      <h1 className="text-2xl font-bold">Mis quizzes</h1>
 
       <Separator className="my-3" />
 

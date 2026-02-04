@@ -12,7 +12,7 @@ const settingsMessages = i18nInstance("settings", {
 // Route
 export const Route = createFileRoute("/{-$locale}/_main/settings")({
   beforeLoad: ({ location }) => {
-    if (location.pathname.endsWith("settings"))
+    if (location.pathname.endsWith("/settings"))
       throw redirect({
         to: "/{-$locale}/settings/preferences",
         params: { locale: getLocaleParam(localePreferenceStore.get()) },
@@ -27,7 +27,7 @@ function SettingsComponent() {
   return (
     <>
       <div className="mb-4 flex flex-col gap-2">
-        <h1 className="mt-2 text-2xl font-bold">{messages.title}</h1>
+        <h1 className="text-2xl font-bold">{messages.title}</h1>
 
         <SettingsTabs />
       </div>

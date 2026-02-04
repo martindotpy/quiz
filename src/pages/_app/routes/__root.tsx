@@ -1,3 +1,4 @@
+import { isDev } from "@/core/configuration/app-configuration"
 import { tanstackQueryDevtools } from "@/core/devtools/tanstack-query-devtools"
 import { tanstackRouterDevtools } from "@/core/devtools/tanstack-router-devtools"
 import { getTitle } from "@/core/kit/title-kit"
@@ -31,12 +32,15 @@ function RootComponent() {
 
       <Outlet />
 
-      <TanStackDevtools
-        config={{
-          position: "bottom-right",
-        }}
-        plugins={[tanstackRouterDevtools, tanstackQueryDevtools]}
-      />
+      {/* TIP: Disabled because broke layout */}
+      {!isDev && (
+        <TanStackDevtools
+          config={{
+            position: "bottom-right",
+          }}
+          plugins={[tanstackRouterDevtools, tanstackQueryDevtools]}
+        />
+      )}
     </>
   )
 }

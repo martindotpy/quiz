@@ -16,6 +16,7 @@ export function HomeHeader() {
   })
 
   // Flags
+  const isProfileButtonEnabled = !isCreationMode
   const isSearchEnabled = !isCreationMode
   const isCreateButtonEnabled = !isCreationMode
 
@@ -37,7 +38,7 @@ export function HomeHeader() {
             </>
           )}
 
-          <UserMenu />
+          {isProfileButtonEnabled && <UserMenu />}
         </div>
       </header>
 

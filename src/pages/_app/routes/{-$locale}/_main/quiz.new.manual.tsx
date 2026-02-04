@@ -1,14 +1,11 @@
-import { getTitle } from "@/core/kit/title-kit"
-import { titleMessages } from "@/core/translation/title-translation"
 import { getLocaleParam } from "@/translation/kit/i18n-kit"
 import { localePreferenceStore } from "@/translation/store/i18n-store"
 import { createFileRoute, redirect } from "@tanstack/react-router"
 
 // Route
-export const Route = createFileRoute("/{-$locale}/_main/quiz/new")({
-  head: () => ({ meta: [{ title: getTitle(titleMessages.get().new) }] }),
+export const Route = createFileRoute("/{-$locale}/_main/quiz/new/manual")({
   beforeLoad: ({ location }) => {
-    if (location.pathname.endsWith("/new"))
+    if (location.pathname.endsWith("/manual"))
       throw redirect({
         to: "/{-$locale}/quiz/new/manual/$questionId",
         params: {
