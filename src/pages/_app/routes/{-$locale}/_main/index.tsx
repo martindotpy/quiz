@@ -34,19 +34,10 @@ function IndexComponent() {
             {[...Array(2)].map((_, index) => (
               <QuizSkeleton key={index} className="md:h-lg:block hidden" />
             ))}
-            {[...Array(2)].map((_, index) => (
-              <QuizSkeleton key={index} className="md:h-xl:block hidden" />
-            ))}
 
             {/* Three columns */}
-            {[...Array(9)].map((_, index) => (
+            {[...Array(8)].map((_, index) => (
               <QuizSkeleton key={index} className="hidden lg:block" />
-            ))}
-            {[...Array(3)].map((_, index) => (
-              <QuizSkeleton key={index} className="lg:h-lg:block hidden" />
-            ))}
-            {[...Array(3)].map((_, index) => (
-              <QuizSkeleton key={index} className="lg:h-xl:block hidden" />
             ))}
           </div>
         }
