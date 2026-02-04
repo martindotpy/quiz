@@ -15,7 +15,7 @@ import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 // i18n
@@ -52,9 +52,9 @@ export function UpdateTitleAndDescription() {
   const { quizDraft, setQuizDraft } = useQuizDraft()
 
   // Form
-  const { control, handleSubmit, setValue } = useForm({
+  const { control, handleSubmit } = useForm({
     resolver: zodResolver(TitleAndDescriptionQuiz),
-    defaultValues: {
+    values: {
       name: quizDraft.name,
       description: quizDraft.description,
     },
@@ -63,12 +63,6 @@ export function UpdateTitleAndDescription() {
   const onSubmit = handleSubmit((data) => {
     setQuizDraft({ ...quizDraft, ...data })
   })
-
-  // Sync form values with draft
-  useEffect(() => {
-    setValue("name", quizDraft.name)
-    setValue("description", quizDraft.description)
-  }, [quizDraft, setValue])
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>

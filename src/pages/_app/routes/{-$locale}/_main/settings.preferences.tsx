@@ -1,4 +1,5 @@
-import { getTitle, titleMessages } from "@/core/kit/title-kit"
+import { getTitle } from "@/core/kit/title-kit"
+import { titleMessages } from "@/core/translation/title-translation"
 import { PreferencesOptions } from "@/settings/components/organisms/preferences-options"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"

@@ -6,6 +6,7 @@ import {
 import { Field, FieldError, FieldLabel } from "@/core/components/ui/field"
 import { Input } from "@/core/components/ui/input"
 import { cn } from "@/core/lib/tailwind"
+import type { ClassValue } from "clsx"
 import {
   Controller,
   type FieldPath,
@@ -15,6 +16,7 @@ import {
 
 // Component
 interface ControlledTextInputProps<
+  TIconProps extends { className?: ClassValue } = { className?: ClassValue },
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   TTransformedValues = TFieldValues,
@@ -23,10 +25,12 @@ interface ControlledTextInputProps<
   inputProps?: React.ComponentProps<typeof Input>
   labelProps?: React.ComponentProps<typeof FieldLabel>
   errorProps?: React.ComponentProps<typeof FieldError>
-  icon?: React.FunctionComponent<{ className?: string }>
+  icon?: React.FunctionComponent<TIconProps>
+  iconProps?: TIconProps
 }
 
 export function ControlledTextInput<
+  TIconProps extends { className?: ClassValue } = { className?: ClassValue },
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
@@ -37,8 +41,9 @@ export function ControlledTextInput<
   labelProps: { className: labelClassName, ...labelProps } = {},
   errorProps: { className: errorClassName, ...errorProps } = {},
   icon: Icon,
+  iconProps = {} as TIconProps,
   ...props
-}: ControlledTextInputProps<TFieldValues, TName>) {
+}: ControlledTextInputProps<TIconProps, TFieldValues, TName>) {
   return (
     <Controller
       control={control}
@@ -65,7 +70,16 @@ export function ControlledTextInput<
                 {...inputProps}
               />
 
-              {Icon && <Icon className={cn(svgInputBaseClassName, "peer")} />}
+              {Icon && (
+                <Icon
+                  {...iconProps}
+                  className={cn(
+                    svgInputBaseClassName,
+                    "peer",
+                    iconProps.className
+                  )}
+                />
+              )}
             </div>
 
             {fieldState.invalid && (

@@ -1,21 +1,24 @@
-import { Route } from "@/pages/_app/routes/{-$locale}/_main"
+import { normalize } from "@/core/utils/string-utils"
+import { Route } from "@/pages/_app/routes/{-$locale}/_main/route"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
-import { like, or, useLiveQuery } from "@tanstack/react-db"
+import { ilike, or, useLiveQuery } from "@tanstack/react-db"
 
 // Hook
 export function useLiveQuiz() {
-  // Q
+  // Query
   const { q } = Route.useSearch()
-  const qLikeExpression = q ? `%${q}%` : `%`
+  const qLikeExpression = q ? `%${normalize(q)}%` : `%`
 
+  // Live query
   const { data: quizzes, ...restLiveQuery } = useLiveQuery(
     (q) =>
       q
         .from({ quizzes: quizCollection })
         .where(({ quizzes }) =>
+          // TODO: Implement normalization at column value
           or(
-            like(quizzes.name, qLikeExpression),
-            like(quizzes.description, qLikeExpression)
+            ilike(quizzes.name, qLikeExpression),
+            ilike(quizzes.description, qLikeExpression)
           )
         )
         .orderBy(({ quizzes }) => quizzes.updatedAt, "desc"),

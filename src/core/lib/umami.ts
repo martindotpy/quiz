@@ -3,29 +3,29 @@ import { log } from "@/core/logger/client-logger"
 // Logger
 const _log = log.withTag("umami")
 
-// Check for Umami presence with a timeout
-const timeout = 3000
+// Check for Umami presence with a fixed number of attempts
+const maxAttempts = 5
+const intervalMs = 600 // 5 * 600ms = 3000ms total window
 const hasUmami = await new Promise((resolve) => {
-  const start = performance.now()
+  let attempts = 0
 
   const check = () => {
-    _log.trace("Checking for Umami script...")
+    attempts += 1
+    _log.trace(`Checking for Umami script (attempt ${attempts}/${maxAttempts})`)
 
     if (typeof globalThis.umami === "object" && globalThis.umami !== null) {
       _log.trace("Umami script found")
-
       resolve(true)
       return
     }
 
-    if (performance.now() - start > timeout) {
-      _log.warn("Umami script not found within timeout")
-
+    if (attempts >= maxAttempts) {
+      _log.warn("Umami script not found after maximum attempts")
       resolve(false)
       return
     }
 
-    requestAnimationFrame(check)
+    setTimeout(check, intervalMs)
   }
 
   check()

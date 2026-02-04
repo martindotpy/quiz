@@ -1,4 +1,5 @@
-import { getTitle, titleMessages } from "@/core/kit/title-kit"
+import { getTitle } from "@/core/kit/title-kit"
+import { titleMessages } from "@/core/translation/title-translation"
 import { createFileRoute } from "@tanstack/react-router"
 
 // Route
