@@ -100,6 +100,9 @@ export function UpdateTitleAndDescription() {
               name="description"
               label={messages.descriptionLabel}
               control={control}
+              textareaProps={{
+                className: "break-all",
+              }}
             />
 
             <DialogFooter>

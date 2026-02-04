@@ -4,7 +4,6 @@ import {
   svgInputBaseClassName,
 } from "@/core/components/form/styles/input-styles"
 import { Field, FieldError, FieldLabel } from "@/core/components/ui/field"
-import { Input } from "@/core/components/ui/input"
 import { Textarea } from "@/core/components/ui/textarea"
 import { cn } from "@/core/lib/tailwind"
 import {
@@ -21,7 +20,7 @@ interface ControlledTextareaProps<
   TTransformedValues = TFieldValues,
 > extends UseControllerProps<TFieldValues, TName, TTransformedValues> {
   label?: React.ReactNode
-  inputProps?: React.ComponentProps<typeof Input>
+  textareaProps?: React.ComponentProps<typeof Textarea>
   labelProps?: React.ComponentProps<typeof FieldLabel>
   errorProps?: React.ComponentProps<typeof FieldError>
   icon?: React.FunctionComponent<{ className?: string }>
@@ -34,7 +33,7 @@ export function ControlledTextarea<
   control,
   name,
   label,
-  inputProps: { className: inputClassName, ...inputProps } = {},
+  textareaProps: { className: textareaClassName, ...textareaProps } = {},
   labelProps: { className: labelClassName, ...labelProps } = {},
   errorProps: { className: errorClassName, ...errorProps } = {},
   icon: Icon,
@@ -54,18 +53,15 @@ export function ControlledTextarea<
             {label}
 
             <div className="relative">
-              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-              {/* @ts-expect-error */}
               <Textarea
                 id={name}
-                type="text"
                 className={cn(
                   { [inputWithIconBaseClassName]: Boolean(Icon) },
-                  inputClassName
+                  textareaClassName
                 )}
                 aria-invalid={fieldState.invalid}
                 {...field}
-                {...inputProps}
+                {...textareaProps}
               />
               {Icon && <Icon className={cn(svgInputBaseClassName, "peer")} />}
             </div>
