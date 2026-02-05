@@ -5,7 +5,7 @@ import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 
 // i18n
-const notFoundMessages = i18nInstance("not-found:main-section", {
+const notFoundMessages = i18nInstance("not-found:main", {
   title: "Oops!",
   description:
     "The page you're looking for doesn't exist or has been moved. Please check the URL and try again.",

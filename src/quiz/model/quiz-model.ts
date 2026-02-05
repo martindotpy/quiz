@@ -10,7 +10,7 @@ const quizModelErrorMessages = i18nInstance("quiz:model:error", {
   minQuestions: "The quiz must have at least one question",
 })
 
-// Model
+// Models
 export const QuizQuestion = z.object({
   title: z.string().min(1, {
     error: () => quizModelErrorMessages.get().questionTitleRequired,

@@ -1,5 +1,5 @@
-import { ControlledTextarea } from "@/core/components/form/controlled/controlled-text-area"
-import { ControlledTextInput } from "@/core/components/form/controlled/controlled-text-input"
+import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
+import { ControlledTextarea } from "@/core/components/form/controlled/controlled-textarea"
 import { Button } from "@/core/components/ui/button"
 import {
   Dialog,
@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/core/components/ui/dialog"
-import { useQuizDraft } from "@/quiz/hook/use-quiz-draft"
+import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -20,14 +20,14 @@ import { useForm } from "react-hook-form"
 
 // i18n
 const updateTitleAndDescriptionMessages = i18nInstance(
-  "quiz:update-title-and-description",
+  "quiz:title-and-description:update",
   {
     trigger: "Title and Description",
     title: "Update Title and Description",
     description: "Update the title and description of your quiz.",
     nameLabel: "Title",
     descriptionLabel: "Description",
-    save: "Save",
+    update: "Update",
   }
 )
 
@@ -38,7 +38,7 @@ const TitleAndDescriptionQuiz = Quiz.pick({
 })
 
 // Component
-export function UpdateTitleAndDescription() {
+export function UpdateTitleAndDescriptionButton() {
   const messages = useStore(updateTitleAndDescriptionMessages)
 
   // Dialog state
@@ -49,19 +49,19 @@ export function UpdateTitleAndDescription() {
   }
 
   // Draft
-  const { quizDraft, setQuizDraft } = useQuizDraft()
+  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
 
   // Form
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(TitleAndDescriptionQuiz),
     values: {
-      name: quizDraft.name,
-      description: quizDraft.description,
+      name: draftQuiz.name,
+      description: draftQuiz.description,
     },
   })
 
-  const onSubmit = handleSubmit((data) => {
-    setQuizDraft({ ...quizDraft, ...data })
+  const onChange = handleSubmit((data) => {
+    setDraftQuiz({ ...draftQuiz, ...data })
   })
 
   return (
@@ -76,16 +76,16 @@ export function UpdateTitleAndDescription() {
             {...props}
             onSubmit={(e) => {
               closeDialog()
-              onSubmit(e)
+              onChange(e)
             }}
-            onChange={onSubmit}
+            onChange={onChange}
           >
             <DialogHeader>
               <DialogTitle>{messages.title}</DialogTitle>
               <DialogDescription>{messages.description}</DialogDescription>
             </DialogHeader>
 
-            <ControlledTextInput
+            <ControlledInput
               name="name"
               label={messages.nameLabel}
               control={control}
@@ -100,7 +100,7 @@ export function UpdateTitleAndDescription() {
             />
 
             <DialogFooter>
-              <Button type="submit">{messages.save}</Button>
+              <Button type="submit">{messages.update}</Button>
             </DialogFooter>
           </form>
         )}

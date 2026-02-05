@@ -1,11 +1,11 @@
-import { QuizSearch } from "@/home/model/quiz-search-model"
+import { SearchQuizParams } from "@/home/model/quiz-search-model"
 import { createFileRoute, Outlet } from "@tanstack/react-router"
 import z from "zod"
 
 // Route
 export const Route = createFileRoute("/{-$locale}/_main")({
   validateSearch: z.object({
-    q: QuizSearch.shape.q,
+    q: SearchQuizParams.shape.q,
   }),
   component: MainLayoutComponent,
 })

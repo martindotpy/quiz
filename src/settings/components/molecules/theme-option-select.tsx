@@ -14,7 +14,7 @@ const themeOptionMessages = i18nInstance("settings:preferences:options:theme", {
 })
 
 // Component
-export function ThemeOption() {
+export function ThemeOptionSelect() {
   const messages = useStore(themeOptionMessages)
 
   // Theme

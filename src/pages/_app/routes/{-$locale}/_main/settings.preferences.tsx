@@ -15,10 +15,10 @@ export const Route = createFileRoute("/{-$locale}/_main/settings/preferences")({
   head: () => ({
     meta: [{ title: getTitle(titleMessages.get()["settings/preferences"]) }],
   }),
-  component: SettingsPreferenceComponent,
+  component: SettingsPreferencesComponent,
 })
 
-function SettingsPreferenceComponent() {
+function SettingsPreferencesComponent() {
   const messages = useStore(settingsPreferenceMessages)
 
   return (

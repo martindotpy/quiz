@@ -1,5 +1,6 @@
 import { tw } from "@/core/lib/tailwind"
 
+// Styles
 export const labelBaseClassName = tw`flex-col items-stretch justify-start gap-1`
 export const labelTextBaseClassName = tw`py-1 text-sm leading-none font-medium`
 export const inputWithIconBaseClassName = tw`pr-9`

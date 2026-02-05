@@ -18,7 +18,7 @@ const languages: Language[] = [
 ]
 
 // Component
-export function LanguageOption() {
+export function LanguageOptionSelect() {
   // Locale
   const localePreference = useLocalePreference()
 

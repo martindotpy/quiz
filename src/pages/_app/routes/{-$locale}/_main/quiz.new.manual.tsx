@@ -14,7 +14,4 @@ export const Route = createFileRoute("/{-$locale}/_main/quiz/new/manual")({
         },
       })
   },
-  staticData: {
-    creationMode: true,
-  },
 })

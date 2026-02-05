@@ -5,7 +5,7 @@ import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 
 // i18n
-const errorMessages = i18nInstance("error:main-section", {
+const errorMessages = i18nInstance("error:main", {
   title: "Oops!",
   description:
     "It seems that an unexpected error has occurred. Please try reloading the page.",

@@ -1,47 +1,30 @@
 import { Separator } from "@/core/components/ui/separator"
-import { QuizSkeleton } from "@/quiz/components/molecules/quiz-skeleton"
+import { QuizGridSkeleton } from "@/home/components/atoms/quiz-grid-skeleton"
 import { QuizGrid } from "@/quiz/components/organisms/quiz-grid"
+import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { useStore } from "@nanostores/react"
 import { ClientOnly, createFileRoute } from "@tanstack/react-router"
+
+// i18n
+const homeMessages = i18nInstance("home", {
+  title: "My Quizzes",
+})
 
 // Route
 export const Route = createFileRoute("/{-$locale}/_main/")({
-  component: IndexComponent,
+  component: HomeComponent,
 })
 
-function IndexComponent() {
+function HomeComponent() {
+  const messages = useStore(homeMessages)
+
   return (
     <>
-      <h1 className="text-2xl font-bold">Mis quizzes</h1>
+      <h1 className="text-2xl font-bold">{messages.title}</h1>
 
       <Separator className="my-3" />
 
-      <ClientOnly
-        fallback={
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {/* Single column */}
-            {[...Array(5)].map((_, index) => (
-              <QuizSkeleton key={index} />
-            ))}
-            <QuizSkeleton className="h-md:block hidden" />
-            {[...Array(2)].map((_, index) => (
-              <QuizSkeleton key={index} className="h-lg:block hidden" />
-            ))}
-
-            {/* Two columns */}
-            {[...Array(6)].map((_, index) => (
-              <QuizSkeleton key={index} className="hidden md:block" />
-            ))}
-            {[...Array(2)].map((_, index) => (
-              <QuizSkeleton key={index} className="md:h-lg:block hidden" />
-            ))}
-
-            {/* Three columns */}
-            {[...Array(8)].map((_, index) => (
-              <QuizSkeleton key={index} className="hidden lg:block" />
-            ))}
-          </div>
-        }
-      >
+      <ClientOnly fallback={<QuizGridSkeleton />}>
         <QuizGrid />
       </ClientOnly>
     </>

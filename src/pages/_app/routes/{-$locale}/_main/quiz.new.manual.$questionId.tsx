@@ -2,7 +2,7 @@ import { Separator } from "@/core/components/ui/separator"
 import { cn } from "@/core/lib/tailwind"
 import { NewQuizContent } from "@/quiz/components/organisms/new-quiz-content"
 import { NewQuizNav } from "@/quiz/components/organisms/new-quiz-nav"
-import { quizDraftStore } from "@/quiz/store/quiz-draft-store"
+import { draftQuizStore } from "@/quiz/store/draft-quiz-store"
 import { createFileRoute, redirect } from "@tanstack/react-router"
 
 // Route
@@ -13,8 +13,9 @@ export const Route = createFileRoute(
     // Check if the question id is valid
     const { questionId: rawQuestionId } = params
     const questionId = Number(rawQuestionId)
-    const draftQuiz = quizDraftStore.get()
+    const draftQuiz = draftQuizStore.get()
 
+    // Redirect to the first question if the id is invalid
     if (
       Number.isNaN(questionId) ||
       questionId < 1 ||

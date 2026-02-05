@@ -3,10 +3,10 @@ import { createFileRoute } from "@tanstack/react-router"
 
 // Route
 export const Route = createFileRoute("/{-$locale}/_main/quiz/$quizId/edit")({
-  component: RouteComponent,
+  component: EditQuizComponent,
 })
 
-function RouteComponent() {
+function EditQuizComponent() {
   const { quiz } = QuizByIdRoute.useLoaderData()
 
   return <div>{quiz.name}</div>

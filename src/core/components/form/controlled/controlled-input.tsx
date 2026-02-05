@@ -5,8 +5,8 @@ import {
 } from "@/core/components/form/styles/input-styles"
 import { Field, FieldError, FieldLabel } from "@/core/components/ui/field"
 import { Input } from "@/core/components/ui/input"
+import type { ClassNameProp } from "@/core/kit/component-kit"
 import { cn } from "@/core/lib/tailwind"
-import type { ClassValue } from "clsx"
 import {
   Controller,
   type FieldPath,
@@ -15,8 +15,8 @@ import {
 } from "react-hook-form"
 
 // Component
-interface ControlledTextInputProps<
-  TIconProps extends { className?: ClassValue } = { className?: ClassValue },
+interface ControlledInputProps<
+  TIconProps extends ClassNameProp = ClassNameProp,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
   TTransformedValues = TFieldValues,
@@ -29,8 +29,8 @@ interface ControlledTextInputProps<
   iconProps?: TIconProps
 }
 
-export function ControlledTextInput<
-  TIconProps extends { className?: ClassValue } = { className?: ClassValue },
+export function ControlledInput<
+  TIconProps extends ClassNameProp = ClassNameProp,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 >({
@@ -43,7 +43,7 @@ export function ControlledTextInput<
   icon: Icon,
   iconProps = {} as TIconProps,
   ...props
-}: ControlledTextInputProps<TIconProps, TFieldValues, TName>) {
+}: ControlledInputProps<TIconProps, TFieldValues, TName>) {
   return (
     <Controller
       control={control}

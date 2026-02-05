@@ -1,10 +1,10 @@
 {
-  "error:main-section": {
+  "error:main": {
     "title": "¡Ups!",
     "description": "Parece que ha ocurrido algún error inesperado. Intenta recargar la página.",
     "backToHome": "Volver al inicio"
   },
-  "not-found:main-section": {
+  "not-found:main": {
     "title": "¡Ups!",
     "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
     "backToHome": "Volver al inicio"
@@ -12,7 +12,10 @@
   "settings:tabs": {
     "preferences": "Preferencias"
   },
-  "home:header:create-quiz": {
+  "home": {
+    "title": "Mis Quizzes"
+  },
+  "quiz:link:create": {
     "create": "Crear"
   },
   "home:header:user-menu": {
@@ -53,27 +56,27 @@
     "cancel": "Cancelar",
     "loading": "Cargando..."
   },
-  "quiz:update-title-and-description": {
+  "quiz:title-and-description:update": {
     "trigger": "Título y descripción",
     "title": "Actualizar título y descripción",
     "description": "Actualiza el título y la descripción de tu cuestionario.",
     "nameLabel": "Título",
     "descriptionLabel": "Descripción",
-    "save": "Guardar"
+    "update": "Actualizar"
   },
-  "quiz:insert-quiz": {
-    "save": "Guardar",
-    "saveSuccess": "¡Quiz guardado con éxito!",
-    "saveError": "No se pudo guardar el Quiz. Por favor, intenta de nuevo."
+  "quiz:new:create": {
+    "create": "Crear",
+    "createSuccess": "¡Quiz creado con éxito!",
+    "createError": "No se pudo crear el Quiz. Por favor, intenta de nuevo."
   },
-  "quiz:reset-quiz-draft": {
+  "quiz:draft:reset": {
     "confirmTitle": "Restablecer borrador del Quiz",
     "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."
   },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
   },
-  "quiz:item": {
+  "quiz:grid:item": {
     "modified": "Modificado {time}",
     "created": "Creado el {time}",
     "edit": "Editar",

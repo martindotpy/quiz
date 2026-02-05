@@ -1,11 +1,11 @@
 import { Separator } from "@/core/components/ui/separator"
-import { Banner } from "@/home/components/atoms/banner"
-import { CreateQuiz } from "@/home/components/atoms/create-quiz"
-import { SearchQuiz } from "@/home/components/molecules/search-quiz"
-import { UserMenu } from "@/home/components/molecules/user-menu"
-import { InsertQuiz } from "@/quiz/components/molecules/insert-quiz"
-import { ResetQuizDraft } from "@/quiz/components/molecules/reset-draft"
-import { UpdateTitleAndDescription } from "@/quiz/components/molecules/update-title-and-description"
+import { BannerLink } from "@/home/components/atoms/banner-link"
+import { CreateQuizLink } from "@/home/components/atoms/create-quiz-link"
+import { SearchQuiz } from "@/home/components/molecules/search-quiz-input"
+import { UserMenu } from "@/home/components/molecules/user-dropdown-menu"
+import { CreateNewQuizButton } from "@/quiz/components/molecules/create-new-quiz-button"
+import { ResetDraftQuizButton } from "@/quiz/components/molecules/reset-draft-quiz-button"
+import { UpdateTitleAndDescriptionButton } from "@/quiz/components/molecules/update-title-and-description-button"
 import { useMatches } from "@tanstack/react-router"
 
 // Component
@@ -23,18 +23,18 @@ export function HomeHeader() {
   return (
     <div>
       <header className="min-h-header-h mx-auto flex max-w-7xl items-center justify-between">
-        <Banner />
+        <BannerLink />
 
         {isSearchEnabled && <SearchQuiz />}
 
         <div className="flex items-center justify-end gap-2 px-4">
-          {isCreateButtonEnabled && <CreateQuiz />}
+          {isCreateButtonEnabled && <CreateQuizLink />}
 
           {isCreationMode && (
             <>
-              <ResetQuizDraft />
-              <UpdateTitleAndDescription />
-              <InsertQuiz />
+              <ResetDraftQuizButton />
+              <UpdateTitleAndDescriptionButton />
+              <CreateNewQuizButton />
             </>
           )}
 

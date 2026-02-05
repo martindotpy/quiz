@@ -3,7 +3,7 @@ import Favicon from "@assets/svg/favicon.svg?react"
 import { Link } from "@tanstack/react-router"
 
 // Component
-export function Banner() {
+export function BannerLink() {
   // Locale
   const localeParam = useLocaleParam()
 

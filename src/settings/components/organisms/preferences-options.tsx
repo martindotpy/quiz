@@ -1,6 +1,6 @@
 import { Separator } from "@/core/components/ui/separator"
-import { LanguageOption } from "@/settings/components/molecules/language-option"
-import { ThemeOption } from "@/settings/components/molecules/theme-option"
+import { LanguageOptionSelect } from "@/settings/components/molecules/language-option-select"
+import { ThemeOptionSelect } from "@/settings/components/molecules/theme-option-select"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import type { IconType } from "react-icons/lib"
@@ -41,7 +41,7 @@ function usePreferences(): Preference[] {
       options: [
         {
           label: messages.languageLabel,
-          node: <LanguageOption />,
+          node: <LanguageOptionSelect />,
         },
       ],
     },
@@ -52,7 +52,7 @@ function usePreferences(): Preference[] {
       options: [
         {
           label: messages.themeLabel,
-          node: <ThemeOption />,
+          node: <ThemeOptionSelect />,
         },
       ],
     },

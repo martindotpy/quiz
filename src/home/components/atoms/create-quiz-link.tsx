@@ -4,13 +4,13 @@ import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 
 // i18n
-const createQuizMessages = i18nInstance("home:header:create-quiz", {
+const createQuizLinkMessages = i18nInstance("quiz:link:create", {
   create: "Create",
 })
 
 // Component
-export function CreateQuiz() {
-  const messages = useStore(createQuizMessages)
+export function CreateQuizLink() {
+  const messages = useStore(createQuizLinkMessages)
 
   // Locale
   const localeParam = useLocaleParam()

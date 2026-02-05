@@ -1,4 +1,4 @@
-import { QuizItem } from "@/quiz/components/molecules/quiz-item"
+import { QuizGridItem } from "@/quiz/components/molecules/quiz-grid-item"
 import { useLiveQuiz } from "@/quiz/hook/use-live-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
@@ -25,7 +25,7 @@ export function QuizGrid() {
   ) : (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {quizzes.map((quiz) => (
-        <QuizItem key={quiz.id} quiz={quiz} />
+        <QuizGridItem key={quiz.id} quiz={quiz} />
       ))}
     </div>
   )

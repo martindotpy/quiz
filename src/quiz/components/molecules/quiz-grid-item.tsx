@@ -25,7 +25,7 @@ import { TbDotsVertical, TbEdit, TbTrash } from "react-icons/tb"
 import { toast } from "sonner"
 
 // i18n
-const quizItemMessages = i18nInstance("quiz:item", {
+const quizGridItemMessages = i18nInstance("quiz:grid:item", {
   modified: params("Modified {time}"),
   created: params("Created on {time}"),
   edit: "Edit",
@@ -40,12 +40,12 @@ const quizItemMessages = i18nInstance("quiz:item", {
 })
 
 // Component
-interface QuizItemProps {
+interface QuizGridItemProps {
   quiz: Quiz
 }
 
-export function QuizItem({ quiz }: QuizItemProps) {
-  const messages = useStore(quizItemMessages)
+export function QuizGridItem({ quiz }: QuizGridItemProps) {
+  const messages = useStore(quizGridItemMessages)
 
   // Delete dialog state
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)

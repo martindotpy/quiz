@@ -32,6 +32,7 @@ export const quizCollection = createCollection(
       parse: (data) => {
         const raw = JSON.parse(data)
 
+        // Validate and parse each quiz
         const parsed = Object.keys(raw as object).reduce(
           (acc, key) => {
             const data = Quiz.parse(raw[key].data)
