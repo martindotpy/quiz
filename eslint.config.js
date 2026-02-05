@@ -30,6 +30,7 @@ export default defineConfig(
         "warn",
         { allowConstantExport: true },
       ],
+      "react/prop-types": ["off"],
     },
     plugins: {
       "react-hooks": eslintPluginReactHooks,
