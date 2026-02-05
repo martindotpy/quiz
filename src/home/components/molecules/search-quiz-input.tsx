@@ -1,6 +1,6 @@
 import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
 import { SearchQuizParams } from "@/home/model/quiz-search-model"
-import { Route } from "@/pages/_app/routes/{-$locale}/_main/route"
+import { Route as QuizQueryRoute } from "@/pages/_app/routes/{-$locale}/_main/route"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useNavigate } from "@tanstack/react-router"
 import { useForm } from "react-hook-form"
@@ -9,7 +9,7 @@ import { TbSearch } from "react-icons/tb"
 // Component
 export function SearchQuiz() {
   // Query
-  const { q: rawQ } = Route.useSearch()
+  const { q: rawQ } = QuizQueryRoute.useSearch()
   const q = rawQ ?? ""
 
   // Navigate

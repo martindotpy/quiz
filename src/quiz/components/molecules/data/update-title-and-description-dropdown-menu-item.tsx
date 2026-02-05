@@ -8,21 +8,23 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/core/components/ui/dialog"
+import type { NewQuizMenuButtonItem } from "@/quiz/components/molecules/data/new-quiz-dropdown-menu-data"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
+import type React from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { TbEdit } from "react-icons/tb"
 
 // i18n
 const updateTitleAndDescriptionMessages = i18nInstance(
   "quiz:title-and-description:update",
   {
-    trigger: "Title and Description",
+    label: "Title and Description",
     title: "Update Title and Description",
     description: "Update the title and description of your quiz.",
     nameLabel: "Title",
@@ -37,8 +39,11 @@ const TitleAndDescriptionQuiz = Quiz.pick({
   description: true,
 })
 
-// Component
-export function UpdateTitleAndDescriptionButton() {
+// Item
+export function useUpdateTitleAndDescriptionDropdownMenuItem(): [
+  NewQuizMenuButtonItem,
+  React.ReactNode,
+] {
   const messages = useStore(updateTitleAndDescriptionMessages)
 
   // Dialog state
@@ -64,12 +69,17 @@ export function UpdateTitleAndDescriptionButton() {
     setDraftQuiz({ ...draftQuiz, ...data })
   })
 
-  return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        render={<Button variant="secondary">{messages.trigger}</Button>}
-      />
-
+  return [
+    {
+      label: messages.label,
+      icon: TbEdit,
+      onClick: () => setOpen(true),
+    },
+    <Dialog
+      key="update-title-and-description-dialog"
+      open={open}
+      onOpenChange={setOpen}
+    >
       <DialogContent
         render={(props) => (
           <form
@@ -105,6 +115,6 @@ export function UpdateTitleAndDescriptionButton() {
           </form>
         )}
       />
-    </Dialog>
-  )
+    </Dialog>,
+  ]
 }

@@ -1,25 +1,77 @@
 {
+  "confirm-dialog": {
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "loading": "Cargando..."
+  },
   "error:main": {
-    "title": "¡Ups!",
+    "backToHome": "Volver al inicio",
     "description": "Parece que ha ocurrido algún error inesperado. Intenta recargar la página.",
-    "backToHome": "Volver al inicio"
-  },
-  "not-found:main": {
-    "title": "¡Ups!",
-    "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
-    "backToHome": "Volver al inicio"
-  },
-  "settings:tabs": {
-    "preferences": "Preferencias"
+    "title": "¡Ups!"
   },
   "home": {
     "title": "Mis Quizzes"
   },
+  "home:header:user-menu": {
+    "settings": "Configuración"
+  },
+  "not-found:main": {
+    "backToHome": "Volver al inicio",
+    "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
+    "title": "¡Ups!"
+  },
+  "quiz:draft": {
+    "correctAnswerText": "Nueva respuesta (Correcta)",
+    "description": "Esta es una descripción de ejemplo para el quiz.",
+    "incorrectAnswerText": "Nueva respuesta (Incorrecta)",
+    "name": "Nuevo Quiz",
+    "questionTitle": "Nueva pregunta"
+  },
+  "quiz:grid": {
+    "noQuizzes": "No tienes quizzes creados aún"
+  },
+  "quiz:grid:item": {
+    "created": "Creado el {time}",
+    "delete": "Eliminar",
+    "deleteConfirmDescription": "¿Estás seguro de que quieres eliminar este Quiz? Esta acción no se puede deshacer.",
+    "deleteConfirmLabel": "Eliminar",
+    "deleteConfirmTitle": "Eliminar Quiz",
+    "deleteError": "Error al eliminar el Quiz",
+    "deleteLoading": "Eliminando Quiz...",
+    "deleteSuccess": "¡Quiz eliminado con éxito!",
+    "edit": "Editar",
+    "modified": "Modificado {time}"
+  },
   "quiz:link:create": {
     "create": "Crear"
   },
-  "home:header:user-menu": {
-    "settings": "Configuración"
+  "quiz:model:error": {
+    "answerTextRequired": "La respuesta no puede estar vacía",
+    "minAnswers": "Debe haber al menos dos respuestas",
+    "minQuestions": "El cuestionario debe tener al menos una pregunta",
+    "questionTitleRequired": "El título de la pregunta es obligatorio",
+    "quizNameRequired": "El nombre del cuestionario es obligatorio"
+  },
+  "quiz:new:create": {
+    "create": "Crear",
+    "createError": "No se pudo crear el Quiz. Por favor, intenta de nuevo.",
+    "createSuccess": "¡Quiz creado con éxito!"
+  },
+  "quiz:new:settings:ai": {
+    "label": "IA"
+  },
+  "quiz:new:settings:reset": {
+    "description": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados.",
+    "label": "Restablecer borrador",
+    "title": "Restablecer borrador del Quiz"
+  },
+  "quiz:title-and-description:update": {
+    "description": "Actualiza el título y la descripción de tu cuestionario.",
+    "descriptionLabel": "Descripción",
+    "label": "Título y descripción",
+    "nameLabel": "Título",
+    "title": "Actualizar título y descripción",
+    "update": "Actualizar"
   },
   "settings": {
     "title": "Configuración"
@@ -28,71 +80,23 @@
     "description": "Mejora tu experiencia ajustando tus preferencias."
   },
   "settings:preferences:options": {
-    "languageTitle": "Idioma",
     "languageDescription": "Selecciona tu idioma preferido para la aplicación.",
     "languageLabel": "Idioma preferido",
-    "themeTitle": "Tema",
+    "languageTitle": "Idioma",
     "themeDescription": "Elige entre tema claro, oscuro o el predeterminado del sistema.",
-    "themeLabel": "Modo de tema"
+    "themeLabel": "Modo de tema",
+    "themeTitle": "Tema"
   },
   "settings:preferences:options:theme": {
-    "system": "Sistema",
+    "dark": "Oscuro",
     "light": "Claro",
-    "dark": "Oscuro"
+    "system": "Sistema"
+  },
+  "settings:tabs": {
+    "preferences": "Preferencias"
   },
   "title": {
     "new": "Crear nuevo Quiz",
     "settings/preferences": "Preferencias"
-  },
-  "quiz:model:error": {
-    "questionTitleRequired": "El título de la pregunta es obligatorio",
-    "answerTextRequired": "La respuesta no puede estar vacía",
-    "minAnswers": "Debe haber al menos dos respuestas",
-    "quizNameRequired": "El nombre del cuestionario es obligatorio",
-    "minQuestions": "El cuestionario debe tener al menos una pregunta"
-  },
-  "confirm-dialog": {
-    "confirm": "Confirmar",
-    "cancel": "Cancelar",
-    "loading": "Cargando..."
-  },
-  "quiz:title-and-description:update": {
-    "trigger": "Título y descripción",
-    "title": "Actualizar título y descripción",
-    "description": "Actualiza el título y la descripción de tu cuestionario.",
-    "nameLabel": "Título",
-    "descriptionLabel": "Descripción",
-    "update": "Actualizar"
-  },
-  "quiz:new:create": {
-    "create": "Crear",
-    "createSuccess": "¡Quiz creado con éxito!",
-    "createError": "No se pudo crear el Quiz. Por favor, intenta de nuevo."
-  },
-  "quiz:draft": {
-    "name": "Nuevo Quiz",
-    "description": "Esta es una descripción de ejemplo para el quiz.",
-    "questionTitle": "Nueva pregunta",
-    "correctAnswerText": "Nueva respuesta (Correcta)",
-    "incorrectAnswerText": "Nueva respuesta (Incorrecta)"
-  },
-  "quiz:draft:reset": {
-    "confirmTitle": "Restablecer borrador del Quiz",
-    "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."
-  },
-  "quiz:grid": {
-    "noQuizzes": "No tienes quizzes creados aún"
-  },
-  "quiz:grid:item": {
-    "modified": "Modificado {time}",
-    "created": "Creado el {time}",
-    "edit": "Editar",
-    "delete": "Eliminar",
-    "deleteConfirmTitle": "Eliminar Quiz",
-    "deleteConfirmDescription": "¿Estás seguro de que quieres eliminar este Quiz? Esta acción no se puede deshacer.",
-    "deleteConfirmLabel": "Eliminar",
-    "deleteLoading": "Eliminando Quiz...",
-    "deleteSuccess": "¡Quiz eliminado con éxito!",
-    "deleteError": "Error al eliminar el Quiz"
   }
 }

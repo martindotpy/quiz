@@ -20,7 +20,7 @@ const userMenuMessages = i18nInstance("home:header:user-menu", {
 // Items
 interface UserMenuItem {
   to: LinkRoute
-  Icon: IconType
+  icon: IconType
   label: string
 }
 
@@ -30,7 +30,7 @@ function useUserMenuItem(): UserMenuItem[] {
   return [
     {
       to: "/{-$locale}/settings",
-      Icon: TbSettings,
+      icon: TbSettings,
       label: messages.settings,
     },
   ]
@@ -44,19 +44,15 @@ export function UserMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        nativeButton={false}
         render={
-          <Button
-            size="icon"
-            nativeButton={false}
-            className="p-1"
-            render={<TbUser className="size-4" />}
-          />
+          <Button size="icon" className="p-1">
+            <TbUser className="size-4" />
+          </Button>
         }
       />
 
       <DropdownMenuContent align="end">
-        {items.map(({ to, Icon, label }) => (
+        {items.map(({ to, icon: Icon, label }) => (
           <DropdownMenuItem
             key={to}
             nativeButton={false}

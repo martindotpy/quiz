@@ -1,8 +1,9 @@
 import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
 import { cn } from "@/core/lib/tailwind"
-import { Route as QuestionByIdAtNewQuizRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
+import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
+import { quizContentContainerClassName } from "@/quiz/styles/quiz-content-container-styles"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
 import { useForm } from "react-hook-form"
@@ -13,8 +14,7 @@ export function NewQuizContent() {
   const { draftQuiz, setDraftQuiz } = useDraftQuiz()
 
   // Question
-  const { questionStore, questionIndex } =
-    QuestionByIdAtNewQuizRoute.useRouteContext()
+  const { questionStore, questionIndex } = QuestionByIdRoute.useRouteContext()
   const question = useStore(questionStore)
 
   // Form
@@ -32,7 +32,7 @@ export function NewQuizContent() {
   })
 
   return (
-    <form className="flex-1" onChange={onChange}>
+    <form className={quizContentContainerClassName} onChange={onChange}>
       <ControlledInput
         name="title"
         control={control}

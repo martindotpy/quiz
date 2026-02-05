@@ -44,5 +44,9 @@ export function CreateNewQuizButton() {
     }
   }
 
-  return <Button onClick={createNewQuiz}>{messages.create}</Button>
+  return (
+    <Button variant="secondary" onClick={createNewQuiz}>
+      {messages.create}
+    </Button>
+  )
 }

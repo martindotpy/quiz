@@ -24,7 +24,7 @@ interface Option {
 }
 
 interface Preference {
-  Icon: IconType
+  icon: IconType
   title: string
   description: string
   options: Option[]
@@ -35,7 +35,7 @@ function usePreferences(): Preference[] {
 
   return [
     {
-      Icon: TbLanguage,
+      icon: TbLanguage,
       title: messages.languageTitle,
       description: messages.languageDescription,
       options: [
@@ -46,7 +46,7 @@ function usePreferences(): Preference[] {
       ],
     },
     {
-      Icon: TbAdjustments,
+      icon: TbAdjustments,
       title: messages.themeTitle,
       description: messages.themeDescription,
       options: [
@@ -65,7 +65,7 @@ export function PreferencesOptions() {
 
   return (
     <div className="mt-3 flex flex-col gap-4">
-      {preferences.map(({ title, Icon, description, options }) => (
+      {preferences.map(({ title, icon: Icon, description, options }) => (
         <Fragment key={title}>
           <Separator />
 

@@ -4,8 +4,7 @@ import { CreateQuizLink } from "@/home/components/atoms/create-quiz-link"
 import { SearchQuiz } from "@/home/components/molecules/search-quiz-input"
 import { UserMenu } from "@/home/components/molecules/user-dropdown-menu"
 import { CreateNewQuizButton } from "@/quiz/components/molecules/create-new-quiz-button"
-import { ResetDraftQuizButton } from "@/quiz/components/molecules/reset-draft-quiz-button"
-import { UpdateTitleAndDescriptionButton } from "@/quiz/components/molecules/update-title-and-description-button"
+import { NewQuizSettingsDropdownMenu } from "@/quiz/components/molecules/new-quiz-dropdown-menu"
 import { useMatches } from "@tanstack/react-router"
 
 // Component
@@ -32,9 +31,8 @@ export function HomeHeader() {
 
           {isCreationMode && (
             <>
-              <ResetDraftQuizButton />
-              <UpdateTitleAndDescriptionButton />
               <CreateNewQuizButton />
+              <NewQuizSettingsDropdownMenu />
             </>
           )}
 

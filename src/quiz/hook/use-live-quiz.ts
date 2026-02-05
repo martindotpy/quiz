@@ -1,12 +1,12 @@
 import { normalize } from "@/core/utils/string-utils"
-import { Route } from "@/pages/_app/routes/{-$locale}/_main/route"
+import { Route as QuizQueryRoute } from "@/pages/_app/routes/{-$locale}/_main/route"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { ilike, or, useLiveQuery } from "@tanstack/react-db"
 
 // Hook
 export function useLiveQuiz() {
   // Query
-  const { q } = Route.useSearch()
+  const { q } = QuizQueryRoute.useSearch()
   const qLikeExpression = q ? `%${normalize(q)}%` : `%`
 
   // Live query
