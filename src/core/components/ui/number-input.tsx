@@ -1,8 +1,13 @@
 import { Button } from "@/core/components/ui/button"
+import { Input } from "@/core/components/ui/input"
 import { cn } from "@/core/lib/tailwind"
 import { forwardRef, useCallback, useEffect, useState } from "react"
 import { LuChevronDown, LuChevronUp } from "react-icons/lu"
-import { NumericFormat, type NumericFormatProps } from "react-number-format"
+import {
+  NumericFormat,
+  type NumericFormatProps,
+  type OnValueChange,
+} from "react-number-format"
 
 export interface NumberInputProps extends Omit<
   NumericFormatProps,
@@ -22,10 +27,7 @@ export interface NumberInputProps extends Omit<
   decimalScale?: number
 }
 
-export const NumberInput = forwardRef<
-  HTMLInputElement,
-  NumberInputProps
->(
+export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   (
     {
       stepper,
@@ -95,10 +97,7 @@ export const NumberInput = forwardRef<
     }, [controlledValue])
 
     // Handle number input change
-    const handleChange = (values: {
-      value: string
-      floatValue: number | undefined
-    }) => {
+    const handleChange: OnValueChange = (values) => {
       const newValue =
         values.floatValue === undefined ? undefined : values.floatValue
       setValue(newValue)
@@ -145,6 +144,7 @@ export const NumberInput = forwardRef<
           )}
           getInputRef={ref}
           readOnly={readOnly}
+          customInput={Input}
           {...props}
         />
 
