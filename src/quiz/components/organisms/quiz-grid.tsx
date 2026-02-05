@@ -23,7 +23,7 @@ export function QuizGrid() {
       <p>{messages.noQuizzes}</p>
     </div>
   ) : (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="no-scrollbar grid grid-cols-1 gap-4 overflow-y-scroll md:grid-cols-2 lg:grid-cols-3">
       {quizzes.map((quiz) => (
         <QuizGridItem key={quiz.id} quiz={quiz} />
       ))}

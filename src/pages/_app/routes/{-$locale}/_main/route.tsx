@@ -12,10 +12,8 @@ export const Route = createFileRoute("/{-$locale}/_main")({
 
 function MainLayoutComponent() {
   return (
-    <div className="flex flex-1">
-      <main className="mx-auto flex max-w-7xl flex-1 flex-col p-4">
-        <Outlet />
-      </main>
-    </div>
+    <main className="max-h-main-h min-h-main-h mx-auto flex w-full max-w-7xl flex-col overflow-hidden p-4">
+      <Outlet />
+    </main>
   )
 }

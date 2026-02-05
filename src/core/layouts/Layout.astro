@@ -3,10 +3,10 @@ import Styles from "@/core/components/atoms/Styles.astro"
 import Sonner from "@/core/components/molecules/Sonner.astro"
 import { site, siteUrl } from "@/core/configuration/app-configuration"
 import {
-appName,
-author,
-defaultDescription,
-defaultKeywords,
+  appName,
+  author,
+  defaultDescription,
+  defaultKeywords,
 } from "@/core/constant/seo-constant"
 import { getTitle } from "@/core/kit/title-kit"
 import { currentLocale } from "astro-nanostores-i18n:runtime"
@@ -161,7 +161,7 @@ if (!ogImageUrl.endsWith("index.png"))
     <script src="@/core/scripts/umami-identify.ts"></script>
   </head>
 
-  <body class="no-scrollbar! flex min-h-svh flex-col overflow-y-scroll!">
+  <body class="min-h-svh">
     <slot />
   </body>
 </html>

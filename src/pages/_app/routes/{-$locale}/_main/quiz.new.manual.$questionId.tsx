@@ -41,7 +41,12 @@ export const Route = createFileRoute(
 
 function NewQuizComponent() {
   return (
-    <div className={cn("flex flex-1 flex-col-reverse gap-4", "md:flex-row")}>
+    <div
+      className={cn(
+        "no-scrollbar flex flex-1 flex-col-reverse gap-4 overflow-y-scroll",
+        "md:flex-row"
+      )}
+    >
       <div
         className={cn(
           "no-scrollbar flex flex-col gap-4 overflow-y-scroll",

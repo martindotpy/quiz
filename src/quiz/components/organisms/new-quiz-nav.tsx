@@ -2,11 +2,12 @@ import { Button } from "@/core/components/ui/button"
 import { cn } from "@/core/lib/tailwind"
 import { Route } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { getDefaultDraftQuestion } from "@/quiz/store/draft-quiz-store"
 import { Link } from "@tanstack/react-router"
 import { TbPlus, TbQuestionMark } from "react-icons/tb"
 
 // Styles
-const extraButtonClassName = cn("transition-none max-md:h-24 md:w-full")
+const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
 
 // Component
 export function NewQuizNav() {
@@ -20,15 +21,15 @@ export function NewQuizNav() {
     <nav>
       <ul
         className={cn(
-          "flex gap-2 overflow-x-scroll transition-none select-none",
-          "md:flex-col md:overflow-x-hidden"
+          "no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden transition-none select-none",
+          "md:max-h-full md:flex-col md:overflow-x-hidden md:overflow-y-auto"
         )}
       >
         {draftQuiz.questions.map((question, i) => (
           <li
             key={i}
             className={cn(
-              "bg-card relative flex h-20 w-32 border",
+              "bg-card relative flex min-h-20 min-w-32 max-w-32 border",
               i === questionIndex && "outline-3 -outline-offset-3"
             )}
           >
@@ -56,22 +57,7 @@ export function NewQuizNav() {
             onClick={() => {
               setDraftQuiz({
                 ...draftQuiz,
-                questions: [
-                  ...draftQuiz.questions,
-                  {
-                    title: "New Question",
-                    answers: [
-                      {
-                        text: "New Answer",
-                        isCorrect: false,
-                      },
-                      {
-                        text: "New Answer",
-                        isCorrect: true,
-                      },
-                    ],
-                  },
-                ],
+                questions: [...draftQuiz.questions, getDefaultDraftQuestion()],
               })
             }}
           >

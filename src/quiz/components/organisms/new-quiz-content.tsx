@@ -36,7 +36,7 @@ export function NewQuizContent() {
       <ControlledInput
         name="title"
         control={control}
-        inputProps={{ className: cn("py-5 text-center text-base font-medium") }}
+        inputProps={{ className: cn("py-6 text-center text-lg! font-medium") }}
       />
     </form>
   )

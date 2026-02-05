@@ -21,8 +21,8 @@ export function HomeHeader() {
   const isCreateButtonEnabled = !isCreationMode
 
   return (
-    <div>
-      <header className="min-h-header-h mx-auto flex max-w-7xl items-center justify-between">
+    <div className="max-h-header-h">
+      <header className="mx-auto flex max-w-7xl items-center justify-between">
         <BannerLink />
 
         {isSearchEnabled && <SearchQuiz />}
