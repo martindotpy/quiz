@@ -69,6 +69,13 @@
     "createSuccess": "¡Quiz creado con éxito!",
     "createError": "No se pudo crear el Quiz. Por favor, intenta de nuevo."
   },
+  "quiz:draft": {
+    "name": "Nuevo Quiz",
+    "description": "Esta es una descripción de ejemplo para el quiz.",
+    "questionTitle": "Nueva pregunta",
+    "correctAnswerText": "Nueva respuesta (Correcta)",
+    "incorrectAnswerText": "Nueva respuesta (Incorrecta)"
+  },
   "quiz:draft:reset": {
     "confirmTitle": "Restablecer borrador del Quiz",
     "confirmDescription": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados."

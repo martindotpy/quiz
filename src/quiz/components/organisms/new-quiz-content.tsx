@@ -1,8 +1,10 @@
 import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
-import { Route } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
+import { cn } from "@/core/lib/tailwind"
+import { Route as QuestionByIdAtNewQuizRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useStore } from "@nanostores/react"
 import { useForm } from "react-hook-form"
 
 // Component
@@ -11,7 +13,9 @@ export function NewQuizContent() {
   const { draftQuiz, setDraftQuiz } = useDraftQuiz()
 
   // Question
-  const { question, questionIndex } = Route.useRouteContext()
+  const { questionStore, questionIndex } =
+    QuestionByIdAtNewQuizRoute.useRouteContext()
+  const question = useStore(questionStore)
 
   // Form
   const { control, handleSubmit } = useForm({
@@ -32,7 +36,7 @@ export function NewQuizContent() {
       <ControlledInput
         name="title"
         control={control}
-        inputProps={{ className: "text-center text-base py-5 font-medium" }}
+        inputProps={{ className: cn("py-5 text-center text-base font-medium") }}
       />
     </form>
   )

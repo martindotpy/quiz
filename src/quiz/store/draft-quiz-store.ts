@@ -5,8 +5,8 @@ import { persistentAtom } from "@nanostores/persistent"
 import { v7 as uuidv7 } from "uuid"
 
 // i18n
-export const defaultDraftQuizMessages = i18nInstance("quiz:draft:default", {
-  name: "Quiz",
+export const draftQuizMessages = i18nInstance("quiz:draft", {
+  name: "New Quiz",
   description: "This is a sample quiz description.",
   questionTitle: "New question",
   correctAnswerText: "New answer (Correct)",
@@ -15,7 +15,7 @@ export const defaultDraftQuizMessages = i18nInstance("quiz:draft:default", {
 
 // Initial values
 export function getDefaultDraftQuestion() {
-  const messages = defaultDraftQuizMessages.get()
+  const messages = draftQuizMessages.get()
 
   return {
     title: messages.questionTitle,
@@ -27,7 +27,7 @@ export function getDefaultDraftQuestion() {
 }
 
 export function getDefaultDraftQuiz() {
-  const messages = defaultDraftQuizMessages.get()
+  const messages = draftQuizMessages.get()
 
   return {
     id: uuidv7(),
