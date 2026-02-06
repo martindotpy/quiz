@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/core/components/ui/dialog"
-import type { NewQuizMenuButtonItem } from "@/quiz/components/molecules/data/new-quiz-dropdown-menu-data"
+import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
@@ -41,7 +41,7 @@ const TitleAndDescriptionQuiz = Quiz.pick({
 
 // Item
 export function useUpdateTitleAndDescriptionDropdownMenuItem(): [
-  NewQuizMenuButtonItem,
+  NewQuizDropdownMenuButtonItem,
   React.ReactNode,
 ] {
   const messages = useStore(updateTitleAndDescriptionMessages)

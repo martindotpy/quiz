@@ -43,14 +43,14 @@ function NewQuizComponent() {
   return (
     <div
       className={cn(
-        "no-scrollbar flex flex-1 flex-col-reverse gap-4 overflow-y-scroll",
+        "no-scrollbar flex flex-1 flex-col-reverse gap-4 overflow-y-hidden",
         "md:flex-row"
       )}
     >
       <div
         className={cn(
-          "no-scrollbar flex flex-col gap-4 overflow-y-scroll",
-          "md:flex-row"
+          "no-scrollbar flex flex-col gap-4",
+          "md:flex-row md:overflow-y-scroll"
         )}
       >
         <Separator orientation="horizontal" className="md:hidden" />

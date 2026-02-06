@@ -5,7 +5,7 @@ import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { getDefaultDraftQuestion } from "@/quiz/store/draft-quiz-store"
 import { Link } from "@tanstack/react-router"
 import { useEffect, useRef } from "react"
-import { TbPlus, TbQuestionMark } from "react-icons/tb"
+import { TbPhoto, TbPlus, TbQuestionMark } from "react-icons/tb"
 
 // Styles
 const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
@@ -14,6 +14,9 @@ const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
 export function NewQuizNav() {
   // Draft quiz
   const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+
+  // Navigate
+  const navigate = QuestionByIdRoute.useNavigate()
 
   // Question
   const { questionIndex } = QuestionByIdRoute.useRouteContext()
@@ -27,11 +30,23 @@ export function NewQuizNav() {
     }
   }, [questionIndex])
 
+  // Add quiz
+  const addQuiz = () => {
+    setDraftQuiz({
+      ...draftQuiz,
+      questions: [...draftQuiz.questions, getDefaultDraftQuestion()],
+    })
+    navigate({
+      params: { questionId: (draftQuiz.questions.length + 1).toString() },
+      viewTransition: false,
+    })
+  }
+
   return (
     <nav>
       <ul
         className={cn(
-          "no-scrollbar flex gap-2 overflow-x-auto overflow-y-hidden transition-none select-none",
+          "no-scrollbar flex gap-2 overflow-x-auto transition-none select-none",
           "md:max-h-full md:flex-col md:overflow-x-hidden md:overflow-y-auto"
         )}
       >
@@ -57,6 +72,8 @@ export function NewQuizNav() {
                   {question.title}
                 </div>
 
+                <TbPhoto className="text-muted-foreground mx-auto size-8" />
+
                 <div className="absolute bottom-0 left-0 flex items-center gap-0.5 bg-[radial-gradient(100%_120%_at_0%_120%,rgba(0,0,0,0.08)_55%,rgba(0,0,0,0))] px-1 text-sm dark:bg-[radial-gradient(100%_120%_at_0%_120%,rgba(32,32,32,0.8)_55%,rgba(0,0,0,0))]">
                   <TbQuestionMark />
 
@@ -68,15 +85,7 @@ export function NewQuizNav() {
         })}
 
         <li className={extraButtonClassName}>
-          <Button
-            className={extraButtonClassName}
-            onClick={() => {
-              setDraftQuiz({
-                ...draftQuiz,
-                questions: [...draftQuiz.questions, getDefaultDraftQuestion()],
-              })
-            }}
-          >
+          <Button className={extraButtonClassName} onClick={addQuiz}>
             <TbPlus />
           </Button>
         </li>

@@ -1,5 +1,5 @@
 import { ConfirmDialog } from "@/core/components/molecules/confirm-dialog"
-import type { NewQuizMenuButtonItem } from "@/quiz/components/molecules/data/new-quiz-dropdown-menu-data"
+import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
@@ -20,7 +20,7 @@ const newQuizSettingResetDraftQuizMessages = i18nInstance(
 
 // Item
 export function useResetDraftQuizDropdownMenuItem(): [
-  NewQuizMenuButtonItem,
+  NewQuizDropdownMenuButtonItem,
   React.ReactNode,
 ] {
   const messages = useStore(newQuizSettingResetDraftQuizMessages)
@@ -41,7 +41,7 @@ export function useResetDraftQuizDropdownMenuItem(): [
       icon: TbTrash,
       label: messages.label,
       onClick: () => setOpen(true),
-      props: { variant: "destructive" },
+      variant: "destructive",
     },
     <ConfirmDialog
       key="reset-draft-quiz-dialog"

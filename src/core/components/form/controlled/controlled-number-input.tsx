@@ -15,6 +15,7 @@ import {
   type FieldPath,
   type FieldValues,
 } from "react-hook-form"
+import type z from "zod"
 
 // Component
 interface ControlledNumberInputProps<
@@ -22,8 +23,9 @@ interface ControlledNumberInputProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > extends Omit<ControllerProps<TFieldValues, TName>, "render"> {
-  label: React.ReactNode
-  inputProps?: NumberInputProps
+  label?: React.ReactNode
+  schema?: z.ZodNumber
+  numberInputProps?: NumberInputProps
   labelProps?: React.HTMLAttributes<HTMLLabelElement>
   errorProps?: React.HTMLAttributes<HTMLSpanElement>
   icon?: React.FunctionComponent<TIconProps>
@@ -38,7 +40,8 @@ export function ControlledNumberInput<
   control,
   name,
   label,
-  inputProps: { className: inputClassName, ...inputProps } = {},
+  schema,
+  numberInputProps: { className: numberInputClassName, ...inputProps } = {},
   labelProps: { className: labelClassName, ...labelProps } = {},
   errorProps: { className: errorClassName, ...errorProps } = {},
   icon: Icon,
@@ -61,12 +64,18 @@ export function ControlledNumberInput<
             <div className="relative">
               <NumberInput
                 id={name}
-                className={inputClassName}
+                className={numberInputClassName}
                 aria-invalid={fieldState.invalid}
-                {...field}
-                onChange={undefined}
-                onValueChange={(value) => field.onChange(value)}
+                min={schema?.minValue ?? undefined}
+                max={schema?.maxValue ?? undefined}
                 {...inputProps}
+                {...field}
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-expect-error
+                onChange={undefined}
+                value={field.value}
+                defaultValue={field.value}
+                onValueChange={(value) => field.onChange(value)}
               />
 
               {Icon && (

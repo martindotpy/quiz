@@ -203,6 +203,8 @@ await Promise.all(
             entry,
             missingInnerKeys.map((key) => "  - " + key).join("\n")
           )
+
+          process.exitCode = 1
         }
 
         return isExtra

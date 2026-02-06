@@ -1,43 +1,21 @@
-import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
-import { cn } from "@/core/lib/tailwind"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
-import { Quiz } from "@/quiz/model/quiz-model"
-import { quizContentContainerClassName } from "@/quiz/styles/quiz-content-container-styles"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useStore } from "@nanostores/react"
-import { useForm } from "react-hook-form"
+import { EditQuestionActions } from "@/quiz/components/molecules/edit-question-actions"
+import { EditQuizQuestionAnswersForm } from "@/quiz/components/molecules/edit-quiz-answers-form"
+import { EditQuizQuestionMultimediaForm } from "@/quiz/components/molecules/edit-quiz-question-multimedia-form"
+import { NewQuizTitleForm } from "@/quiz/components/molecules/new-quiz-title-form"
 
 // Component
 export function NewQuizContent() {
-  // Draft quiz
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
-
-  // Question
-  const { questionStore, questionIndex } = QuestionByIdRoute.useRouteContext()
-  const question = useStore(questionStore)
-
-  // Form
-  const { control, handleSubmit } = useForm({
-    resolver: zodResolver(Quiz.shape.questions.element),
-    defaultValues: question,
-    values: question,
-  })
-
-  const onChange = handleSubmit((data) => {
-    const questions = [...draftQuiz.questions]
-    questions[questionIndex] = data
-
-    setDraftQuiz({ ...draftQuiz, questions })
-  })
-
   return (
-    <form className={quizContentContainerClassName} onChange={onChange}>
-      <ControlledInput
-        name="title"
-        control={control}
-        inputProps={{ className: cn("py-6 text-center text-lg! font-medium") }}
-      />
-    </form>
+    <section className="no-scrollbar flex flex-1 flex-col gap-4 overflow-y-scroll">
+      <div className="flex flex-col gap-2">
+        <EditQuestionActions />
+
+        <NewQuizTitleForm />
+      </div>
+
+      <EditQuizQuestionMultimediaForm />
+
+      <EditQuizQuestionAnswersForm />
+    </section>
   )
 }

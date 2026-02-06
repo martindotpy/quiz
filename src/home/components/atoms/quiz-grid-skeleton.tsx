@@ -22,7 +22,7 @@ export function QuizGridSkeleton() {
       ))}
 
       {/* Three columns */}
-      {[...Array(8)].map((_, index) => (
+      {[...Array(9)].map((_, index) => (
         <QuizGridItemSkeleton key={index} className="hidden lg:block" />
       ))}
     </div>

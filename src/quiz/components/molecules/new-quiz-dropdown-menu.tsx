@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/core/components/ui/dropdown-menu"
-import { useNewQuizMenuItems } from "@/quiz/components/molecules/data/new-quiz-dropdown-menu-data"
+import { useNewQuizMenuItems } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { Link } from "@tanstack/react-router"
 import { TbSettings } from "react-icons/tb"
 
@@ -25,38 +25,32 @@ export function NewQuizSettingsDropdownMenu() {
         />
 
         <DropdownMenuContent align="end">
-          {items.map(({ icon: Icon, label, props, ...item }) => {
-            const isButton = "onClick" in item
+          {items.map(({ icon: Icon, label, ...props }) => {
+            const isLink = "to" in props
 
-            if (isButton) {
+            if (isLink) {
               return (
-                <>
-                  <DropdownMenuItem
-                    key={label}
-                    {...props}
-                    onClick={item.onClick}
-                  >
-                    <Icon />
+                <DropdownMenuItem
+                  key={label}
+                  {...props}
+                  nativeButton={false}
+                  render={
+                    <Link to={props.to}>
+                      <Icon />
 
-                    {label}
-                  </DropdownMenuItem>
-                </>
+                      {label}
+                    </Link>
+                  }
+                />
               )
             }
 
             return (
-              <DropdownMenuItem
-                key={label}
-                {...props}
-                nativeButton={false}
-                render={
-                  <Link to={item.to}>
-                    <Icon />
+              <DropdownMenuItem key={label} {...props} onClick={props.onClick}>
+                <Icon />
 
-                    {label}
-                  </Link>
-                }
-              />
+                {label}
+              </DropdownMenuItem>
             )
           })}
         </DropdownMenuContent>

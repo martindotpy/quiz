@@ -27,6 +27,12 @@
     "name": "Nuevo Quiz",
     "questionTitle": "Nueva pregunta"
   },
+  "quiz:edit:answers": {
+    "add": "Agregar respuesta"
+  },
+  "quiz:edit:question:multimedia": {
+    "label": "Agrega aquí el contenido multimedia de tu pregunta (ej. imágenes, videos, audio, etc.)"
+  },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
   },
@@ -50,7 +56,9 @@
     "minAnswers": "Debe haber al menos dos respuestas",
     "minQuestions": "El cuestionario debe tener al menos una pregunta",
     "questionTitleRequired": "El título de la pregunta es obligatorio",
-    "quizNameRequired": "El nombre del cuestionario es obligatorio"
+    "quizNameRequired": "El nombre del cuestionario es obligatorio",
+    "timeLimitSecondsNonInteger": "El tiempo límite (segundos) debe ser un número entero",
+    "timeLimitSecondsNonNegative": "El tiempo límite (segundos) debe ser mayor o igual a 0"
   },
   "quiz:new:create": {
     "create": "Crear",
@@ -64,6 +72,20 @@
     "description": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados.",
     "label": "Restablecer borrador",
     "title": "Restablecer borrador del Quiz"
+  },
+  "quiz:question:delete": {
+    "description": "¿Estás seguro de que quieres eliminar esta pregunta?",
+    "label": "Eliminar",
+    "title": "Eliminar"
+  },
+  "quiz:question:duplicate": {
+    "label": "Duplicar"
+  },
+  "quiz:question:time-limit-seconds:change": {
+    "confirm": "Confirmar",
+    "description": "Establece el tiempo límite para esta pregunta en segundos.",
+    "label": "Tiempo límite",
+    "title": "Cambiar tiempo límite"
   },
   "quiz:title-and-description:update": {
     "description": "Actualiza el título y la descripción de tu cuestionario.",

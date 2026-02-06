@@ -1,4 +1,4 @@
-import type { NewQuizMenuLinkItem } from "@/quiz/components/molecules/data/new-quiz-dropdown-menu-data"
+import type { NewQuizDropdownMenuLinkItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { TbSparkles } from "react-icons/tb"
@@ -9,7 +9,7 @@ const newQuizSettingAiMessages = i18nInstance("quiz:new:settings:ai", {
 })
 
 // Item
-export function useAiDropdownMenuItem(): NewQuizMenuLinkItem {
+export function useAiDropdownMenuItem(): NewQuizDropdownMenuLinkItem {
   const messages = useStore(newQuizSettingAiMessages)
 
   return {

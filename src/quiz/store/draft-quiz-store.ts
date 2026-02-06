@@ -1,5 +1,9 @@
 import { log } from "@/core/logger/client-logger"
-import { Quiz } from "@/quiz/model/quiz-model"
+import {
+  DEFAULT_QUIZ_TIME_LIMIT_SECONDS,
+  Quiz,
+  type QuizQuestion,
+} from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { persistentAtom } from "@nanostores/persistent"
 import { v7 as uuidv7 } from "uuid"
@@ -14,7 +18,7 @@ export const draftQuizMessages = i18nInstance("quiz:draft", {
 })
 
 // Initial values
-export function getDefaultDraftQuestion() {
+export function getDefaultDraftQuestion(): QuizQuestion {
   const messages = draftQuizMessages.get()
 
   return {
@@ -26,13 +30,14 @@ export function getDefaultDraftQuestion() {
   }
 }
 
-export function getDefaultDraftQuiz() {
+export function getDefaultDraftQuiz(): Quiz {
   const messages = draftQuizMessages.get()
 
   return {
     id: uuidv7(),
     name: messages.name,
     description: messages.description,
+    timeLimitSeconds: DEFAULT_QUIZ_TIME_LIMIT_SECONDS,
     questions: [getDefaultDraftQuestion()],
     createdAt: new Date(),
     updatedAt: new Date(),
