@@ -23,6 +23,7 @@ RUN bun install --ci
 RUN bun astro telemetry disable
 
 # Build the project
+COPY scripts scripts/
 COPY pwa-assets.config.ts ./
 COPY tailwind.config.js ./
 COPY astro.config.ts ./
