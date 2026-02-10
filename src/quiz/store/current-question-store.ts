@@ -1,9 +1,9 @@
 import type { QuizQuestion } from "@/quiz/model/quiz-model"
-import { atom } from "nanostores"
+import { atom, type ReadableAtom } from "nanostores"
 
 // Stores
 interface CurrentQuestionStore {
-  question: QuizQuestion
+  questionStore: ReadableAtom<QuizQuestion>
   questionIndex: number
 }
 

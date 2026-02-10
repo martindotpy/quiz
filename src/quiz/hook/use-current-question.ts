@@ -17,5 +17,11 @@ export function useCurrentQuestion() {
     throw new NoCurrentQuestionError()
   }
 
-  return currentQuestion
+  const { questionIndex, questionStore } = currentQuestion
+  const question = useStore(questionStore)
+
+  return {
+    questionIndex,
+    question,
+  }
 }

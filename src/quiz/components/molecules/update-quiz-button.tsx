@@ -41,5 +41,9 @@ export function UpdateQuizButton() {
     }
   }
 
-  return <Button onClick={updateQuiz}>{messages.label}</Button>
+  return (
+    <Button variant="secondary" onClick={updateQuiz}>
+      {messages.label}
+    </Button>
+  )
 }

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/{-$locale}/_main/quiz/new/ai")({
-  component: RouteComponent,
+  component: CreateNewQuizWithAiComponent,
 })
 
-function RouteComponent() {
+function CreateNewQuizWithAiComponent() {
   return <div>AI</div>
 }

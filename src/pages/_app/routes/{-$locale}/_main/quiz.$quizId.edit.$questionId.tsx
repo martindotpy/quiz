@@ -5,6 +5,7 @@ import { CurrentQuizNav } from "@/quiz/components/organisms/current-quiz-nav"
 import { currentQuestionStore } from "@/quiz/store/current-question-store"
 import { editQuizStore } from "@/quiz/store/edit-quiz-store"
 import { createFileRoute, redirect } from "@tanstack/react-router"
+import { computed } from "nanostores"
 
 // Route
 export const Route = createFileRoute(
@@ -30,9 +31,12 @@ export const Route = createFileRoute(
 
     // There is always one in the quiz
     const questionIndex = questionId - 1
-    const question = quiz.questions[questionIndex]!
+    const questionStore = computed(
+      editQuizStore,
+      (quiz) => quiz!.questions[questionIndex]!
+    )
 
-    currentQuestionStore.set({ questionIndex, question })
+    currentQuestionStore.set({ questionIndex, questionStore })
   },
   component: EditQuizComponent,
 })

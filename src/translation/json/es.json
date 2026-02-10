@@ -33,6 +33,11 @@
   "quiz:edit:question:multimedia": {
     "label": "Agrega aquí el contenido multimedia de tu pregunta (ej. imágenes, videos, audio, etc.)"
   },
+  "quiz:edit:settings:reset": {
+    "description": "¿Estás seguro de que quieres restablecer el quiz a su versión guardada anterior? Se perderán los cambios no guardados.",
+    "label": "Restablecer a versión previa",
+    "title": "Restablecer al estado anterior"
+  },
   "quiz:edit:update": {
     "error": "No se pudo actualizar el Quiz. Por favor, intenta de nuevo.",
     "label": "Actualizar",
@@ -70,9 +75,6 @@
     "createError": "No se pudo crear el Quiz. Por favor, intenta de nuevo.",
     "createSuccess": "¡Quiz creado con éxito!"
   },
-  "quiz:new:settings:ai": {
-    "label": "IA"
-  },
   "quiz:new:settings:reset": {
     "description": "¿Estás seguro de que quieres restablecer el borrador del Quiz? Se perderán todos los cambios no guardados.",
     "label": "Restablecer borrador",
@@ -91,6 +93,9 @@
     "description": "Establece el tiempo límite para esta pregunta en segundos.",
     "label": "Tiempo límite",
     "title": "Cambiar tiempo límite"
+  },
+  "quiz:settings:ai": {
+    "label": "IA"
   },
   "quiz:title-and-description:update": {
     "description": "Actualiza el título y la descripción de tu cuestionario.",

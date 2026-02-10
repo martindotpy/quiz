@@ -4,6 +4,7 @@ import { CreateQuizLink } from "@/home/components/atoms/create-quiz-link"
 import { SearchQuiz } from "@/home/components/molecules/search-quiz-input"
 import { UserMenu } from "@/home/components/molecules/user-dropdown-menu"
 import { CreateNewQuizButton } from "@/quiz/components/molecules/create-new-quiz-button"
+import { EditQuizSettingsDropdownMenu } from "@/quiz/components/molecules/edit-quiz-dropdown-menu"
 import { NewQuizSettingsDropdownMenu } from "@/quiz/components/molecules/new-quiz-dropdown-menu"
 import { UpdateQuizButton } from "@/quiz/components/molecules/update-quiz-button"
 import { useMode } from "@/quiz/hook/use-mode"
@@ -38,6 +39,7 @@ export function HomeHeader() {
           {isEditMode && (
             <>
               <UpdateQuizButton />
+              <EditQuizSettingsDropdownMenu />
             </>
           )}
 

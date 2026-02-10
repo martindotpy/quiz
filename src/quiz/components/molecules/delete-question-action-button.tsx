@@ -1,10 +1,10 @@
 import { ConfirmDialog } from "@/core/components/molecules/confirm-dialog"
 import { Button } from "@/core/components/ui/button"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
+import { useNavigate } from "@tanstack/react-router"
 import { useState } from "react"
 import { TbTrash } from "react-icons/tb"
 
@@ -20,7 +20,7 @@ export function DeleteQuestionActionButton() {
   const messages = useStore(deleteQuestionActionMessages)
 
   // Navigate
-  const navigate = QuestionByIdRoute.useNavigate()
+  const navigate = useNavigate()
 
   // Draft quiz
   const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
@@ -36,9 +36,12 @@ export function DeleteQuestionActionButton() {
   const onConfirm = async () => {
     // Navigate to the next question or previous if it was the last one
     await navigate({
-      params: {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      params: (prevParams) => ({
+        ...prevParams,
         questionId: (questionIndex + (isLastQuestion ? 0 : 1)).toString(),
-      },
+      }),
       viewTransition: false,
     })
 
