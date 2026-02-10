@@ -11,7 +11,7 @@ import { computed } from "nanostores"
 export const Route = createFileRoute(
   "/{-$locale}/_main/quiz/$quizId/edit/$questionId"
 )({
-  loader: ({ params }) => {
+  beforeLoad: ({ params }) => {
     // Check if the question id is valid
     const { questionId: rawQuestionId } = params
     const questionId = Number(rawQuestionId)

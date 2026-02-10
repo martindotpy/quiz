@@ -6,7 +6,7 @@ import { TanStackDevtools } from "@tanstack/react-devtools"
 // Component
 export function Devtools() {
   return (
-    !isDev && (
+    isDev && (
       <TanStackDevtools
         config={{
           position: "bottom-right",

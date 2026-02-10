@@ -1,4 +1,3 @@
-import { isDev } from "@/core/configuration/app-configuration"
 import { Devtools } from "@/core/devtools/devtools"
 import { getTitle } from "@/core/kit/title-kit"
 import { HomeHeader } from "@/home/components/organisms/home-header"
@@ -30,8 +29,7 @@ function RootComponent() {
 
       <Outlet />
 
-      {/* TIP: Disabled because broke layout */}
-      {isDev && <Devtools />}
+      <Devtools />
     </>
   )
 }

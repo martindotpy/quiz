@@ -31,7 +31,7 @@ export function useResetEditQuizDropdownMenuItem(): [
   const { currentQuiz, resetQuizStore } = useCurrentQuiz()
 
   // Available to update
-  const { quiz } = QuizRoute.useLoaderData()
+  const { quiz } = QuizRoute.useRouteContext()
   const isAvailableToReset = deepEqual(currentQuiz, quiz)
 
   // Dialog

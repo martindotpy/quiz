@@ -6,7 +6,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router"
 
 // Route
 export const Route = createFileRoute("/{-$locale}/_main/quiz/$quizId")({
-  loader: ({ params }) => {
+  beforeLoad: ({ params }) => {
     const { quizId: rawQuizId } = params
 
     // Check if the quizId is valid
