@@ -20,6 +20,7 @@ import { Route as Char123LocaleChar125MainQuizNewManualRouteImport } from "./rou
 import { Route as Char123LocaleChar125MainQuizNewAiRouteImport } from "./routes/{-$locale}/_main/quiz.new.ai"
 import { Route as Char123LocaleChar125MainQuizQuizIdEditRouteImport } from "./routes/{-$locale}/_main/quiz.$quizId.edit"
 import { Route as Char123LocaleChar125MainQuizNewManualQuestionIdRouteImport } from "./routes/{-$locale}/_main/quiz.new.manual.$questionId"
+import { Route as Char123LocaleChar125MainQuizQuizIdEditQuestionIdRouteImport } from "./routes/{-$locale}/_main/quiz.$quizId.edit.$questionId"
 
 const Char123LocaleChar125RouteRoute =
   Char123LocaleChar125RouteRouteImport.update({
@@ -86,6 +87,12 @@ const Char123LocaleChar125MainQuizNewManualQuestionIdRoute =
     path: "/$questionId",
     getParentRoute: () => Char123LocaleChar125MainQuizNewManualRoute,
   } as any)
+const Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute =
+  Char123LocaleChar125MainQuizQuizIdEditQuestionIdRouteImport.update({
+    id: "/$questionId",
+    path: "/$questionId",
+    getParentRoute: () => Char123LocaleChar125MainQuizQuizIdEditRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   "/{-$locale}": typeof Char123LocaleChar125MainRouteRouteWithChildren
@@ -94,9 +101,10 @@ export interface FileRoutesByFullPath {
   "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/quiz/new": typeof Char123LocaleChar125MainQuizNewRouteWithChildren
   "/{-$locale}/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
-  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren
   "/{-$locale}/quiz/new/ai": typeof Char123LocaleChar125MainQuizNewAiRoute
   "/{-$locale}/quiz/new/manual": typeof Char123LocaleChar125MainQuizNewManualRouteWithChildren
+  "/{-$locale}/quiz/$quizId/edit/$questionId": typeof Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute
   "/{-$locale}/quiz/new/manual/$questionId": typeof Char123LocaleChar125MainQuizNewManualQuestionIdRoute
 }
 export interface FileRoutesByTo {
@@ -105,9 +113,10 @@ export interface FileRoutesByTo {
   "/{-$locale}/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/quiz/new": typeof Char123LocaleChar125MainQuizNewRouteWithChildren
   "/{-$locale}/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
-  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+  "/{-$locale}/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren
   "/{-$locale}/quiz/new/ai": typeof Char123LocaleChar125MainQuizNewAiRoute
   "/{-$locale}/quiz/new/manual": typeof Char123LocaleChar125MainQuizNewManualRouteWithChildren
+  "/{-$locale}/quiz/$quizId/edit/$questionId": typeof Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute
   "/{-$locale}/quiz/new/manual/$questionId": typeof Char123LocaleChar125MainQuizNewManualQuestionIdRoute
 }
 export interface FileRoutesById {
@@ -119,9 +128,10 @@ export interface FileRoutesById {
   "/{-$locale}/_main/quiz/$quizId": typeof Char123LocaleChar125MainQuizQuizIdRouteWithChildren
   "/{-$locale}/_main/quiz/new": typeof Char123LocaleChar125MainQuizNewRouteWithChildren
   "/{-$locale}/_main/settings/preferences": typeof Char123LocaleChar125MainSettingsPreferencesRoute
-  "/{-$locale}/_main/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+  "/{-$locale}/_main/quiz/$quizId/edit": typeof Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren
   "/{-$locale}/_main/quiz/new/ai": typeof Char123LocaleChar125MainQuizNewAiRoute
   "/{-$locale}/_main/quiz/new/manual": typeof Char123LocaleChar125MainQuizNewManualRouteWithChildren
+  "/{-$locale}/_main/quiz/$quizId/edit/$questionId": typeof Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute
   "/{-$locale}/_main/quiz/new/manual/$questionId": typeof Char123LocaleChar125MainQuizNewManualQuestionIdRoute
 }
 export interface FileRouteTypes {
@@ -136,6 +146,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/quiz/$quizId/edit"
     | "/{-$locale}/quiz/new/ai"
     | "/{-$locale}/quiz/new/manual"
+    | "/{-$locale}/quiz/$quizId/edit/$questionId"
     | "/{-$locale}/quiz/new/manual/$questionId"
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -147,6 +158,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/quiz/$quizId/edit"
     | "/{-$locale}/quiz/new/ai"
     | "/{-$locale}/quiz/new/manual"
+    | "/{-$locale}/quiz/$quizId/edit/$questionId"
     | "/{-$locale}/quiz/new/manual/$questionId"
   id:
     | "__root__"
@@ -160,6 +172,7 @@ export interface FileRouteTypes {
     | "/{-$locale}/_main/quiz/$quizId/edit"
     | "/{-$locale}/_main/quiz/new/ai"
     | "/{-$locale}/_main/quiz/new/manual"
+    | "/{-$locale}/_main/quiz/$quizId/edit/$questionId"
     | "/{-$locale}/_main/quiz/new/manual/$questionId"
   fileRoutesById: FileRoutesById
 }
@@ -246,6 +259,13 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof Char123LocaleChar125MainQuizNewManualQuestionIdRouteImport
       parentRoute: typeof Char123LocaleChar125MainQuizNewManualRoute
     }
+    "/{-$locale}/_main/quiz/$quizId/edit/$questionId": {
+      id: "/{-$locale}/_main/quiz/$quizId/edit/$questionId"
+      path: "/$questionId"
+      fullPath: "/{-$locale}/quiz/$quizId/edit/$questionId"
+      preLoaderRoute: typeof Char123LocaleChar125MainQuizQuizIdEditQuestionIdRouteImport
+      parentRoute: typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+    }
   }
 }
 
@@ -264,14 +284,29 @@ const Char123LocaleChar125MainSettingsRouteWithChildren =
     Char123LocaleChar125MainSettingsRouteChildren,
   )
 
+interface Char123LocaleChar125MainQuizQuizIdEditRouteChildren {
+  Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute: typeof Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute
+}
+
+const Char123LocaleChar125MainQuizQuizIdEditRouteChildren: Char123LocaleChar125MainQuizQuizIdEditRouteChildren =
+  {
+    Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute:
+      Char123LocaleChar125MainQuizQuizIdEditQuestionIdRoute,
+  }
+
+const Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren =
+  Char123LocaleChar125MainQuizQuizIdEditRoute._addFileChildren(
+    Char123LocaleChar125MainQuizQuizIdEditRouteChildren,
+  )
+
 interface Char123LocaleChar125MainQuizQuizIdRouteChildren {
-  Char123LocaleChar125MainQuizQuizIdEditRoute: typeof Char123LocaleChar125MainQuizQuizIdEditRoute
+  Char123LocaleChar125MainQuizQuizIdEditRoute: typeof Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren
 }
 
 const Char123LocaleChar125MainQuizQuizIdRouteChildren: Char123LocaleChar125MainQuizQuizIdRouteChildren =
   {
     Char123LocaleChar125MainQuizQuizIdEditRoute:
-      Char123LocaleChar125MainQuizQuizIdEditRoute,
+      Char123LocaleChar125MainQuizQuizIdEditRouteWithChildren,
   }
 
 const Char123LocaleChar125MainQuizQuizIdRouteWithChildren =

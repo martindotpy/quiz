@@ -1,20 +1,18 @@
 import { ControlledInput } from "@/core/components/form/controlled/controlled-input"
 import { cn } from "@/core/lib/tailwind"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useStore } from "@nanostores/react"
 import { useForm } from "react-hook-form"
 
 // Component
-export function NewQuizTitleForm() {
-  // Draft quiz
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+export function CurrentQuizTitleForm() {
+  // Edit quiz
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Question
-  const { questionStore, questionIndex } = QuestionByIdRoute.useRouteContext()
-  const question = useStore(questionStore)
+  const { question, questionIndex } = useCurrentQuestion()
 
   // Form
   const { control, handleSubmit } = useForm({
@@ -24,10 +22,10 @@ export function NewQuizTitleForm() {
   })
 
   const onChange = handleSubmit((data) => {
-    const questions = [...draftQuiz.questions]
+    const questions = [...currentQuiz.questions]
     questions[questionIndex] = data
 
-    setDraftQuiz({ ...draftQuiz, questions })
+    setCurrentQuiz({ ...currentQuiz, questions })
   })
 
   return (

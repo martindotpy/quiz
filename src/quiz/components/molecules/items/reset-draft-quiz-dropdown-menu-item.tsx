@@ -1,6 +1,6 @@
 import { ConfirmDialog } from "@/core/components/molecules/confirm-dialog"
 import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import type React from "react"
@@ -26,13 +26,13 @@ export function useResetDraftQuizDropdownMenuItem(): [
   const messages = useStore(newQuizSettingResetDraftQuizMessages)
 
   // Draft quiz
-  const { resetDraftQuiz } = useDraftQuiz()
+  const { resetQuizStore } = useCurrentQuiz()
 
   // Dialog
   const [open, setOpen] = useState(false)
 
   const onConfirm = () => {
-    resetDraftQuiz()
+    resetQuizStore()
     setOpen(false)
   }
 

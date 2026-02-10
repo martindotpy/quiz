@@ -33,6 +33,11 @@
   "quiz:edit:question:multimedia": {
     "label": "Agrega aquí el contenido multimedia de tu pregunta (ej. imágenes, videos, audio, etc.)"
   },
+  "quiz:edit:update": {
+    "error": "No se pudo actualizar el Quiz. Por favor, intenta de nuevo.",
+    "label": "Actualizar",
+    "success": "¡Quiz actualizado con éxito!"
+  },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
   },

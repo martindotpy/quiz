@@ -69,5 +69,6 @@ declare module "@tanstack/react-router" {
 
   interface StaticDataRouteOption {
     creationMode?: boolean
+    editMode?: boolean
   }
 }

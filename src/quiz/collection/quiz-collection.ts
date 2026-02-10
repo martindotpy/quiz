@@ -27,7 +27,7 @@ export const quizCollection = createCollection(
 
       updatedQuiz.updatedAt = now
     },
-
+    startSync: true,
     parser: {
       parse: (data) => {
         const raw = JSON.parse(data)

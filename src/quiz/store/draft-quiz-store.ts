@@ -44,7 +44,7 @@ export function getDefaultDraftQuiz(): Quiz {
   }
 }
 
-// Store
+// Stores
 export const draftQuizStore = persistentAtom<Quiz>(
   "draft-quiz",
   getDefaultDraftQuiz(),
@@ -64,3 +64,8 @@ export const draftQuizStore = persistentAtom<Quiz>(
     },
   }
 )
+
+// Reset
+export function resetDraftQuiz() {
+  draftQuizStore.set(getDefaultDraftQuiz())
+}

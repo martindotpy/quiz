@@ -5,19 +5,18 @@ import { SearchQuiz } from "@/home/components/molecules/search-quiz-input"
 import { UserMenu } from "@/home/components/molecules/user-dropdown-menu"
 import { CreateNewQuizButton } from "@/quiz/components/molecules/create-new-quiz-button"
 import { NewQuizSettingsDropdownMenu } from "@/quiz/components/molecules/new-quiz-dropdown-menu"
-import { useMatches } from "@tanstack/react-router"
+import { UpdateQuizButton } from "@/quiz/components/molecules/update-quiz-button"
+import { useMode } from "@/quiz/hook/use-mode"
 
 // Component
 export function HomeHeader() {
   // Modes
-  const isCreationMode = useMatches({
-    select: (matches) => matches.some((m) => m.staticData.creationMode),
-  })
+  const { isCreationMode, isEditMode } = useMode()
 
   // Flags
-  const isProfileButtonEnabled = !isCreationMode
-  const isSearchEnabled = !isCreationMode
-  const isCreateButtonEnabled = !isCreationMode
+  const isProfileButtonEnabled = !isCreationMode && !isEditMode
+  const isSearchEnabled = !isCreationMode && !isEditMode
+  const isCreateButtonEnabled = !isCreationMode && !isEditMode
 
   return (
     <div className="max-h-header-h">
@@ -33,6 +32,12 @@ export function HomeHeader() {
             <>
               <CreateNewQuizButton />
               <NewQuizSettingsDropdownMenu />
+            </>
+          )}
+
+          {isEditMode && (
+            <>
+              <UpdateQuizButton />
             </>
           )}
 

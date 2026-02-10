@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/core/components/ui/dialog"
 import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -53,20 +53,20 @@ export function useUpdateTitleAndDescriptionDropdownMenuItem(): [
     setOpen(false)
   }
 
-  // Draft
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+  // Current quiz
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Form
   const { control, handleSubmit } = useForm({
     resolver: zodResolver(TitleAndDescriptionQuiz),
     values: {
-      name: draftQuiz.name,
-      description: draftQuiz.description,
+      name: currentQuiz.name,
+      description: currentQuiz.description,
     },
   })
 
   const onChange = handleSubmit((data) => {
-    setDraftQuiz({ ...draftQuiz, ...data })
+    setCurrentQuiz({ ...currentQuiz, ...data })
   })
 
   return [

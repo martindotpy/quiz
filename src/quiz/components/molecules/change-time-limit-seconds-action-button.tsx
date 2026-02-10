@@ -10,8 +10,8 @@ import {
   DialogTrigger,
 } from "@/core/components/ui/dialog"
 import { log } from "@/core/logger/client-logger"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -47,15 +47,14 @@ export function ChangeTimeLimitSecondsActionButton() {
   // Dialog
   const [open, setOpen] = useState(false)
 
-  // Draft quiz
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+  // Current quiz
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Question
-  const { questionStore, questionIndex } = QuestionByIdRoute.useRouteContext()
-  const question = useStore(questionStore)
+  const { question, questionIndex } = useCurrentQuestion()
 
   const timeLimitSeconds =
-    question?.timeLimitSeconds ?? draftQuiz.timeLimitSeconds
+    question?.timeLimitSeconds ?? currentQuiz.timeLimitSeconds
 
   // Form
   const { control, handleSubmit, reset } = useForm({
@@ -69,7 +68,7 @@ export function ChangeTimeLimitSecondsActionButton() {
   })
 
   const onSubmit = handleSubmit((data) => {
-    const updatedQuestions = [...draftQuiz.questions]
+    const updatedQuestions = [...currentQuiz.questions]
     const currentQuestion = updatedQuestions[questionIndex]
 
     if (!currentQuestion) {
@@ -85,12 +84,12 @@ export function ChangeTimeLimitSecondsActionButton() {
       ...currentQuestion,
       timeLimitSeconds: data.timeLimitSeconds,
     }
-    setDraftQuiz({ ...draftQuiz, questions: updatedQuestions })
+    setCurrentQuiz({ ...currentQuiz, questions: updatedQuestions })
   })
 
   // Reset
   const resetTimeLimitSeconds = () => {
-    const updatedQuestions = [...draftQuiz.questions]
+    const updatedQuestions = [...currentQuiz.questions]
     const currentQuestion = updatedQuestions[questionIndex]
 
     if (!currentQuestion) {
@@ -107,7 +106,7 @@ export function ChangeTimeLimitSecondsActionButton() {
       timeLimitSeconds: undefined,
     }
 
-    setDraftQuiz({ ...draftQuiz, questions: updatedQuestions })
+    setCurrentQuiz({ ...currentQuiz, questions: updatedQuestions })
     reset()
   }
 
@@ -150,7 +149,7 @@ export function ChangeTimeLimitSecondsActionButton() {
                 schema={TimeLimitSeconds.shape.timeLimitSeconds.def.innerType}
                 numberInputProps={{
                   inputProps: {
-                    placeholder: draftQuiz.timeLimitSeconds.toString(),
+                    placeholder: currentQuiz.timeLimitSeconds.toString(),
                   },
                 }}
               />

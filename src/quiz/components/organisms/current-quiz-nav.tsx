@@ -1,7 +1,10 @@
 import { Button } from "@/core/components/ui/button"
 import { cn } from "@/core/lib/tailwind"
+import type { LinkRoute } from "@/pages/_app/routes/-routes-types"
 import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
+import { useMode } from "@/quiz/hook/use-mode"
 import { getDefaultDraftQuestion } from "@/quiz/store/draft-quiz-store"
 import { Link } from "@tanstack/react-router"
 import { useEffect, useRef } from "react"
@@ -11,15 +14,21 @@ import { TbPhoto, TbPlus, TbQuestionMark } from "react-icons/tb"
 const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
 
 // Component
-export function NewQuizNav() {
-  // Draft quiz
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+export function CurrentQuizNav() {
+  // Mode
+  const { isCreationMode } = useMode()
+  const questionTo: LinkRoute = isCreationMode
+    ? "/{-$locale}/quiz/new/manual/$questionId"
+    : "/{-$locale}/quiz/$quizId/edit/$questionId"
+
+  // Current quiz
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Navigate
   const navigate = QuestionByIdRoute.useNavigate()
 
   // Question
-  const { questionIndex } = QuestionByIdRoute.useRouteContext()
+  const { questionIndex } = useCurrentQuestion()
 
   // Scroll to the question
   const questionRef = useRef<HTMLLIElement>(null)
@@ -32,12 +41,19 @@ export function NewQuizNav() {
 
   // Add quiz
   const addQuiz = () => {
-    setDraftQuiz({
-      ...draftQuiz,
-      questions: [...draftQuiz.questions, getDefaultDraftQuestion()],
+    const newQuestions = [...currentQuiz.questions, getDefaultDraftQuestion()]
+
+    setCurrentQuiz({
+      ...currentQuiz,
+      questions: newQuestions,
     })
+
     navigate({
-      params: { questionId: (draftQuiz.questions.length + 1).toString() },
+      to: questionTo,
+      params: (prevParams) => ({
+        ...prevParams,
+        questionId: (currentQuiz.questions.length + 1).toString(),
+      }),
       viewTransition: false,
     })
   }
@@ -50,7 +66,7 @@ export function NewQuizNav() {
           "md:max-h-full md:flex-col md:overflow-x-hidden md:overflow-y-auto"
         )}
       >
-        {draftQuiz.questions.map((question, i) => {
+        {currentQuiz.questions.map((question, i) => {
           const isCurrentQuestion = i === questionIndex
 
           return (
@@ -63,10 +79,14 @@ export function NewQuizNav() {
               )}
             >
               <Link
-                to="/{-$locale}/quiz/new/manual/$questionId"
-                params={{ questionId: (i + 1).toString() }}
+                to={questionTo}
+                params={(prevParams) => ({
+                  ...prevParams,
+                  questionId: (i + 1).toString(),
+                })}
                 className="flex-1"
                 viewTransition={false}
+                preload={false}
               >
                 <div className="m-2 line-clamp-1 flex-1 text-center text-xs break-all">
                   {question.title}

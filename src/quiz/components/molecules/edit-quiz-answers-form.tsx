@@ -8,8 +8,8 @@ import {
   ItemMedia,
 } from "@/core/components/ui/item"
 import { cn } from "@/core/lib/tailwind"
-import { Route } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { minAnswersSize, QuizQuestion } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -32,12 +32,11 @@ const QuestionAnswers = z.object({
 export function EditQuizQuestionAnswersForm() {
   const messages = useStore(editQuizQuestionAnswers)
 
-  // Draft question
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+  // Edit question
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Question
-  const { questionStore, questionIndex } = Route.useRouteContext()
-  const question = useStore(questionStore)
+  const { question, questionIndex } = useCurrentQuestion()
 
   // Form
   const { control, handleSubmit } = useForm({
@@ -51,7 +50,7 @@ export function EditQuizQuestionAnswersForm() {
   })
 
   const onChange = handleSubmit((data) => {
-    const questions = [...draftQuiz.questions]
+    const questions = [...currentQuiz.questions]
     const currentQuestion = questions[questionIndex]
 
     if (!currentQuestion) return
@@ -60,7 +59,7 @@ export function EditQuizQuestionAnswersForm() {
       ...currentQuestion,
       answers: data.answers,
     }
-    setDraftQuiz({ ...draftQuiz, questions })
+    setCurrentQuiz({ ...currentQuiz, questions })
   })
 
   // Answers

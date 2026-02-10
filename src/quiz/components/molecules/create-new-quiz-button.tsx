@@ -1,7 +1,7 @@
 import { Button } from "@/core/components/ui/button"
 import { log } from "@/core/logger/client-logger"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { useNavigate } from "@tanstack/react-router"
@@ -19,7 +19,7 @@ export function CreateNewQuizButton() {
   const messages = useStore(createQuizMessages)
 
   // Draft quiz
-  const { draftQuiz, resetDraftQuiz } = useDraftQuiz()
+  const { currentQuiz, resetQuizStore } = useCurrentQuiz()
 
   // Navigate
   const navigate = useNavigate()
@@ -27,16 +27,16 @@ export function CreateNewQuizButton() {
   // Create new quiz
   const createNewQuiz = async () => {
     try {
-      const tx = quizCollection.insert(draftQuiz)
+      const tx = quizCollection.insert(currentQuiz)
 
       await tx.isPersisted.promise
 
       toast.success(messages.createSuccess)
       navigate({
         to: "/{-$locale}/quiz/$quizId",
-        params: { quizId: draftQuiz.id },
+        params: { quizId: currentQuiz.id },
       })
-      resetDraftQuiz()
+      resetQuizStore()
     } catch (err) {
       toast.error(messages.createError)
 

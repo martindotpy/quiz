@@ -1,7 +1,8 @@
 import { Button } from "@/core/components/ui/button"
 import { log } from "@/core/logger/client-logger"
 import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
-import { useDraftQuiz } from "@/quiz/hook/use-draft-quiz"
+import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
+import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { TbCopy } from "react-icons/tb"
@@ -25,11 +26,10 @@ export function DuplicateQuestionActionButton() {
   const navigate = QuestionByIdRoute.useNavigate()
 
   // Draft quiz
-  const { draftQuiz, setDraftQuiz } = useDraftQuiz()
+  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Question
-  const { questionIndex, questionStore } = QuestionByIdRoute.useRouteContext()
-  const question = useStore(questionStore)
+  const { question, questionIndex } = useCurrentQuestion()
 
   // Add question
   const onClick = () => {
@@ -40,8 +40,10 @@ export function DuplicateQuestionActionButton() {
     }
 
     // Duplicate question
-    draftQuiz.questions.splice(questionIndex + 1, 0, question)
-    setDraftQuiz({ ...draftQuiz, questions: draftQuiz.questions })
+    const questions = [...currentQuiz.questions]
+    questions.splice(questionIndex + 1, 0, question)
+
+    setCurrentQuiz({ ...currentQuiz, questions })
 
     // Navigate to duplicated question
     navigate({
