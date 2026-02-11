@@ -1,17 +1,22 @@
 import { Separator } from "@/core/components/ui/separator"
+import { AiChatSelect } from "@/settings/components/molecules/ai-chat-select"
 import { LanguageOptionSelect } from "@/settings/components/molecules/language-option-select"
 import { ThemeOptionSelect } from "@/settings/components/molecules/theme-option-select"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import type { IconType } from "react-icons/lib"
-import { TbAdjustments, TbLanguage } from "react-icons/tb"
+import { TbAdjustments, TbLanguage, TbSparkles } from "react-icons/tb"
 import { Fragment } from "react/jsx-runtime"
 
 // i18n
 const preferencesMessages = i18nInstance("settings:preferences:options", {
+  aiTitle: "AI Chat",
+  aiDescription:
+    "Configure the artificial intelligence options that suit your preference.",
+  aiLabel: "AI Chat Provider",
   languageTitle: "Language",
   languageDescription: "Select your preferred language for the application.",
-  languageLabel: "Preferred Language",
+  languageLabel: "Preferred language",
   themeTitle: "Theme",
   themeDescription: "Choose between light, dark, or system default theme.",
   themeLabel: "Theme mode",
@@ -34,6 +39,17 @@ function usePreferences(): Preference[] {
   const messages = useStore(preferencesMessages)
 
   return [
+    {
+      icon: TbSparkles,
+      title: messages.aiTitle,
+      description: messages.aiDescription,
+      options: [
+        {
+          label: messages.aiLabel,
+          node: <AiChatSelect />,
+        },
+      ],
+    },
     {
       icon: TbLanguage,
       title: messages.languageTitle,

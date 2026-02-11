@@ -112,6 +112,9 @@
     "description": "Mejora tu experiencia ajustando tus preferencias."
   },
   "settings:preferences:options": {
+    "aiDescription": "Configura las opciones de inteligencia artificial que se ajustan a tu preferencia.",
+    "aiLabel": "Asistente de IA",
+    "aiTitle": "Inteligencia Artificial",
     "languageDescription": "Selecciona tu idioma preferido para la aplicación.",
     "languageLabel": "Idioma preferido",
     "languageTitle": "Idioma",

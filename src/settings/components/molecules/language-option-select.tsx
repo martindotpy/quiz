@@ -7,12 +7,12 @@ import { useLocalePreference } from "@/translation/hook/i18n-hook"
 import { localePreferenceStore } from "@/translation/store/i18n-store"
 
 // Languages
-interface Language {
+interface LanguageOption {
   label: string
   value: Locale
 }
 
-const languages: Language[] = [
+const languageOptions: LanguageOption[] = [
   { label: "🇺🇸 English", value: "en" },
   { label: "🇵🇪 Español", value: "es" },
 ]
@@ -30,7 +30,7 @@ export function LanguageOptionSelect() {
         localePreferenceStore.set(e.target.value as Locale)
       }}
     >
-      {languages.map(({ label, value }) => (
+      {languageOptions.map(({ label, value }) => (
         <NativeSelectOption key={value} value={value}>
           {label}
         </NativeSelectOption>
