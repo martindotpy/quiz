@@ -1,12 +1,11 @@
 import { Button } from "@/core/components/ui/button"
 import { cn } from "@/core/lib/tailwind"
 import type { LinkRoute } from "@/pages/_app/routes/-routes-types"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { useMode } from "@/quiz/hook/use-mode"
 import { getDefaultDraftQuestion } from "@/quiz/store/draft-quiz-store"
-import { Link } from "@tanstack/react-router"
+import { Link, useNavigate } from "@tanstack/react-router"
 import { useEffect, useRef } from "react"
 import { TbPhoto, TbPlus, TbQuestionMark } from "react-icons/tb"
 
@@ -17,6 +16,8 @@ const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
 export function CurrentQuizNav() {
   // Mode
   const { isCreationMode } = useMode()
+
+  // Link
   const questionTo: LinkRoute = isCreationMode
     ? "/{-$locale}/quiz/new/manual/$questionId"
     : "/{-$locale}/quiz/$quizId/edit/$questionId"
@@ -25,7 +26,7 @@ export function CurrentQuizNav() {
   const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
 
   // Navigate
-  const navigate = QuestionByIdRoute.useNavigate()
+  const navigate = useNavigate()
 
   // Question
   const { questionIndex } = useCurrentQuestion()
