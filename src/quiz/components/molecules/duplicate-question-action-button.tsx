@@ -1,10 +1,10 @@
 import { Button } from "@/core/components/ui/button"
 import { log } from "@/core/logger/client-logger"
-import { Route as QuestionByIdRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.new.manual.$questionId"
 import { useCurrentQuestion } from "@/quiz/hook/use-current-question"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
+import { useNavigate } from "@tanstack/react-router"
 import { TbCopy } from "react-icons/tb"
 
 // Logger
@@ -23,7 +23,7 @@ export function DuplicateQuestionActionButton() {
   const messages = useStore(duplicateQuestionActionMessages)
 
   // Navigate
-  const navigate = QuestionByIdRoute.useNavigate()
+  const navigate = useNavigate()
 
   // Draft quiz
   const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
@@ -47,7 +47,12 @@ export function DuplicateQuestionActionButton() {
 
     // Navigate to duplicated question
     navigate({
-      params: { questionId: (questionIndex + 2).toString() },
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      params: (prevParams) => ({
+        ...prevParams,
+        questionId: (questionIndex + 2).toString(),
+      }),
       viewTransition: false,
     })
   }
