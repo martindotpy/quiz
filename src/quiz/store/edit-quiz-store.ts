@@ -1,9 +1,14 @@
 import { Quiz } from "@/quiz/model/quiz-model"
-import { atom, onSet } from "nanostores"
+import { deepEqual } from "fast-equals"
+import { atom, computed, onSet } from "nanostores"
 
 // Stores
 export const editQuizStore = atom<Quiz | null>(null)
 export const initialEditQuizStore = atom<Quiz | null>(null)
+export const hasUnsavedChangesStore = computed(
+  [editQuizStore, initialEditQuizStore],
+  (editQuiz, initialEditQuiz) => !deepEqual(editQuiz, initialEditQuiz)
+)
 
 // Sync initialEditQuizStore with editQuizStore
 onSet(editQuizStore, ({ newValue }) => {

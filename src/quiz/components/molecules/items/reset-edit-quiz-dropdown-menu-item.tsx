@@ -1,10 +1,12 @@
 import { ConfirmDialog } from "@/core/components/molecules/confirm-dialog"
-import { Route as QuizRoute } from "@/pages/_app/routes/{-$locale}/_main/quiz.$quizId"
 import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
+import { useHasUnsavedChanges } from "@/quiz/hook/use-edit-quiz"
+import { currentQuestionStore } from "@/quiz/store/current-question-store"
+import { initialEditQuizStore } from "@/quiz/store/edit-quiz-store"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
-import { deepEqual } from "fast-equals"
+import { useNavigate } from "@tanstack/react-router"
 import type React from "react"
 import { useState } from "react"
 import { TbTrash } from "react-icons/tb"
@@ -27,17 +29,36 @@ export function useResetEditQuizDropdownMenuItem(): [
 ] {
   const messages = useStore(newQuizSettingEditQuizMessages)
 
+  // Navigation
+  const navigate = useNavigate()
+
   // Current quiz
-  const { currentQuiz, resetQuizStore } = useCurrentQuiz()
+  const { resetQuizStore } = useCurrentQuiz()
 
   // Available to update
-  const { quiz } = QuizRoute.useRouteContext()
-  const isAvailableToReset = deepEqual(currentQuiz, quiz)
+  const hasUnsavedChanges = useHasUnsavedChanges()
 
   // Dialog
   const [open, setOpen] = useState(false)
 
-  const onConfirm = () => {
+  const onConfirm = async () => {
+    const questionIndex = currentQuestionStore.get()?.questionIndex
+
+    if (questionIndex !== undefined) {
+      const questionsLength = initialEditQuizStore.get()?.questions?.length ?? 0
+      const isOutOfBounds = questionIndex >= questionsLength
+
+      if (isOutOfBounds)
+        await navigate({
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-expect-error
+          params: (prevParams) => ({
+            ...prevParams,
+            questionId: String(questionsLength),
+          }),
+        })
+    }
+
     resetQuizStore()
     setOpen(false)
   }
@@ -48,7 +69,7 @@ export function useResetEditQuizDropdownMenuItem(): [
       label: messages.label,
       onClick: () => setOpen(true),
       variant: "destructive",
-      disabled: isAvailableToReset,
+      disabled: !hasUnsavedChanges,
     },
     <ConfirmDialog
       key="reset-edit-quiz-dialog"

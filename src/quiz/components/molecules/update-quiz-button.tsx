@@ -1,6 +1,7 @@
 import { Button } from "@/core/components/ui/button"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
+import { useHasUnsavedChanges } from "@/quiz/hook/use-edit-quiz"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { toast } from "sonner"
@@ -18,6 +19,9 @@ export function UpdateQuizButton() {
 
   // Current quiz
   const { currentQuiz } = useCurrentQuiz()
+
+  // Available to update
+  const hasUnsavedChanges = useHasUnsavedChanges()
 
   // Update quiz
   const updateQuiz = async () => {
@@ -42,7 +46,11 @@ export function UpdateQuizButton() {
   }
 
   return (
-    <Button variant="secondary" onClick={updateQuiz}>
+    <Button
+      variant="secondary"
+      onClick={updateQuiz}
+      disabled={!hasUnsavedChanges}
+    >
       {messages.label}
     </Button>
   )
