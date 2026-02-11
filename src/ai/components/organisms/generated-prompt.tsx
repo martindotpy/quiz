@@ -13,6 +13,7 @@ import { params } from "@nanostores/i18n"
 import { useStore } from "@nanostores/react"
 import * as TOON from "@toon-format/toon"
 import { TbCopy } from "react-icons/tb"
+import { toast } from "sonner"
 
 // i18n
 const generatedPromptMessages = i18nInstance("quiz:ai:generated-prompt", {
@@ -24,6 +25,7 @@ const generatedPromptMessages = i18nInstance("quiz:ai:generated-prompt", {
   ),
   withDescriptionPrompt: params(" with context {description}"),
   copy: "Copy prompt",
+  copySuccess: "Prompt copied to clipboard!",
 })
 
 // Ai chat template links
@@ -66,33 +68,37 @@ export function GeneratedPrompt() {
   // Copy
   const copyToClipboard = () => {
     navigator.clipboard.writeText(prompt)
+    toast.success(messages.copySuccess)
   }
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="text-muted-foreground text-sm">{messages.promptTip}</p>
+      <p className="text-muted-foreground text-sm leading-relaxed">
+        {messages.promptTip}
+      </p>
 
       <div className="relative">
-        <div
-          style={{
-            background:
-              "linear-gradient(to top, var(--color-code), color-mix(in oklab, var(--color-code) 60%, transparent), transparent)",
-          }}
+        <a
+          href={aiChatUrl}
+          className="bg-card relative block max-h-[30dvh] overflow-hidden border px-2.5 py-2 pr-11 text-xs"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <a
-            href={aiChatUrl}
-            className="bg-card relative block max-h-[30dvh] overflow-hidden border px-2.5 py-2 pr-11 text-xs"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span
-              className="overflow-hidden break-all"
-              dangerouslySetInnerHTML={{
-                __html: prompt.replaceAll("\n", "<br />"),
-              }}
-            />
-          </a>
-        </div>
+          <span
+            className="overflow-hidden break-all"
+            dangerouslySetInnerHTML={{
+              __html: prompt.replaceAll("\n", "<br />"),
+            }}
+          />
+
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to top, var(--color-background), color-mix(in oklab, var(--color-background) 30%, transparent), transparent)",
+            }}
+          ></div>
+        </a>
 
         <Tooltip>
           <TooltipTrigger

@@ -11,7 +11,7 @@ import z from "zod"
 
 // i18n
 const jsonQuizFormMessages = i18nInstance("quiz:ai:json:form", {
-  placeholder: "Enter the quiz data in JSON format.",
+  placeholder: "Enter the questions data in JSON format.",
   button: "Accept",
   empty: "The JSON field cannot be empty",
   invalid: "The provided JSON is invalid. Please correct it and try again",
