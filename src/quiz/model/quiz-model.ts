@@ -29,17 +29,23 @@ const TimeLimitSeconds = z
   })
 
 export const QuestionAnswer = z.object({
-  text: z.string().min(1, {
-    error: () => quizModelErrorMessages.get().answerTextRequired,
-  }),
+  text: z
+    .string()
+    .min(1, {
+      error: () => quizModelErrorMessages.get().answerTextRequired,
+    })
+    .trim(),
   isCorrect: z.boolean(),
 })
 export type QuestionAnswer = z.infer<typeof QuestionAnswer>
 
 export const QuizQuestion = z.object({
-  title: z.string().min(1, {
-    error: () => quizModelErrorMessages.get().questionTitleRequired,
-  }),
+  title: z
+    .string()
+    .min(1, {
+      error: () => quizModelErrorMessages.get().questionTitleRequired,
+    })
+    .trim(),
   answers: z.array(QuestionAnswer).min(minAnswersSize, {
     error: () => quizModelErrorMessages.get().minAnswers,
   }),
@@ -51,8 +57,9 @@ export const Quiz = z.object({
   id: z.uuidv7(),
   name: z
     .string()
-    .min(1, { error: () => quizModelErrorMessages.get().quizNameRequired }),
-  description: z.optional(z.string()),
+    .min(1, { error: () => quizModelErrorMessages.get().quizNameRequired })
+    .trim(),
+  description: z.optional(z.string().trim()),
   timeLimitSeconds: TimeLimitSeconds.default(DEFAULT_QUIZ_TIME_LIMIT_SECONDS),
   questions: z.array(QuizQuestion).min(1, {
     error: () => quizModelErrorMessages.get().minQuestions,
@@ -61,3 +68,18 @@ export const Quiz = z.object({
   updatedAt: z.coerce.date(),
 })
 export type Quiz = z.infer<typeof Quiz>
+
+// Json schema
+export const questionsJsonSchema = JSON.stringify(
+  z.toJSONSchema(Quiz.shape.questions, {
+    unrepresentable: "any",
+    override: (ctx) => {
+      const def = ctx.zodSchema._zod.def
+
+      if (def.type === "date") {
+        ctx.jsonSchema.type = "string"
+        ctx.jsonSchema.format = "date-time"
+      }
+    },
+  })
+)

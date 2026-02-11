@@ -1,3 +1,4 @@
+import { TooltipProvider } from "@/core/components/ui/tooltip"
 import { isDev } from "@/core/configuration/app-configuration"
 import {
   getTanstackQueryContext,
@@ -33,7 +34,9 @@ export function createAppRouter(astro?: AstroGlobal) {
       return (
         <React.StrictMode>
           <TanstackQueryProvider {...tanstackQueryContext}>
-            <ThemeProvider attribute="class">{children}</ThemeProvider>
+            <ThemeProvider attribute="class">
+              <TooltipProvider>{children}</TooltipProvider>
+            </ThemeProvider>
           </TanstackQueryProvider>
         </React.StrictMode>
       )
@@ -70,5 +73,7 @@ declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
     creationMode?: boolean
     editMode?: boolean
+    manualMode?: boolean
+    aiMode?: boolean
   }
 }

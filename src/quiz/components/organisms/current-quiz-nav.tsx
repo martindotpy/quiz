@@ -19,7 +19,7 @@ export function CurrentQuizNav() {
 
   // Link
   const questionTo: LinkRoute = isCreationMode
-    ? "/{-$locale}/quiz/new/manual/$questionId"
+    ? "/{-$locale}/quiz/new/$questionId"
     : "/{-$locale}/quiz/$quizId/edit/$questionId"
 
   // Current quiz

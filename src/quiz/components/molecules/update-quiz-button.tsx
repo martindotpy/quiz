@@ -2,6 +2,7 @@ import { Button } from "@/core/components/ui/button"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { useHasUnsavedChanges } from "@/quiz/hook/use-edit-quiz"
+import { initialEditQuizStore } from "@/quiz/store/edit-quiz-store"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { toast } from "sonner"
@@ -36,6 +37,8 @@ export function UpdateQuizButton() {
 
     try {
       await tx.isPersisted.promise
+
+      initialEditQuizStore.set(currentQuiz)
 
       toast.success(messages.success)
     } catch (err) {

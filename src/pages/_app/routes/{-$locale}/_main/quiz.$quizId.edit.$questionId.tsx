@@ -39,6 +39,9 @@ export const Route = createFileRoute(
     currentQuestionStore.set({ questionIndex, questionStore })
   },
   component: EditQuizComponent,
+  staticData: {
+    manualMode: true,
+  },
 })
 
 function EditQuizComponent() {

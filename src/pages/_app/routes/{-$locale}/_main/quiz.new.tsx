@@ -12,7 +12,7 @@ export const Route = createFileRoute("/{-$locale}/_main/quiz/new")({
   beforeLoad: ({ location }) => {
     if (location.pathname.endsWith("/new"))
       throw redirect({
-        to: "/{-$locale}/quiz/new/manual/$questionId",
+        to: "/{-$locale}/quiz/new/$questionId",
         params: {
           locale: getLocaleParam(localePreferenceStore.get()),
           questionId: "1",

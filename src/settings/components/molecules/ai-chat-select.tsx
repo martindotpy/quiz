@@ -7,21 +7,18 @@ import { aiChatStore } from "@/settings/store/ai-chat-store"
 import { useEffect, useRef } from "react"
 
 // Ai chats
-export type AiChat = "chatgpt" | "gemini" | "claude"
+export type AiChat = "chatgpt" | "claude" | "mistral" | "perplexity"
 
-interface AiChatOption {
-  label: string
-  value: AiChat
+type AiChatOption = {
+  [key in AiChat]: string
 }
 
-const aiChatOptions: AiChatOption[] = [
-  {
-    label: "ChatGPT",
-    value: "chatgpt",
-  },
-  { label: "Gemini", value: "gemini" },
-  { label: "Claude", value: "claude" },
-]
+const aiChatOptions: AiChatOption = {
+  chatgpt: "ChatGPT",
+  claude: "Claude",
+  mistral: "Mistral",
+  perplexity: "Perplexity",
+}
 
 // Component
 export function AiChatSelect() {
@@ -46,7 +43,7 @@ export function AiChatSelect() {
         aiChatStore.set(e.target.value as AiChat)
       }}
     >
-      {aiChatOptions.map(({ label, value }) => (
+      {Object.entries(aiChatOptions).map(([value, label]) => (
         <NativeSelectOption key={value} value={value}>
           {label}
         </NativeSelectOption>

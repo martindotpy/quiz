@@ -34,6 +34,7 @@
     "@tanstack/react-router-devtools": "1.158.4",
     "@tanstack/react-router-ssr-query": "1.158.4",
     "@tanstack/router-plugin": "1.158.4",
+    "@toon-format/toon": "2.1.0",
     "@types/react": "19.2.13",
     "@types/react-dom": "19.2.3",
     "@types/umami-browser": "2.18.0",

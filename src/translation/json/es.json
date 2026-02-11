@@ -20,6 +20,19 @@
     "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
     "title": "¡Ups!"
   },
+  "quiz:ai:generated-prompt": {
+    "copy": "Copiar prompt",
+    "prompt": "Genera un JSON estrictamente válido según este esquema:\n{questionsSchema}\nUsando las siguientes preguntas como referencia, mejora su calidad, claridad y dificultad, y añade nuevas preguntas relevantes sobre {title}{description}, manteniendo coherencia temática y variedad. Devuelve exclusivamente el JSON. Preguntas de referencia:\n{currentQuestions}",
+    "promptTip": "Usa el siguiente prompt para generar preguntas con tu IA favorita. Puedes modificar el prompt para obtener mejores resultados. Haz clic en el texto a continuación para consultar tu IA directamente, o copia el prompt usando el botón de copiar.",
+    "title": "Prompt generado",
+    "withDescriptionPrompt": " con contexto {description}"
+  },
+  "quiz:ai:json:form": {
+    "button": "Aceptar",
+    "empty": "El campo JSON no puede estar vacío.",
+    "invalid": "El JSON proporcionado no es válido. Por favor corrígelo e inténtalo de nuevo.",
+    "placeholder": "Introduce los datos del quiz en formato JSON."
+  },
   "quiz:draft": {
     "correctAnswerText": "Nueva respuesta (Correcta)",
     "description": "Esta es una descripción de ejemplo para el quiz.",

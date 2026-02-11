@@ -8,9 +8,7 @@ import { createFileRoute, redirect } from "@tanstack/react-router"
 import { computed } from "nanostores"
 
 // Route
-export const Route = createFileRoute(
-  "/{-$locale}/_main/quiz/new/manual/$questionId"
-)({
+export const Route = createFileRoute("/{-$locale}/_main/quiz/new/$questionId")({
   beforeLoad: ({ params }) => {
     // Check if the question id is valid
     const { questionId: rawQuestionId } = params
@@ -38,6 +36,9 @@ export const Route = createFileRoute(
     currentQuestionStore.set({ questionIndex, questionStore })
   },
   component: NewQuizComponent,
+  staticData: {
+    manualMode: true,
+  },
 })
 
 function NewQuizComponent() {

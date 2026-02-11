@@ -3,8 +3,10 @@ import { BannerLink } from "@/home/components/atoms/banner-link"
 import { CreateQuizLink } from "@/home/components/atoms/create-quiz-link"
 import { SearchQuiz } from "@/home/components/molecules/search-quiz-input"
 import { UserMenu } from "@/home/components/molecules/user-dropdown-menu"
+import { AiEditCurrentQuizLink } from "@/quiz/components/molecules/ai-edit-current-quiz-edit"
 import { CreateNewQuizButton } from "@/quiz/components/molecules/create-new-quiz-button"
 import { EditQuizSettingsDropdownMenu } from "@/quiz/components/molecules/edit-quiz-dropdown-menu"
+import { ManualEditCurrentQuizLink } from "@/quiz/components/molecules/manual-edit-current-quiz-edit"
 import { NewQuizSettingsDropdownMenu } from "@/quiz/components/molecules/new-quiz-dropdown-menu"
 import { UpdateQuizButton } from "@/quiz/components/molecules/update-quiz-button"
 import { useMode } from "@/quiz/hook/use-mode"
@@ -12,12 +14,12 @@ import { useMode } from "@/quiz/hook/use-mode"
 // Component
 export function HomeHeader() {
   // Modes
-  const { isCreationMode, isEditMode } = useMode()
+  const { isCreationMode, isEditMode, isAiMode, isManualMode } = useMode()
 
   // Flags
   const isProfileButtonEnabled = !isCreationMode && !isEditMode
   const isSearchEnabled = !isCreationMode && !isEditMode
-  const isCreateButtonEnabled = !isCreationMode && !isEditMode
+  const isCreateLinkEnabled = !isCreationMode && !isEditMode
 
   return (
     <div className="max-h-header-h">
@@ -27,7 +29,11 @@ export function HomeHeader() {
         {isSearchEnabled && <SearchQuiz />}
 
         <div className="flex items-center justify-end gap-2 px-4">
-          {isCreateButtonEnabled && <CreateQuizLink />}
+          {isAiMode && <ManualEditCurrentQuizLink />}
+
+          {isManualMode && <AiEditCurrentQuizLink />}
+
+          {isCreateLinkEnabled && <CreateQuizLink />}
 
           {isCreationMode && (
             <>
