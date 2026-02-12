@@ -1,3 +1,4 @@
+import { aiChatNames, type AiChat } from "@/ai/contants/ai-chat"
 import {
   NativeSelect,
   NativeSelectOption,
@@ -5,20 +6,6 @@ import {
 import { useAiChat } from "@/settings/hook/use-ai-chat"
 import { aiChatStore } from "@/settings/store/ai-chat-store"
 import { useEffect, useRef } from "react"
-
-// Ai chats
-export type AiChat = "chatgpt" | "claude" | "mistral" | "perplexity"
-
-type AiChatOption = {
-  [key in AiChat]: string
-}
-
-const aiChatOptions: AiChatOption = {
-  chatgpt: "ChatGPT",
-  claude: "Claude",
-  mistral: "Mistral",
-  perplexity: "Perplexity",
-}
 
 // Component
 export function AiChatSelect() {
@@ -43,7 +30,7 @@ export function AiChatSelect() {
         aiChatStore.set(e.target.value as AiChat)
       }}
     >
-      {Object.entries(aiChatOptions).map(([value, label]) => (
+      {Object.entries(aiChatNames).map(([value, label]) => (
         <NativeSelectOption key={value} value={value}>
           {label}
         </NativeSelectOption>

@@ -1,3 +1,4 @@
+import type { AiChat } from "@/ai/contants/ai-chat"
 import { Button } from "@/core/components/ui/button"
 import {
   Tooltip,
@@ -6,7 +7,6 @@ import {
 } from "@/core/components/ui/tooltip"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { questionsJsonSchema } from "@/quiz/model/quiz-model"
-import type { AiChat } from "@/settings/components/molecules/ai-chat-select"
 import { useAiChat } from "@/settings/hook/use-ai-chat"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { params } from "@nanostores/i18n"
@@ -29,9 +29,7 @@ const generatedPromptMessages = i18nInstance("quiz:ai:generated-prompt", {
 })
 
 // Ai chat template links
-type AiChatUrlTemplate = {
-  [key in AiChat]: string
-}
+type AiChatUrlTemplate = Record<AiChat, string>
 
 const aiChatUrlTemplate: AiChatUrlTemplate = {
   chatgpt: "https://chatgpt.com?prompt={prompt}",

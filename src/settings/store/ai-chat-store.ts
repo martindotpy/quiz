@@ -1,4 +1,4 @@
-import { type AiChat } from "@/settings/components/molecules/ai-chat-select"
+import type { AiChat } from "@/ai/contants/ai-chat"
 import { persistentAtom } from "@nanostores/persistent"
 
 // Stores
