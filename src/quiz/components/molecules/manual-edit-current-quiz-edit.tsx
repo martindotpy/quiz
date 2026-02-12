@@ -14,7 +14,15 @@ export function ManualEditCurrentQuizLink() {
     : "/{-$locale}/quiz/$quizId/edit/$questionId"
 
   return (
-    <Link to={to} variant="default" size="icon">
+    <Link
+      to={to}
+      params={(prevParams) => ({
+        ...prevParams,
+        questionId: String(1),
+      })}
+      variant="default"
+      size="icon"
+    >
       <TbWriting />
     </Link>
   )
