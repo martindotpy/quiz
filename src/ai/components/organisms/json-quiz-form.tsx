@@ -7,6 +7,7 @@ import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import z from "zod"
 
 // i18n
@@ -15,6 +16,7 @@ const jsonQuizFormMessages = i18nInstance("quiz:ai:json:form", {
   button: "Accept",
   empty: "The JSON field cannot be empty",
   invalid: "The provided JSON is invalid. Please correct it and try again",
+  success: "Questions updated successfully!",
 })
 
 // Schema
@@ -50,6 +52,8 @@ export function JsonQuizFrom() {
   const onSubmit = handleSubmit((data) => {
     try {
       setCurrentQuiz({ ...currentQuiz, questions: JSON.parse(data.json) })
+
+      toast.success("Quiz updated successfully")
     } catch (err) {
       log.error("Failed to parse quiz JSON", { error: err, json: data.json })
     }

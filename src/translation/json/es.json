@@ -32,7 +32,8 @@
     "button": "Aceptar",
     "empty": "El campo JSON no puede estar vacío.",
     "invalid": "El JSON proporcionado no es válido. Por favor corrígelo e inténtalo de nuevo.",
-    "placeholder": "Introduce los datos de las preguntas en formato JSON."
+    "placeholder": "Introduce los datos de las preguntas en formato JSON.",
+    "success": "Preguntas actualizadas con éxito!"
   },
   "quiz:draft": {
     "correctAnswerText": "Nueva respuesta (Correcta)",
