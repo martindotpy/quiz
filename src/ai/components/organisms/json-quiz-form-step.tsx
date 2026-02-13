@@ -1,7 +1,8 @@
+import { useUpdateQuestionsByAiGenerationMode } from "@/ai/hook/use-ai-generation-mode"
 import { ControlledTextarea } from "@/core/components/form/controlled/controlled-textarea"
 import { Button } from "@/core/components/ui/button"
+import { FieldSet, FieldTitle } from "@/core/components/ui/field"
 import { log } from "@/core/logger/client-logger"
-import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -12,11 +13,13 @@ import z from "zod"
 
 // i18n
 const jsonQuizFormMessages = i18nInstance("quiz:ai:json:form", {
+  title: "JSON Questions",
   placeholder: "Enter the questions data in JSON format.",
   button: "Accept",
   empty: "The JSON field cannot be empty",
   invalid: "The provided JSON is invalid. Please correct it and try again",
   success: "Questions updated successfully!",
+  error: "An error occurred while updating the questions. Please try again.",
 })
 
 // Schema
@@ -38,42 +41,52 @@ const QuizJson = z.object({
 })
 
 // Component
-export function JsonQuizFrom() {
+export function JsonQuizFormStep() {
   const messages = useStore(jsonQuizFormMessages)
 
-  // Current quiz
-  const { currentQuiz, setCurrentQuiz } = useCurrentQuiz()
+  // Update current quiz by ai generation mode
+  const updateQuestions = useUpdateQuestionsByAiGenerationMode()
 
   // Form
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, reset } = useForm({
     resolver: zodResolver(QuizJson),
+    defaultValues: {
+      json: "",
+    },
   })
 
   const onSubmit = handleSubmit((data) => {
     try {
-      setCurrentQuiz({ ...currentQuiz, questions: JSON.parse(data.json) })
+      updateQuestions(JSON.parse(data.json))
+      reset()
 
-      toast.success("Quiz updated successfully")
+      toast.success(messages.success)
     } catch (err) {
+      toast.error(messages.error)
+
       log.error("Failed to parse quiz JSON", { error: err, json: data.json })
     }
   })
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4">
-      <ControlledTextarea
-        name="json"
-        control={control}
-        textareaProps={{
-          placeholder: messages.placeholder,
-          className:
-            "font-mono max-h-[35dvh] no-scrollbar text-xs overflow-y-auto",
-        }}
-      />
+    <FieldSet>
+      <FieldTitle>{messages.title}</FieldTitle>
 
-      <Button type="submit" className="mx-auto w-full max-w-72">
-        {messages.button}
-      </Button>
-    </form>
+      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+        <ControlledTextarea
+          name="json"
+          control={control}
+          textareaProps={{
+            placeholder: messages.placeholder,
+            className:
+              "font-mono max-h-[35dvh] no-scrollbar text-xs overflow-y-auto",
+          }}
+        />
+
+        <Button type="submit" className="mx-auto w-full max-w-72">
+          {messages.button}
+        </Button>
+      </form>
+    </FieldSet>
   )
 }

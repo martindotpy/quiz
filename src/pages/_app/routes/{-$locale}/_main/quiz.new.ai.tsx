@@ -1,20 +1,9 @@
-import { GeneratedPrompt } from "@/ai/components/organisms/generated-prompt"
-import { JsonQuizFrom } from "@/ai/components/organisms/json-quiz-form"
+import { AiQuestionGeneratorPage } from "@/ai/components/templates/ai-question-generator-page"
 import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/{-$locale}/_main/quiz/new/ai")({
-  component: CreateNewQuizWithAiComponent,
+  component: AiQuestionGeneratorPage,
   staticData: {
-    aiMode: true
-  }
+    aiMode: true,
+  },
 })
-
-function CreateNewQuizWithAiComponent() {
-  return (
-    <div className="no-scrollbar flex flex-col gap-3 overflow-y-auto">
-      <GeneratedPrompt />
-
-      <JsonQuizFrom />
-    </div>
-  )
-}

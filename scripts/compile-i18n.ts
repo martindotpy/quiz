@@ -65,12 +65,25 @@ function getComponentNameAndKeyTranslation(
   const translationKeys: string[] = []
 
   secondArg.properties.forEach((prop) => {
-    if (
-      ts.isPropertyAssignment(prop) &&
-      ts.isIdentifier(prop.name) &&
-      ts.isStringLiteral(prop.initializer)
-    ) {
+    const hasArg = ts.isPropertyAssignment(prop) && ts.isIdentifier(prop.name)
+
+    if (!hasArg) return
+
+    if (ts.isStringLiteral(prop.initializer)) {
       translationKeys.push(prop.name.text)
+    }
+
+    // Get the string literals from the params function
+    if (
+      ts.isCallExpression(prop.initializer) &&
+      ts.isIdentifier(prop.initializer.expression) &&
+      prop.initializer.expression.text === "params"
+    ) {
+      const firstParamsArg = prop.initializer.arguments[0]!
+
+      if (ts.isStringLiteral(firstParamsArg)) {
+        translationKeys.push(prop.name.text)
+      }
     }
   })
 

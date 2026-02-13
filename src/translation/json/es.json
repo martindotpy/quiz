@@ -23,17 +23,37 @@
   "quiz:ai:generated-prompt": {
     "copy": "Copiar prompt",
     "copySuccess": "¡Prompt copiado al portapapeles!",
-    "prompt": "Genera un JSON estrictamente válido según este esquema:\n{questionsSchema}\nUsando las siguientes preguntas como referencia, mejora su calidad, claridad y dificultad, y añade nuevas preguntas relevantes sobre {title}{description}, manteniendo coherencia temática y variedad. Devuelve exclusivamente el JSON. Preguntas de referencia:\n{currentQuestions}",
+    "openWith": "Abrir con {aiChat}",
+    "promptAdd": "Genera un JSON estrictamente válido según este esquema:\n{questionsSchema}\nUsando las siguientes preguntas solo como referencia temática y estilística, genera un nuevo conjunto de preguntas de alta calidad que sean completamente diferentes de las de referencia, relacionadas con {title}{description}. Mantén la coherencia temática, la profundidad conceptual y la dificultad cognitiva, asegurando variedad y evitando repeticiones. Genera el mismo número de preguntas a menos que se especifique lo contrario. Devuelve solo el JSON dentro de un bloque de código. Preguntas de referencia:\n{currentQuestions}",
+    "promptImprove": "Genera un JSON estrictamente válido según este esquema:\n{questionsSchema}\nUsando las siguientes preguntas como base, mejora su calidad haciéndolas más claras, precisas, conceptualmente más profundas y cognitivamente más exigentes, manteniendo su intención original. Puedes reestructurar, fusionar o dividir preguntas cuando sea beneficioso, pero debes mantener la coherencia temática y la variedad. Todas las preguntas están relacionadas con {title}{description}. Devuelve solo el JSON dentro de un bloque de código. Preguntas de referencia:\n{currentQuestions}",
+    "promptReplace": "Genera un JSON estrictamente válido según este esquema:\n{questionsSchema}\nUsando las siguientes preguntas solo como referencia temática y estilística, genera un conjunto completamente nuevo de preguntas de alta calidad para reemplazar por completo las existentes. No reutilices, parafrasees ni modifiques ligeramente las preguntas originales. Todas las preguntas deben ser completamente diferentes, relacionadas con {title}{description}, manteniendo coherencia temática, profundidad conceptual, dificultad cognitiva y variedad. Genera el mismo número de preguntas a menos que se especifique lo contrario. Devuelve solo el JSON dentro de un bloque de código. Preguntas de referencia:\n{currentQuestions}",
     "promptTip": "Usa el siguiente prompt para generar preguntas con tu IA favorita. Puedes modificar el prompt para obtener mejores resultados. Haz clic en el texto a continuación para consultar tu IA directamente, o copia el prompt usando el botón de copiar.",
     "title": "Prompt generado",
     "withDescriptionPrompt": " con contexto {description}"
   },
+  "quiz:ai:generator:mode-step": {
+    "description": "Elige el modo para generar preguntas.",
+    "title": "Modo de generación"
+  },
+  "quiz:ai:generator:mode-step:items": {
+    "addDescription": "Agregar nuevas preguntas al cuestionario existente.",
+    "addTitle": "Añadir",
+    "improveDescription": "Mejorar las preguntas existentes del cuestionario.",
+    "improveTitle": "Mejorar",
+    "replaceDescription": "Reemplazar las preguntas existentes del cuestionario.",
+    "replaceTitle": "Reemplazar"
+  },
+  "quiz:ai:generator:page": {
+    "title": "Generador de preguntas con IA"
+  },
   "quiz:ai:json:form": {
     "button": "Aceptar",
     "empty": "El campo JSON no puede estar vacío.",
+    "error": "Ocurrió un error al actualizar las preguntas. Por favor, inténtalo de nuevo.",
     "invalid": "El JSON proporcionado no es válido. Por favor corrígelo e inténtalo de nuevo.",
     "placeholder": "Introduce los datos de las preguntas en formato JSON.",
-    "success": "Preguntas actualizadas con éxito!"
+    "success": "Preguntas actualizadas con éxito!",
+    "title": "Preguntas JSON"
   },
   "quiz:draft": {
     "correctAnswerText": "Nueva respuesta (Correcta)",
