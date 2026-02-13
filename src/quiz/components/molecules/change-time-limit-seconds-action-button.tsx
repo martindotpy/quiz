@@ -146,7 +146,10 @@ export function ChangeTimeLimitSecondsActionButton() {
               <ControlledNumberInput
                 name="timeLimitSeconds"
                 control={control}
-                schema={TimeLimitSeconds.shape.timeLimitSeconds.def.innerType}
+                schema={
+                  TimeLimitSeconds.shape.timeLimitSeconds.def.innerType.def
+                    .innerType
+                }
                 numberInputProps={{
                   inputProps: {
                     placeholder: currentQuiz.timeLimitSeconds.toString(),

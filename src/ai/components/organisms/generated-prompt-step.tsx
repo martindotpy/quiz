@@ -23,13 +23,13 @@ const generatedPromptMessages = i18nInstance("quiz:ai:generated-prompt", {
   promptTip:
     "Use the following prompt to generate questions with your favorite AI. You can modify the prompt to get better results. Click the text below to ask your AI directly, or copy the prompt using the copy button.",
   promptAdd: params(
-    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions only as thematic and stylistic reference, generate a new set of high-quality questions that are fully different from the reference ones, related to {title}{description}. Maintain thematic coherence, conceptual depth, and cognitive difficulty, ensuring variety and avoiding repetition. Generate the same number of questions unless explicitly specified otherwise. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
+    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions only as thematic and stylistic reference, generate a new set of high-quality questions that are fully different from the reference ones, related to {title}{description}. Maintain thematic coherence, conceptual depth, and cognitive difficulty, ensuring variety and avoiding repetition. Generate the same number of questions unless explicitly specified otherwise. The default time limit is {timeLimitSeconds} seconds. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
   ),
   promptReplace: params(
-    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions only as thematic and stylistic reference, generate a completely new set of high-quality questions to fully replace the existing ones. Do not reuse, paraphrase, or slightly modify the original questions. All questions must be fully different, related to {title}{description}, maintaining thematic coherence, conceptual depth, cognitive difficulty, and variety. Generate the same number of questions unless explicitly specified otherwise. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
+    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions only as thematic and stylistic reference, generate a completely new set of high-quality questions to fully replace the existing ones. Do not reuse, paraphrase, or slightly modify the original questions. All questions must be fully different, related to {title}{description}, maintaining thematic coherence, conceptual depth, cognitive difficulty, and variety. Generate the same number of questions unless explicitly specified otherwise. The default time limit is {timeLimitSeconds} seconds. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
   ),
   promptImprove: params(
-    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions as a base, improve their quality by making them clearer, more precise, conceptually deeper, and cognitively more demanding, while preserving their original intent. You may restructure, merge, or split questions when beneficial, but must maintain thematic coherence and variety. All questions are related to {title}{description}. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
+    "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions as a base, improve their quality by making them clearer, more precise, conceptually deeper, and cognitively more demanding, while preserving their original intent. You may restructure, merge, or split questions when beneficial, but must maintain thematic coherence and variety. All questions are related to {title}{description}. The default time limit is {timeLimitSeconds} seconds. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
   ),
   withDescriptionPrompt: params(" with context {description}"),
   copy: "Copy prompt",
@@ -77,6 +77,7 @@ export function GeneratedPromptStep() {
     currentQuestions: TOON.encode(currentQuiz.questions.slice(-6)),
     title: currentQuiz.name,
     description: descriptionPrompt,
+    timeLimitSeconds: currentQuiz.timeLimitSeconds,
   })
   const aiChatUrl = aiChatUrlTemplate[aiChat].replace(
     "{prompt}",

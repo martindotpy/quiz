@@ -13,20 +13,23 @@ const quizModelErrorMessages = i18nInstance("quiz:model:error", {
 })
 
 // Default values
-export const DEFAULT_QUIZ_TIME_LIMIT_SECONDS = 10
+export const DEFAULT_QUIZ_TIME_LIMIT_SECONDS = 30
 
 // Min and max sizes
 export const minAnswersSize = 2
 
 // Models
-const TimeLimitSeconds = z
-  .number()
+export const TimeLimitSeconds = z
+  .number({
+    error: () => quizModelErrorMessages.get().timeLimitSecondsNonInteger,
+  })
   .int({
     error: () => quizModelErrorMessages.get().timeLimitSecondsNonInteger,
   })
   .min(0, {
     error: () => quizModelErrorMessages.get().timeLimitSecondsNonNegative,
   })
+  .default(DEFAULT_QUIZ_TIME_LIMIT_SECONDS)
 
 export const QuestionAnswer = z.object({
   text: z
@@ -60,7 +63,7 @@ export const Quiz = z.object({
     .min(1, { error: () => quizModelErrorMessages.get().quizNameRequired })
     .trim(),
   description: z.optional(z.string().trim()),
-  timeLimitSeconds: TimeLimitSeconds.default(DEFAULT_QUIZ_TIME_LIMIT_SECONDS),
+  timeLimitSeconds: TimeLimitSeconds,
   questions: z.array(QuizQuestion).min(1, {
     error: () => quizModelErrorMessages.get().minQuestions,
   }),
