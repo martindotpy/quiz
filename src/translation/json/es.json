@@ -115,6 +115,9 @@
     "label": "Restablecer borrador",
     "title": "Restablecer borrador del Quiz"
   },
+  "quiz:pre-start": {
+    "button": "¡Juguemos!"
+  },
   "quiz:question:delete": {
     "description": "¿Estás seguro de que quieres eliminar esta pregunta?",
     "label": "Eliminar",

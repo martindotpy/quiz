@@ -15,8 +15,8 @@ import { motion } from "motion/react"
 import { TbPlayerPlayFilled } from "react-icons/tb"
 
 // i18n
-const quizPrePlayMessages = i18nInstance("quiz:pre-play", {
-  button: "Let's play!",
+const quizPrePlayMessages = i18nInstance("quiz:pre-start", {
+  button: "Let's start!",
 })
 
 // Route
