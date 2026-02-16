@@ -17,7 +17,7 @@ import { useStore } from "@nanostores/react"
 import type React from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { TbEdit } from "react-icons/tb"
+import { TbClock } from "react-icons/tb"
 import z from "zod"
 
 // i18n
@@ -69,7 +69,7 @@ export function useUpdateDefaultTimeLimitDropdownMenuItem(): [
   return [
     {
       label: messages.label,
-      icon: TbEdit,
+      icon: TbClock,
       onClick: () => setOpen(true),
     },
     <Dialog key="update-time-limit-dialog" open={open} onOpenChange={setOpen}>

@@ -10,10 +10,10 @@ import { Fragment } from "react/jsx-runtime"
 
 // i18n
 const preferencesMessages = i18nInstance("settings:preferences:options", {
-  aiTitle: "AI Chat",
+  aiTitle: "Ai Chat",
   aiDescription:
     "Configure the artificial intelligence options that suit your preference.",
-  aiLabel: "AI Chat Provider",
+  aiLabel: "Ai Chat Provider",
   languageTitle: "Language",
   languageDescription: "Select your preferred language for the application.",
   languageLabel: "Preferred language",

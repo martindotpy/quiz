@@ -10,7 +10,7 @@ import { useStore } from "@nanostores/react"
 const aiQuestionGeneratorPageTemplateMessages = i18nInstance(
   "quiz:ai:generator:page",
   {
-    title: "AI Question Generator",
+    title: "Ai Question Generator",
   }
 )
 

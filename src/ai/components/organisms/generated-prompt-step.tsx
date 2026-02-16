@@ -1,4 +1,4 @@
-import { aiChatNames, type AiChat } from "@/ai/contants/ai-chat"
+import { aiChatNames, type AiChat } from "@/ai/constants/ai-chat"
 import { useAiGenerationMode } from "@/ai/hook/use-ai-generation-mode"
 import { Button } from "@/core/components/ui/button"
 import {
@@ -21,7 +21,7 @@ import { toast } from "sonner"
 const generatedPromptMessages = i18nInstance("quiz:ai:generated-prompt", {
   title: "Generated prompt",
   promptTip:
-    "Use the following prompt to generate questions with your favorite AI. You can modify the prompt to get better results. Click the text below to ask your AI directly, or copy the prompt using the copy button.",
+    "Use the following prompt to generate questions with your favorite Ai. You can modify the prompt to get better results. Click the text below to ask your Ai directly, or copy the prompt using the copy button.",
   promptAdd: params(
     "Generate a strictly valid JSON according to this schema:\n{questionsSchema}\nUsing the following questions only as thematic and stylistic reference, generate a new set of high-quality questions that are fully different from the reference ones, related to {title}{description}. Maintain thematic coherence, conceptual depth, and cognitive difficulty, ensuring variety and avoiding repetition. Generate the same number of questions unless explicitly specified otherwise. The default time limit is {timeLimitSeconds} seconds. Return only the JSON inside a code block. Reference questions:\n{currentQuestions}"
   ),
@@ -65,16 +65,20 @@ export function GeneratedPromptStep() {
     ? messages.withDescriptionPrompt({ description: currentQuiz.description })
     : ""
 
-  const templatePrompt =
-    generationMode === "add"
-      ? messages.promptAdd
-      : generationMode === "replace"
-        ? messages.promptReplace
-        : messages.promptImprove
+  const isAddMode = generationMode === "add"
+  const isReplaceMode = generationMode === "replace"
+
+  const templatePrompt = isAddMode
+    ? messages.promptAdd
+    : isReplaceMode
+      ? messages.promptReplace
+      : messages.promptImprove
 
   const prompt = templatePrompt({
     questionsSchema: questionsJsonSchema,
-    currentQuestions: TOON.encode(currentQuiz.questions.slice(-6)),
+    currentQuestions: TOON.encode(
+      isAddMode ? currentQuiz.questions.slice(-6) : currentQuiz.questions
+    ),
     title: currentQuiz.name,
     description: descriptionPrompt,
     timeLimitSeconds: currentQuiz.timeLimitSeconds,

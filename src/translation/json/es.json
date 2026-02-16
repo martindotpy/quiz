@@ -81,6 +81,10 @@
   "quiz:game:counter": {
     "go": "¡Vamos!"
   },
+  "quiz:game:summary": {
+    "playAgain": "Jugar de nuevo",
+    "score": "Tu puntuación es {score}"
+  },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
   },
@@ -123,10 +127,6 @@
     "button": "¡Juguemos!",
     "lastScore": "Tu última puntuación",
     "outOf": "de"
-  },
-  "quiz:game:summary": {
-    "score": "Tu puntuación es {score}",
-    "playAgain": "Jugar de nuevo"
   },
   "quiz:question:delete": {
     "description": "¿Estás seguro de que quieres eliminar esta pregunta?",

@@ -1,4 +1,4 @@
-import type { AiChat } from "@/ai/contants/ai-chat"
+import type { AiChat } from "@/ai/constants/ai-chat"
 import { persistentAtom } from "@nanostores/persistent"
 
 // Stores

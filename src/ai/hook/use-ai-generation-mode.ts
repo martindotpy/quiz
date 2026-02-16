@@ -10,7 +10,7 @@ type UpdateQuestionsByAiGenerationMode = (questions: QuizQuestion[]) => void
 // Error
 class UnsupportedGenerationModeError extends BaseError {
   constructor(mode: string) {
-    super(`Unsupported AI generation mode: ${mode}`)
+    super(`Unsupported Ai generation mode: ${mode}`)
   }
 }
 
@@ -45,6 +45,9 @@ function useReplaceGeneratedQuestions(): UpdateQuestionsByAiGenerationMode {
   }
 }
 
+/**
+ * The "improve" mode is currently the same as "replace". Only changes the prompt, not the logic. In the future, it could be different.
+ */
 function useImproveGeneratedQuestions(): UpdateQuestionsByAiGenerationMode {
   // Replace
   const replaceGeneratedQuestions = useReplaceGeneratedQuestions()

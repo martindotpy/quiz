@@ -1,4 +1,4 @@
-import { aiChatNames, type AiChat } from "@/ai/contants/ai-chat"
+import { aiChatNames, type AiChat } from "@/ai/constants/ai-chat"
 import {
   NativeSelect,
   NativeSelectOption,
