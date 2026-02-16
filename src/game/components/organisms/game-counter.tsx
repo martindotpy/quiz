@@ -1,11 +1,21 @@
+import { useCounter } from "@/game/hook/use-counter"
+import { MIN_COUNTER_VALUE } from "@/game/store/counter-store"
+import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { useStore } from "@nanostores/react"
 import { AnimatePresence, motion } from "motion/react"
 
-// Component
-interface InitialGameCounterProps {
-  counter: string | number
-}
+// i18n
+const quizGameCounterMessages = i18nInstance("quiz:game:counter", {
+  go: "Go!",
+})
 
-export function InitialGameCounter({ counter }: InitialGameCounterProps) {
+// Component
+export function GameCounter() {
+  const messages = useStore(quizGameCounterMessages)
+
+  // Counter
+  const counter = useCounter()
+
   return (
     <motion.div
       className="flex flex-1 flex-col items-center justify-center select-none"
@@ -27,7 +37,7 @@ export function InitialGameCounter({ counter }: InitialGameCounterProps) {
           }}
           className="text-8xl leading-none font-black tabular-nums"
         >
-          {counter}
+          {counter === MIN_COUNTER_VALUE + 1 ? messages.go : counter}
         </motion.span>
       </AnimatePresence>
     </motion.div>

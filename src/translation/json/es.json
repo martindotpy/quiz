@@ -78,6 +78,9 @@
     "label": "Actualizar",
     "success": "¡Quiz actualizado con éxito!"
   },
+  "quiz:game:counter": {
+    "go": "¡Vamos!"
+  },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
   },
@@ -116,7 +119,14 @@
     "title": "Restablecer borrador del Quiz"
   },
   "quiz:pre-start": {
-    "button": "¡Juguemos!"
+    "bestScore": "Tu mejor puntuación",
+    "button": "¡Juguemos!",
+    "lastScore": "Tu última puntuación",
+    "outOf": "de"
+  },
+  "quiz:game:summary": {
+    "score": "Tu puntuación es {score}",
+    "playAgain": "Jugar de nuevo"
   },
   "quiz:question:delete": {
     "description": "¿Estás seguro de que quieres eliminar esta pregunta?",

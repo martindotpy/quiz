@@ -1,4 +1,5 @@
 import { Link } from "@/core/components/ui/link"
+import { useScore } from "@/game/hook/use-score"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { currentQuizStore } from "@/quiz/store/current-quiz-store"
@@ -17,6 +18,9 @@ import { TbPlayerPlayFilled } from "react-icons/tb"
 // i18n
 const quizPrePlayMessages = i18nInstance("quiz:pre-start", {
   button: "Let's start!",
+  lastScore: "Your last score",
+  bestScore: "Your best score",
+  outOf: "out of",
 })
 
 // Route
@@ -62,6 +66,10 @@ function QuizComponent() {
   // Current quiz
   const { quiz } = Route.useRouteContext()
 
+  // Score
+  const score = useScore()
+  const quizScore = score[quiz.id]
+
   // Last route
   const lastRoute = useMatches({
     select: (matches) => matches[matches.length - 1]!,
@@ -84,6 +92,21 @@ function QuizComponent() {
 
       {quiz.description && (
         <p className="text-accent-foreground text-center">{quiz.description}</p>
+      )}
+
+      {quizScore && (
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-primary text-center text-lg">
+            {messages.bestScore}:{" "}
+            <span className="text-2xl font-bold">{quizScore.maxScore}</span>{" "}
+            {messages.outOf} {quizScore.totalQuestions}
+          </p>
+          <p>
+            {messages.lastScore}:{" "}
+            <span className="text-2xl font-bold">{quizScore.lastScore}</span>{" "}
+            {messages.outOf} {quizScore.totalQuestions}
+          </p>
+        </div>
       )}
 
       <Link
