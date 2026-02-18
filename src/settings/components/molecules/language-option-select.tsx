@@ -19,16 +19,14 @@ const languageOptions: LanguageOption[] = [
 
 // Component
 export function LanguageOptionSelect() {
-  // Locale
+  // Locale preference
   const localePreference = useLocalePreference()
 
   return (
     <NativeSelect
       className="w-full"
-      defaultValue={localePreference}
-      onChange={(e) => {
-        localePreferenceStore.set(e.target.value as Locale)
-      }}
+      value={localePreference}
+      onChange={(e) => localePreferenceStore.set(e.target.value as Locale)}
     >
       {languageOptions.map(({ label, value }) => (
         <NativeSelectOption key={value} value={value}>

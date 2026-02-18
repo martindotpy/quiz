@@ -1,5 +1,6 @@
 import { Link } from "@/core/components/ui/link"
 import { useScore } from "@/game/hook/use-score"
+import { counterStore, INITIAL_COUNTER_VALUE } from "@/game/store/counter-store"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { currentQuizStore } from "@/quiz/store/current-quiz-store"
@@ -13,6 +14,7 @@ import {
   useMatches,
 } from "@tanstack/react-router"
 import { motion } from "motion/react"
+import { useEffect } from "react"
 import { TbPlayerPlayFilled } from "react-icons/tb"
 
 // i18n
@@ -77,6 +79,11 @@ function QuizComponent() {
 
   const isLastRoute = lastRoute.routeId === routeId
 
+  // Reset counter
+  useEffect(() => {
+    counterStore.set(INITIAL_COUNTER_VALUE)
+  }, [])
+
   if (!isLastRoute) return <Outlet />
 
   return (
@@ -95,7 +102,7 @@ function QuizComponent() {
       )}
 
       {quizScore && (
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-center">
           <p className="text-primary text-center text-lg">
             {messages.bestScore}:{" "}
             <span className="text-2xl font-bold">{quizScore.maxScore}</span>{" "}

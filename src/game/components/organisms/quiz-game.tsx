@@ -3,8 +3,10 @@ import { shuffle } from "@/core/lib/array"
 import { GameSummary } from "@/game/components/organisms/game-summary"
 import { QuestionMultimediaGame } from "@/game/components/organisms/question-multimedia-game"
 import { TimeBar } from "@/game/components/organisms/time-bar"
+import type { QuestionResponse } from "@/game/types/quiz-response-types"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
-import { useEffect, useState } from "react"
+import type { QuestionAnswer, QuizQuestion } from "@/quiz/model/quiz-model"
+import { useEffect, useMemo, useState } from "react"
 
 // Component
 export function QuizGame() {
@@ -13,7 +15,13 @@ export function QuizGame() {
 
   // Current questions
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
-  const [questions] = useState(shuffle(currentQuiz.questions))
+  // Shuffle questions once per quiz (use the quiz id as the dependency)
+  const questions = useMemo(
+    () => shuffle(currentQuiz.questions),
+    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentQuiz.id]
+  )
   const currentQuestion = questions[currentQuestionIndex]
   const timeLimitSeconds =
     currentQuestion?.timeLimitSeconds ?? currentQuiz.timeLimitSeconds
@@ -31,11 +39,18 @@ export function QuizGame() {
 
   // Score
   const [score, setScore] = useState(0)
+  const [questionResponses, setQuestionResponses] = useState<
+    QuestionResponse[]
+  >([])
 
-  const handleAnswer = (isCorrect: boolean) => {
-    if (isCorrect) {
-      setScore((score) => score + 1)
-    }
+  const handleAnswer = (question: QuizQuestion, answer: QuestionAnswer) => {
+    if (answer.isCorrect) setScore((score) => score + 1)
+
+    // Store only the shape defined by QuestionResponse (question + selected)
+    setQuestionResponses((answers) => [
+      ...answers,
+      { question, selected: answer },
+    ])
 
     setCurrentQuestionIndex((index) => index + 1)
   }
@@ -45,7 +60,7 @@ export function QuizGame() {
   const rows = 3
 
   if (!currentQuestion) {
-    return <GameSummary score={score} />
+    return <GameSummary score={score} responses={questionResponses} />
   }
 
   return (
@@ -72,10 +87,10 @@ export function QuizGame() {
         <div className="grid grid-cols-1 gap-2 overflow-y-scroll md:grid-cols-2">
           {shuffle(currentQuestion.answers).map((answer, index) => (
             <Item
-              key={index}
+              key={`${answer.text}-${index}`}
               variant="outline"
               className="min-h-16 cursor-pointer"
-              onClick={() => handleAnswer(answer.isCorrect)}
+              onClick={() => handleAnswer(currentQuestion, answer)}
             >
               <ItemContent>
                 <ItemDescription>{answer.text}</ItemDescription>

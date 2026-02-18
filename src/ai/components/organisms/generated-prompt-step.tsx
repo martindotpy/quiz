@@ -77,6 +77,7 @@ export function GeneratedPromptStep() {
   const prompt = templatePrompt({
     questionsSchema: questionsJsonSchema,
     currentQuestions: TOON.encode(
+      // Use only the last 6 questions as reference to avoid overwhelming the Ai and to encourage more diversity in the generated questions
       isAddMode ? currentQuiz.questions.slice(-6) : currentQuiz.questions
     ),
     title: currentQuiz.name,

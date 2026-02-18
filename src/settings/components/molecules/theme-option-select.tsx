@@ -35,9 +35,7 @@ export function ThemeOptionSelect() {
       ref={selectRef}
       className="w-full"
       value={theme}
-      onChange={(e) => {
-        setTheme(e.target.value)
-      }}
+      onChange={(e) => setTheme(e.target.value)}
     >
       {themes.map((value) => (
         <NativeSelectOption key={value} value={value}>

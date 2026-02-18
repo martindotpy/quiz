@@ -1,7 +1,4 @@
-import { Separator } from "@/core/components/ui/separator"
-import { cn } from "@/core/lib/tailwind"
-import { CurrentQuizContent } from "@/quiz/components/organisms/current-quiz-content"
-import { CurrentQuizNav } from "@/quiz/components/organisms/current-quiz-nav"
+import { EditCurrentQuizPage } from "@/quiz/components/templates/edit-current-quiz-page"
 import { currentQuestionStore } from "@/quiz/store/current-question-store"
 import { editQuizStore } from "@/quiz/store/edit-quiz-store"
 import { createFileRoute, redirect } from "@tanstack/react-router"
@@ -38,34 +35,8 @@ export const Route = createFileRoute(
 
     currentQuestionStore.set({ questionIndex, questionStore })
   },
-  component: EditQuizComponent,
+  component: EditCurrentQuizPage,
   staticData: {
     manualMode: true,
   },
 })
-
-function EditQuizComponent() {
-  return (
-    <div
-      className={cn(
-        "no-scrollbar flex flex-1 flex-col-reverse gap-4 overflow-y-hidden",
-        "md:flex-row"
-      )}
-    >
-      <div
-        className={cn(
-          "no-scrollbar flex flex-col gap-4",
-          "md:flex-row md:overflow-y-scroll"
-        )}
-      >
-        <Separator orientation="horizontal" className="md:hidden" />
-
-        <CurrentQuizNav />
-
-        <Separator orientation="vertical" className="max-md:hidden" />
-      </div>
-
-      <CurrentQuizContent />
-    </div>
-  )
-}

@@ -39,7 +39,7 @@ export function GenerationModeStep() {
       <FieldDescription>{messages.description}</FieldDescription>
 
       <RadioGroup
-        defaultValue={aiGenerationMode}
+        value={aiGenerationMode}
         className="grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
         onValueChange={(value) => {
           aiGenerationModeStore.set(value as AiGenerationMode)

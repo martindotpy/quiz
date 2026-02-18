@@ -22,7 +22,7 @@ export function HomeHeader() {
   const isCreateLinkEnabled = !isCreationMode && !isEditMode
 
   return (
-    <div className="max-h-header-h">
+    <div className="max-h-header-h bg-background/80 fixed top-0 z-100 w-full backdrop-blur-sm">
       <header className="mx-auto flex max-w-7xl items-center justify-between">
         <BannerLink />
 

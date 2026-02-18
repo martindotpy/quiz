@@ -20,6 +20,9 @@
     "description": "La página que buscas no existe o ha sido movida. Por favor, verifica la URL e intenta nuevamente.",
     "title": "¡Ups!"
   },
+  "pending": {
+    "loading": "Cargando..."
+  },
   "quiz:ai:generated-prompt": {
     "copy": "Copiar prompt",
     "copySuccess": "¡Prompt copiado al portapapeles!",

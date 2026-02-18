@@ -10,7 +10,7 @@ import { useEffect, useRef } from "react"
 import { TbPhoto, TbPlus, TbQuestionMark } from "react-icons/tb"
 
 // Styles
-const extraButtonClassName = cn("h-20 w-8 transition-none", "md:h-8 md:w-full")
+const extraButtonClassName = "h-20 w-8 transition-none"
 
 // Component
 export function CurrentQuizNav() {
@@ -61,12 +61,7 @@ export function CurrentQuizNav() {
 
   return (
     <nav>
-      <ul
-        className={cn(
-          "no-scrollbar flex gap-2 overflow-x-auto transition-none select-none",
-          "md:max-h-full md:flex-col md:overflow-x-hidden md:overflow-y-auto"
-        )}
-      >
+      <ul className="no-scrollbar flex gap-2 overflow-x-auto p-4 transition-none select-none">
         {currentQuiz.questions.map((question, i) => {
           const isCurrentQuestion = i === questionIndex
 

@@ -47,7 +47,7 @@ if (!ogImageUrl.endsWith("index.png"))
 ---
 
 <!doctype html>
-<html lang={noLang ? undefined : currentLocale.get()} class="dark">
+<html lang={noLang ? undefined : currentLocale.get()} class="dark no-scrollbar">
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -161,7 +161,7 @@ if (!ogImageUrl.endsWith("index.png"))
     <script src="@/core/scripts/umami-identify.ts"></script>
   </head>
 
-  <body class="no-scrollbar flex min-h-svh flex-col overflow-hidden">
+  <body class="pt-header-h flex min-h-dvh flex-col overflow-y-scroll">
     <slot />
   </body>
 </html>
