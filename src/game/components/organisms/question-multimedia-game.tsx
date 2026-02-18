@@ -10,12 +10,12 @@ export function QuestionMultimediaGame() {
       transition={{ delay: 0.2, duration: 0.3 }}
       className="relative flex flex-1 items-center justify-center overflow-hidden border"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(45deg,transparent_45%,currentColor_45%,currentColor_55%,transparent_55%)] bg-[length:8px_8px] opacity-[0.015]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(45deg,transparent_45%,currentColor_45%,currentColor_55%,transparent_55%)] bg-size-[8px_8px] opacity-[0.015]" />
 
-      <div className="via-border/50 absolute top-0 left-0 h-px w-full bg-gradient-to-r from-transparent to-transparent" />
-      <div className="from-border/50 to-border/50 absolute top-0 right-0 h-full w-px bg-gradient-to-b via-transparent" />
-      <div className="via-border/50 absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent to-transparent" />
-      <div className="from-border/50 to-border/50 absolute top-0 left-0 h-full w-px bg-gradient-to-b via-transparent" />
+      <div className="via-border/50 absolute top-0 left-0 h-px w-full bg-linear-to-r from-transparent to-transparent" />
+      <div className="from-border/50 to-border/50 absolute top-0 right-0 h-full w-px bg-linear-to-b via-transparent" />
+      <div className="via-border/50 absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent to-transparent" />
+      <div className="from-border/50 to-border/50 absolute top-0 left-0 h-full w-px bg-linear-to-b via-transparent" />
 
       <div className="flex flex-col items-center gap-3 py-4">
         <div className="relative">
