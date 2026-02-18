@@ -1,12 +1,14 @@
-import { Item, ItemContent, ItemDescription } from "@/core/components/ui/item"
 import { shuffle } from "@/core/lib/array"
+import { cn } from "@/core/lib/tailwind"
 import { GameSummary } from "@/game/components/organisms/game-summary"
 import { QuestionMultimediaGame } from "@/game/components/organisms/question-multimedia-game"
 import { TimeBar } from "@/game/components/organisms/time-bar"
 import type { QuestionResponse } from "@/game/types/quiz-response-types"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import type { QuestionAnswer, QuizQuestion } from "@/quiz/model/quiz-model"
+import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useMemo, useState } from "react"
+import { TbArrowRight, TbCheck, TbX } from "react-icons/tb"
 
 // Component
 export function QuizGame() {
@@ -23,6 +25,10 @@ export function QuizGame() {
     [currentQuiz.id]
   )
   const currentQuestion = questions[currentQuestionIndex]
+  const answers = useMemo(
+    () => shuffle(currentQuestion?.answers ?? []),
+    [currentQuestion]
+  )
   const timeLimitSeconds =
     currentQuestion?.timeLimitSeconds ?? currentQuiz.timeLimitSeconds
 
@@ -39,24 +45,35 @@ export function QuizGame() {
 
   // Score
   const [score, setScore] = useState(0)
+
+  // Responses
   const [questionResponses, setQuestionResponses] = useState<
     QuestionResponse[]
   >([])
 
+  // Handle answer selection
+  const [selectedAnswer, setSelectedAnswer] = useState<QuestionAnswer | null>(
+    null
+  )
+
   const handleAnswer = (question: QuizQuestion, answer: QuestionAnswer) => {
-    if (answer.isCorrect) setScore((score) => score + 1)
+    if (selectedAnswer) return
 
-    // Store only the shape defined by QuestionResponse (question + selected)
-    setQuestionResponses((answers) => [
-      ...answers,
-      { question, selected: answer },
-    ])
+    setSelectedAnswer(answer)
 
-    setCurrentQuestionIndex((index) => index + 1)
+    setTimeout(() => {
+      if (answer.isCorrect) setScore((score) => score + 1)
+
+      setQuestionResponses((answers) => [
+        ...answers,
+        { question, selected: answer },
+      ])
+
+      setCurrentQuestionIndex((index) => index + 1)
+      setSelectedAnswer(null)
+    }, 400)
   }
 
-  // Grid rows
-  // TODO: Change it to dynamic rows based on the image
   const rows = 3
 
   if (!currentQuestion) {
@@ -67,38 +84,137 @@ export function QuizGame() {
     <>
       <TimeBar maxTimeSeconds={timeLimitSeconds} index={currentQuestionIndex} />
 
-      <div
-        className="mt-2 grid max-h-full flex-1 gap-4 select-none"
-        style={{
-          gridTemplateRows: `repeat(var(--data-rows), minmax(0, 1fr))`,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-expect-error
-          "--data-rows": rows,
-        }}
-      >
-        <div className="flex items-center justify-center">
-          <h2 className="text-center text-2xl font-bold">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentQuestionIndex}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="mt-4 grid max-h-full flex-1 gap-4 select-none"
+          style={{
+            gridTemplateRows: `repeat(var(--data-rows), minmax(0, 1fr))`,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
+            "--data-rows": rows,
+          }}
+        >
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-muted-foreground/40 text-xs font-medium tracking-[0.2em] uppercase tabular-nums">
+              {String(currentQuestionIndex + 1).padStart(2, "0")}
+            </span>
+            <span className="text-muted-foreground/20 text-xs">/</span>
+            <span className="text-muted-foreground/40 text-xs tracking-[0.2em] uppercase tabular-nums">
+              {String(questions.length).padStart(2, "0")}
+            </span>
+          </div>
+
+          <h2 className="text-center text-xl leading-relaxed font-medium tracking-tight md:text-2xl">
             {currentQuestion.title}
           </h2>
-        </div>
 
-        <QuestionMultimediaGame />
+          <QuestionMultimediaGame />
 
-        <div className="grid grid-cols-1 gap-2 overflow-y-scroll md:grid-cols-2">
-          {shuffle(currentQuestion.answers).map((answer, index) => (
-            <Item
-              key={`${answer.text}-${index}`}
-              variant="outline"
-              className="min-h-16 cursor-pointer"
-              onClick={() => handleAnswer(currentQuestion, answer)}
-            >
-              <ItemContent>
-                <ItemDescription>{answer.text}</ItemDescription>
-              </ItemContent>
-            </Item>
-          ))}
-        </div>
-      </div>
+          <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+            {answers.map((answer, index) => (
+              <AnswerCard
+                key={`${answer.text}-${index}`}
+                answer={answer}
+                index={index}
+                selectedAnswer={selectedAnswer}
+                onSelect={() => handleAnswer(currentQuestion, answer)}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </>
+  )
+}
+
+// Answer card
+interface AnswerCardProps {
+  answer: QuestionAnswer
+  index: number
+  selectedAnswer: QuestionAnswer | null
+  onSelect: () => void
+}
+
+function AnswerCard({
+  answer,
+  index,
+  selectedAnswer,
+  onSelect,
+}: AnswerCardProps) {
+  // State
+  const isSelected = selectedAnswer?.text === answer.text
+  const showResult = selectedAnswer !== null
+  const isCorrect = answer.isCorrect
+
+  return (
+    <motion.button
+      transition={{ delay: 0.15 + index * 0.05, duration: 0.2 }}
+      onClick={onSelect}
+      disabled={selectedAnswer !== null}
+      className={cn(
+        "group flex min-h-16 w-full cursor-pointer items-center gap-3 border px-4 py-3 text-left transition-all duration-200 disabled:cursor-default",
+        {
+          "focus-visible:ring-ring/50 hover:border-foreground/20 hover:bg-muted/50 focus-visible:ring-1 focus-visible:ring-offset-2":
+            !showResult,
+          "border-emerald-500/50 bg-emerald-50 dark:border-emerald-400/30 dark:bg-emerald-950/30":
+            isSelected && isCorrect,
+          "border-rose-500/50 bg-rose-50 dark:border-rose-400/30 dark:bg-rose-950/30":
+            isSelected && !isCorrect,
+          "border-emerald-500/30 bg-emerald-50/50 dark:border-emerald-400/20 dark:bg-emerald-950/20":
+            showResult && !isSelected && isCorrect,
+        }
+      )}
+    >
+      <span
+        className={cn(
+          "text-muted-foreground/30 flex size-6 items-center justify-center text-xs font-medium uppercase transition-colors",
+          {
+            "text-current opacity-60": isSelected || (showResult && isCorrect),
+          }
+        )}
+      >
+        {String.fromCharCode(65 + index)}
+      </span>
+
+      <span
+        className={cn(
+          "flex-1 text-sm leading-relaxed font-medium transition-colors",
+          {
+            "text-foreground": isSelected || (showResult && isCorrect),
+          }
+        )}
+      >
+        {answer.text}
+      </span>
+
+      {!showResult && (
+        <TbArrowRight className="text-muted-foreground/0 group-hover:text-muted-foreground/50 transition-all" />
+      )}
+
+      {showResult && isCorrect && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-emerald-500 dark:text-emerald-400"
+        >
+          <TbCheck />
+        </motion.div>
+      )}
+
+      {isSelected && !isCorrect && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-rose-500 dark:text-rose-400"
+        >
+          <TbX />
+        </motion.div>
+      )}
+    </motion.button>
   )
 }

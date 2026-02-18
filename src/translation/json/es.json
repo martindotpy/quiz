@@ -85,8 +85,18 @@
     "go": "¡Vamos!"
   },
   "quiz:game:summary": {
+    "accuracy": "{percentage}% de precisión",
+    "correctAnswers": "Respuestas correctas",
+    "excellent": "Excelente",
+    "good": "Bien",
+    "great": "Genial",
+    "hideResponses": "Ocultar respuestas",
+    "keepTrying": "Sigue intentando",
     "playAgain": "Jugar de nuevo",
-    "score": "Tu puntuación es {score}"
+    "responses": "Respuestas",
+    "score": "Tu puntuación es {score}",
+    "showResponses": "Ver respuestas",
+    "yourAnswer": "Tu respuesta"
   },
   "quiz:grid": {
     "noQuizzes": "No tienes quizzes creados aún"
