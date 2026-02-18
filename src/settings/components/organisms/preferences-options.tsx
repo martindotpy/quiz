@@ -1,11 +1,18 @@
 import { Separator } from "@/core/components/ui/separator"
 import { AiChatSelect } from "@/settings/components/molecules/ai-chat-select"
 import { LanguageOptionSelect } from "@/settings/components/molecules/language-option-select"
+import { PwaInstallButton } from "@/settings/components/molecules/pwa-install-button"
 import { ThemeOptionSelect } from "@/settings/components/molecules/theme-option-select"
+import { usePwaInstall } from "@/settings/hook/use-pwa-install"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import type { IconType } from "react-icons/lib"
-import { TbAdjustments, TbLanguage, TbSparkles } from "react-icons/tb"
+import {
+  TbAdjustments,
+  TbDeviceMobile,
+  TbLanguage,
+  TbSparkles,
+} from "react-icons/tb"
 import { Fragment } from "react/jsx-runtime"
 
 // i18n
@@ -20,6 +27,10 @@ const preferencesMessages = i18nInstance("settings:preferences:options", {
   themeTitle: "Theme",
   themeDescription: "Choose between light, dark, or system default theme.",
   themeLabel: "Theme mode",
+  pwaTitle: "App",
+  pwaDescription:
+    "Install the app for a better experience with offline support.",
+  pwaLabel: "Installation",
 })
 
 // Preferences
@@ -38,7 +49,11 @@ interface Preference {
 function usePreferences(): Preference[] {
   const messages = useStore(preferencesMessages)
 
-  return [
+  // Pwa
+  const { canInstall, isInstalled } = usePwaInstall()
+
+  // Build preferences
+  const preferences: Preference[] = [
     {
       icon: TbSparkles,
       title: messages.aiTitle,
@@ -73,6 +88,22 @@ function usePreferences(): Preference[] {
       ],
     },
   ]
+
+  if (canInstall || isInstalled) {
+    preferences.push({
+      icon: TbDeviceMobile,
+      title: messages.pwaTitle,
+      description: messages.pwaDescription,
+      options: [
+        {
+          label: messages.pwaLabel,
+          node: <PwaInstallButton />,
+        },
+      ],
+    })
+  }
+
+  return preferences
 }
 
 // Component
@@ -96,7 +127,7 @@ export function PreferencesOptions() {
 
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
               {options.map(({ label, node }) => (
-                <div key={label}>
+                <div key={label} className="flex flex-col gap-1">
                   <span className="text-sm">{label}</span>
 
                   {node}

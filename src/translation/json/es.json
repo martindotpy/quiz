@@ -173,9 +173,16 @@
     "languageDescription": "Selecciona tu idioma preferido para la aplicación.",
     "languageLabel": "Idioma preferido",
     "languageTitle": "Idioma",
+    "pwaDescription": "Instala la aplicación para una mejor experiencia con soporte sin conexión.",
+    "pwaLabel": "Instalación",
+    "pwaTitle": "Aplicación",
     "themeDescription": "Elige entre tema claro, oscuro o el predeterminado del sistema.",
     "themeLabel": "Modo de tema",
     "themeTitle": "Tema"
+  },
+  "settings:preferences:options:pwa": {
+    "install": "Instalar Quiz",
+    "installed": "Instalada"
   },
   "settings:preferences:options:theme": {
     "dark": "Oscuro",
