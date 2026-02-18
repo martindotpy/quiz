@@ -273,12 +273,12 @@ function ResponseCard({ response, index, messages }: ResponseCardProps) {
             </div>
 
             {(!isCorrect || hasMultipleCorrectAnswers) && (
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 <span className="text-muted-foreground/70 text-xs font-medium tracking-wide uppercase">
                   {messages.correctAnswers}
                 </span>
 
-                <ul className="flex flex-col gap-0.5">
+                <ul className="flex flex-col gap-1">
                   {correctAnswers.map((answer, aIndex) => (
                     <li
                       key={`${answer.text}-${aIndex}`}
