@@ -60,6 +60,7 @@ export function createAppRouter(astro?: AstroGlobal) {
     defaultViewTransition: true,
     scrollRestoration: true,
     defaultPreload: "intent",
+    trailingSlash: "never",
   })
 }
 
