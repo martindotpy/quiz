@@ -31,8 +31,8 @@ export function OpenGraphImage({
       <div
         style={{
           position: "absolute",
-          top: 24,
-          right: 32,
+          top: 12,
+          right: 24,
           width: 320,
           height: 320,
           background:
@@ -62,9 +62,9 @@ export function OpenGraphImage({
         viewBox="0 0 24 24"
         style={{
           position: "absolute",
-          bottom: -120,
-          right: -80,
-          opacity: 0.025,
+          bottom: -102,
+          right: -68,
+          opacity: 0.1,
           transform: "rotate(15deg)",
         }}
         role="img"
@@ -92,7 +92,6 @@ export function OpenGraphImage({
             width: 8,
             height: 8,
             background: "#fafafa",
-            borderRadius: 2,
           }}
         />
         <span
@@ -111,13 +110,13 @@ export function OpenGraphImage({
       <div
         style={{
           position: "absolute",
-          top: 132,
+          top: 62,
           left: 0,
           right: 0,
           bottom: 0,
           display: "flex",
           flexDirection: "column",
-          padding: "72px 64px 72px 52px",
+          padding: "72px 32px 72px 62px",
         }}
       >
         <div
@@ -161,12 +160,12 @@ export function OpenGraphImage({
             {description && (
               <p
                 style={{
-                  fontSize: 20,
+                  fontSize: 32,
                   fontWeight: 400,
                   lineHeight: 1.5,
                   color: "#737373",
                   margin: "24px 0 0 0",
-                  maxWidth: 520,
+                  maxWidth: "80%",
                 }}
               >
                 {description}
