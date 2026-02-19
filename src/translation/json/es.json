@@ -4,6 +4,9 @@
     "confirm": "Confirmar",
     "loading": "Cargando..."
   },
+  "description": {
+    "settings/preferences": "Configura tus preferencias para una experiencia personalizada."
+  },
   "error:main": {
     "backToHome": "Volver al inicio",
     "description": "Parece que ha ocurrido algún error inesperado. Intenta recargar la página.",

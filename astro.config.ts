@@ -85,7 +85,7 @@ export default defineConfig({
         start_url: "/",
         name: appName,
         short_name: appShortName,
-        theme_color: "#fafafa",
+        theme_color: "#0a0a0a",
         background_color: "#0a0a0a",
         display: "standalone",
       },
