@@ -1,6 +1,7 @@
 import node from "@astrojs/node"
 import react from "@astrojs/react"
 import sitemap from "@astrojs/sitemap"
+import sentry from "@sentry/astro"
 import tailwindcss from "@tailwindcss/vite"
 import { devtools } from "@tanstack/devtools-vite"
 import { tanstackRouter } from "@tanstack/router-plugin/vite"
@@ -108,6 +109,7 @@ export default defineConfig({
         navigateFallbackAllowlist: [],
       },
     }),
+    sentry(),
     compress({
       HTML: {
         "html-minifier-terser": false,

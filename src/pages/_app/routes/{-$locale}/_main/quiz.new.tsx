@@ -18,7 +18,8 @@ export const Route = createFileRoute("/{-$locale}/_main/quiz/new")({
           questionId: "1",
         },
       })
-
+  },
+  loader: () => {
     currentQuizStore.set({
       quizStore: draftQuizStore,
       resetQuizStore: resetDraftQuiz,
