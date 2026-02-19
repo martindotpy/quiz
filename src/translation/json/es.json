@@ -5,10 +5,10 @@
     "loading": "Cargando..."
   },
   "description": {
-    "home": "Crea y juega quizzes personalizados. Sigue tu progreso y desafíate.",
-    "new": "Crea un nuevo quiz con preguntas, respuestas y tiempos límite personalizados.",
-    "quiz/new/ai": "Genera preguntas de quiz automáticamente usando asistencia de IA.",
-    "settings/preferences": "Configura tus preferencias para una experiencia personalizada."
+    "home": "Crea quizzes interactivos en minutos. Diseña preguntas personalizadas con asistencia de IA, sigue tu progreso y desafíate. Creador de quizzes gratis.",
+    "new": "Crea un nuevo quiz con preguntas personalizadas, múltiples opciones de respuesta, tiempos límite y niveles de dificultad. Creador de quizzes fácil de usar.",
+    "quiz/new/ai": "Genera preguntas de quiz instantáneamente con IA. Crea preguntas sobre cualquier tema con generación automática de respuestas. Generador de quizzes con IA.",
+    "settings/preferences": "Personaliza tu experiencia de quiz. Configura tu idioma preferido, tema y opciones del asistente de IA."
   },
   "error:main": {
     "backToHome": "Volver al inicio",
@@ -20,6 +20,11 @@
   },
   "home:header:user-menu": {
     "settings": "Configuración"
+  },
+  "keyword": {
+    "default": "creador de quizzes, crear quiz, generador de quiz, trivia, quiz online",
+    "new": "creador de quizzes, crear quiz, hacer quiz, quiz personalizado",
+    "quiz/new/ai": "generador de quiz con IA, preguntas con IA, quiz automático, IA quiz"
   },
   "not-found:main": {
     "backToHome": "Volver al inicio",

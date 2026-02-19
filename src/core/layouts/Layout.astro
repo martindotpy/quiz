@@ -2,13 +2,13 @@
 import Styles from "@/core/components/atoms/Styles.astro"
 import Sonner from "@/core/components/molecules/Sonner.astro"
 import { site, siteUrl } from "@/core/configuration/app-configuration"
-import {
-  appName,
-  author,
-  defaultDescription,
-  defaultKeywords,
-} from "@/core/constant/seo-constant"
+import { locales } from "@/core/configuration/i18n-configuration"
+import { appName, author } from "@/core/constant/seo-constant"
 import { getTitle } from "@/core/kit/title-kit"
+import { descriptionMessages } from "@/core/translation/description-translation"
+import { keywordMessages } from "@/core/translation/keyword-translation"
+import { titleMessages } from "@/core/translation/title-translation"
+import { replaceLocaleInPath } from "@/translation/kit/i18n-kit"
 import { currentLocale } from "astro-nanostores-i18n:runtime"
 import { getImagePath } from "astro-opengraph-images"
 import { pwaAssetsHead } from "virtual:pwa-assets/head"
@@ -23,9 +23,9 @@ interface Props {
 }
 
 const {
-  title,
-  description = defaultDescription,
-  keywords = defaultKeywords,
+  title = titleMessages.get().home,
+  description = descriptionMessages.get().home,
+  keywords = keywordMessages.get().default,
   noLang,
 } = Astro.props
 
@@ -68,15 +68,22 @@ if (!ogImageUrl.endsWith("index.png"))
     {keywords && <meta name="keywords" content={keywords} />}
     {description && <meta name="description" content={description} />}
 
-    <link rel="canonical" href={site} />
-    <link rel="alternate" hreflang="en" href={site} />
-    <link rel="alternate" hreflang="es" href=`${site}/es` />
+    <link rel="canonical" href={url} />
+    {
+      locales.map((locale) => (
+        <link
+          rel="alternate"
+          hreflang={locale}
+          href={new URL(replaceLocaleInPath(url.pathname, locale), site).href}
+        />
+      ))
+    }
 
     <meta property="og:site_name" content="Quiz" />
     <meta property="og:url" content={site} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:locale" content="es" />
+    <meta property="og:locale" content={currentLocale.get()} />
     {description && <meta property="og:description" content={description} />}
     <slot name="og:image">
       <meta property="og:image" content={ogImageUrl} />

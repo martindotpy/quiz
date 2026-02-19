@@ -3,6 +3,7 @@ import { isDev } from "@/core/configuration/app-configuration"
 import { nonDefaultLocales } from "@/core/configuration/i18n-configuration"
 import Layout from "@/core/layouts/Layout.astro"
 import { descriptionMessages } from "@/core/translation/description-translation"
+import { keywordMessages } from "@/core/translation/keyword-translation"
 import { titleMessages } from "@/core/translation/title-translation"
 import { AppEntry } from "@/pages/_app/entry"
 import { handleSsrRequest } from "@/pages/_app/handle-ssr-request"
@@ -34,6 +35,11 @@ export const getStaticPaths = (() => {
               ssg as keyof (typeof descriptionMessages)["get"]
             ]
           : descriptionMessages.get().home,
+        keywords: ssg
+          ? keywordMessages.get()[
+              ssg as keyof (typeof keywordMessages)["get"]
+            ]
+          : keywordMessages.get().default,
       },
     }))
   })

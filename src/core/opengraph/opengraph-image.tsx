@@ -17,7 +17,7 @@ export function OpenGraphImage({
 
   const finalTitle =
     title !== defaultTitle
-      ? title.replace(new RegExp(`^${appName}\\s*\\|\\s*`), "").trim()
+      ? title.replace(new RegExp(`\\s*\\|\\s*${appName}$`), "").trim()
       : appName
 
   return Promise.resolve(
