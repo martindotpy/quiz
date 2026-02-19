@@ -13,7 +13,6 @@ import { tanstackRouterBrowserTracingIntegration } from "@sentry/react"
 import { dehydrate, hydrate } from "@tanstack/react-query"
 import { createRouter, ErrorComponent } from "@tanstack/react-router"
 import type { AstroGlobal } from "astro"
-import consola from "consola/browser"
 import { ThemeProvider } from "next-themes"
 import * as React from "react"
 
@@ -69,19 +68,9 @@ export function createAppRouter(astro?: AstroGlobal) {
   })
 
   // Load client sentry
-  if (typeof window !== "undefined") {
-    // Consola reporter
-    const sentryReporter = Sentry.createConsolaReporter()
-
-    consola.addReporter(sentryReporter)
-
+  if (!router.isServer) {
     // Sentry
-    Sentry.init({
-      integrations: [tanstackRouterBrowserTracingIntegration(router)],
-      dsn: "https://6d6812d579534d2a9ff09fdd33b842b0@sentry.martindotpy.dev/2",
-      enableLogs: true,
-      sendDefaultPii: true,
-    })
+    Sentry.addIntegration(tanstackRouterBrowserTracingIntegration(router))
   }
 
   return router
