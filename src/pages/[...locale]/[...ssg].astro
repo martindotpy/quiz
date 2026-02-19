@@ -16,13 +16,10 @@ type Props = ComponentProps<typeof Layout>
 export const prerender = !isDev // Live render in dev
 
 export const getStaticPaths = (() => {
-  // Locales
   const locales = [...nonDefaultLocales, undefined]
 
-  // Routes
-  const routes = [undefined, "settings/preferences"]
+  const routes = [undefined, "quiz/new/ai", "settings/preferences"]
 
-  // Paths
   return locales.flatMap((locale) => {
     currentLocale.set(locale ?? ("en" as string))
 
@@ -31,12 +28,12 @@ export const getStaticPaths = (() => {
       props: {
         title: ssg
           ? titleMessages.get()[ssg as keyof (typeof titleMessages)["get"]]
-          : ssg,
+          : titleMessages.get().home,
         description: ssg
           ? descriptionMessages.get()[
               ssg as keyof (typeof descriptionMessages)["get"]
             ]
-          : ssg,
+          : descriptionMessages.get().home,
       },
     }))
   })

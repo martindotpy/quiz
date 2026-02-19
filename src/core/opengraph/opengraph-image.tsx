@@ -111,7 +111,7 @@ export function OpenGraphImage({
       <div
         style={{
           position: "absolute",
-          top: 100,
+          top: 132,
           left: 0,
           right: 0,
           bottom: 0,

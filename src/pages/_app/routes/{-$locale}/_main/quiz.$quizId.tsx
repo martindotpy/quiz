@@ -1,4 +1,5 @@
 import { Link } from "@/core/components/ui/link"
+import { getTitle } from "@/core/kit/title-kit"
 import { useScore } from "@/game/hook/use-score"
 import { counterStore, INITIAL_COUNTER_VALUE } from "@/game/store/counter-store"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
@@ -56,6 +57,14 @@ export const Route = createFileRoute("/{-$locale}/_main/quiz/$quizId")({
 
     return { quiz }
   },
+  loader: () => {
+    const quiz = currentQuizStore.get()!.quizStore.get()!
+
+    return { quiz }
+  },
+  head: ({ loaderData }) => ({
+    meta: [{ title: getTitle(loaderData?.quiz.name) }],
+  }),
   component: QuizComponent,
 })
 

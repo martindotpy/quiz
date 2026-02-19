@@ -5,6 +5,9 @@
     "loading": "Cargando..."
   },
   "description": {
+    "home": "Crea y juega quizzes personalizados. Sigue tu progreso y desafíate.",
+    "new": "Crea un nuevo quiz con preguntas, respuestas y tiempos límite personalizados.",
+    "new/ai": "Genera preguntas de quiz automáticamente usando asistencia de IA.",
     "settings/preferences": "Configura tus preferencias para una experiencia personalizada."
   },
   "error:main": {
@@ -206,7 +209,9 @@
     "preferences": "Preferencias"
   },
   "title": {
+    "home": "Mis Quizzes",
     "new": "Crear nuevo Quiz",
+    "new/ai": "Generador de preguntas con IA",
     "settings/preferences": "Preferencias"
   }
 }
