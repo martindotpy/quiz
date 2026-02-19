@@ -117,56 +117,62 @@ export function OpenGraphImage({
           bottom: 0,
           display: "flex",
           flexDirection: "column",
-          padding: "64px 72px",
+          padding: "72px 64px 72px 52px",
         }}
       >
         <div
           style={{
             position: "relative",
             display: "flex",
-            flexDirection: "column",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: 24,
           }}
         >
           <div
             style={{
-              position: "absolute",
-              left: -24,
-              top: 12,
               width: 3,
               height: "90%",
               background: "rgba(250,250,250,0.08)",
-              borderRadius: 2,
             }}
           />
 
-          <h1
+          <div
             style={{
-              fontSize: finalTitle.length > 20 ? 72 : 88,
-              fontWeight: 600,
-              letterSpacing: "-0.03em",
-              lineHeight: 1.05,
-              color: "#fafafa",
-              margin: 0,
-              maxWidth: "85%",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
             }}
           >
-            {finalTitle}
-          </h1>
-
-          {description && (
-            <p
+            <h1
               style={{
-                fontSize: 20,
-                fontWeight: 400,
-                lineHeight: 1.5,
-                color: "#737373",
-                margin: "24px 0 0 0",
-                maxWidth: 520,
+                fontSize: finalTitle.length > 20 ? 72 : 88,
+                fontWeight: 600,
+                letterSpacing: "-0.03em",
+                lineHeight: 1.05,
+                color: "#fafafa",
+                margin: 0,
+                maxWidth: "85%",
               }}
             >
-              {description}
-            </p>
-          )}
+              {finalTitle}
+            </h1>
+
+            {description && (
+              <p
+                style={{
+                  fontSize: 20,
+                  fontWeight: 400,
+                  lineHeight: 1.5,
+                  color: "#737373",
+                  margin: "24px 0 0 0",
+                  maxWidth: 520,
+                }}
+              >
+                {description}
+              </p>
+            )}
+          </div>
         </div>
       </div>
 
