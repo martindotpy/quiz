@@ -5,7 +5,7 @@ import { createFileRoute } from "@tanstack/react-router"
 
 export const Route = createFileRoute("/{-$locale}/_main/quiz/new/ai")({
   head: () => ({
-    meta: [{ title: getTitle(titleMessages.get()["new/ai"]) }],
+    meta: [{ title: getTitle(titleMessages.get()["quiz/new/ai"]) }],
   }),
   component: AiQuestionGeneratorPage,
   staticData: {
