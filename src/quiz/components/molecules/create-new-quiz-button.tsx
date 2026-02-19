@@ -2,6 +2,8 @@ import { Button } from "@/core/components/ui/button"
 import { log } from "@/core/logger/client-logger"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
+import { currentQuizStore } from "@/quiz/store/current-quiz-store"
+import { draftQuizStore, resetDraftQuiz } from "@/quiz/store/draft-quiz-store"
 import { i18nInstance } from "@/translation/kit/i18n-kit"
 import { useStore } from "@nanostores/react"
 import { useNavigate } from "@tanstack/react-router"
@@ -19,6 +21,13 @@ export function CreateNewQuizButton() {
   const messages = useStore(createQuizMessages)
 
   // Draft quiz
+  if (!currentQuizStore.get()?.quizStore) {
+    // Ensure the draft quiz is set in the current quiz store
+    currentQuizStore.set({
+      quizStore: draftQuizStore,
+      resetQuizStore: resetDraftQuiz,
+    })
+  }
   const { currentQuiz, resetQuizStore } = useCurrentQuiz()
 
   // Navigate

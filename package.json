@@ -25,6 +25,7 @@
     "@nanostores/react": "1.0.0",
     "@resvg/resvg-js": "2.6.2",
     "@sentry/astro": "10.39.0",
+    "@sentry/react": "10.39.0",
     "@tailwindcss/vite": "4.1.17",
     "@tanstack/devtools-vite": "0.5.1",
     "@tanstack/react-db": "0.1.70",
