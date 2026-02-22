@@ -62,7 +62,7 @@ RUN apk add --no-cache \
   nginx-mod-http-brotli
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist/client /usr/share/nginx/html
+COPY --from=builder /app/dist/client/ /usr/share/nginx/html/
 
 HEALTHCHECK --interval=120s --timeout=5s --start-period=5s \
   CMD ["/bin/wget", "--spider", "--timeout=5", "http://localhost:80/_health"]
