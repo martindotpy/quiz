@@ -74,7 +74,7 @@ export function QuizGame() {
     }, 400)
   }
 
-  const rows = 3
+  const rows = currentQuestion?.multimedia ? 3 : 2
 
   if (!currentQuestion) {
     return <GameSummary score={score} responses={questionResponses} />
@@ -91,29 +91,29 @@ export function QuizGame() {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="mt-4 grid max-h-full flex-1 gap-4 select-none"
+          className="max-h-main-h no-scrollbar grid flex-1 gap-4 overflow-y-scroll pt-4 select-none"
           style={{
-            gridTemplateRows: `repeat(var(--data-rows), minmax(0, 1fr))`,
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
-            "--data-rows": rows,
+            gridTemplateRows: rows === 3 ? "auto 1fr auto" : "1fr auto",
           }}
         >
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-muted-foreground/40 text-xs font-medium tracking-[0.2em] uppercase tabular-nums">
-              {String(currentQuestionIndex + 1).padStart(2, "0")}
-            </span>
-            <span className="text-muted-foreground/20 text-xs">/</span>
-            <span className="text-muted-foreground/40 text-xs tracking-[0.2em] uppercase tabular-nums">
-              {String(questions.length).padStart(2, "0")}
-            </span>
+          <div className="flex flex-col">
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-muted-foreground/40 text-xs font-medium tracking-[0.2em] uppercase tabular-nums">
+                {String(currentQuestionIndex + 1).padStart(2, "0")}
+              </span>
+              <span className="text-muted-foreground/20 text-xs">/</span>
+              <span className="text-muted-foreground/40 text-xs tracking-[0.2em] uppercase tabular-nums">
+                {String(questions.length).padStart(2, "0")}
+              </span>
+            </div>
+            <h2 className="flex flex-1 items-center justify-center text-center text-xl leading-relaxed font-medium tracking-tight md:text-2xl">
+              {currentQuestion.title}
+            </h2>
           </div>
 
-          <h2 className="text-center text-xl leading-relaxed font-medium tracking-tight md:text-2xl">
-            {currentQuestion.title}
-          </h2>
-
-          <QuestionMultimediaGame />
+          {currentQuestion.multimedia && (
+            <QuestionMultimediaGame multimedia={currentQuestion.multimedia} />
+          )}
 
           <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
             {answers.map((answer, index) => (

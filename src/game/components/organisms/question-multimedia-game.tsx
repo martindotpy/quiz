@@ -1,61 +1,67 @@
 import { cn } from "@/core/lib/tailwind"
+import { useIdbSrc } from "@/quiz/hook/use-idb-src"
+import type { QuizMultimedia } from "@/quiz/model/quiz-model"
 import { motion } from "motion/react"
-import { TbPhoto } from "react-icons/tb"
+import { useState } from "react"
+import { TbAlertTriangle, TbMusic } from "react-icons/tb"
 
-export function QuestionMultimediaGame() {
+interface QuestionMultimediaGameProps {
+  multimedia: QuizMultimedia
+}
+
+export function QuestionMultimediaGame({
+  multimedia,
+}: QuestionMultimediaGameProps) {
+  const [error, setError] = useState(false)
+  const resolvedSrc = useIdbSrc(multimedia.src)
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 0.2, duration: 0.3 }}
-      className="relative flex flex-1 items-center justify-center overflow-hidden border"
+      className="relative h-full overflow-hidden border"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(45deg,transparent_45%,currentColor_45%,currentColor_55%,transparent_55%)] bg-size-[8px_8px] opacity-[0.015]" />
-
-      <div className="via-border/50 absolute top-0 left-0 h-px w-full bg-linear-to-r from-transparent to-transparent" />
-      <div className="from-border/50 to-border/50 absolute top-0 right-0 h-full w-px bg-linear-to-b via-transparent" />
-      <div className="via-border/50 absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent to-transparent" />
-      <div className="from-border/50 to-border/50 absolute top-0 left-0 h-full w-px bg-linear-to-b via-transparent" />
-
-      <div className="flex flex-col items-center gap-3 py-4">
-        <div className="relative">
-          <div className="bg-muted/50 absolute -inset-2 rounded-full" />
-          <TbPhoto className="text-muted-foreground/30 relative size-8" />
-        </div>
-
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-muted-foreground/40 text-[10px] font-medium tracking-[0.15em] uppercase">
-            Media placeholder
-          </span>
-          <div className="flex gap-1">
-            <span
-              className={cn("bg-muted-foreground/10 size-1 rounded-full")}
-            />
-            <span
-              className={cn("bg-muted-foreground/15 size-1 rounded-full")}
-            />
-            <span
-              className={cn("bg-muted-foreground/10 size-1 rounded-full")}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute top-2 left-2">
-        <div className="flex items-center gap-1.5">
-          <span className="text-muted-foreground/20 text-[10px] tracking-wider uppercase">
-            IMG
+      {resolvedSrc === null ? (
+        // Loading from IDB
+        <div className="bg-muted/10 h-full w-full animate-pulse" />
+      ) : error || resolvedSrc === undefined ? (
+        <div className="bg-muted/20 flex h-full flex-col items-center justify-center gap-2">
+          <TbAlertTriangle className="text-muted-foreground size-6" />
+          <span className="text-muted-foreground/40 text-[10px] tracking-widest uppercase">
+            Failed to load
           </span>
         </div>
-      </div>
-
-      <div className="absolute top-2 right-2">
-        <div className="flex items-center gap-1">
-          <div className="bg-muted-foreground/10 size-1.5 rounded-full" />
-          <div className="bg-muted-foreground/10 size-1.5 rounded-full" />
-          <div className="bg-muted-foreground/10 size-1.5 rounded-full" />
+      ) : multimedia.type === "image" ? (
+        <img
+          src={resolvedSrc}
+          alt=""
+          className="h-full w-full object-cover"
+          onError={() => setError(true)}
+        />
+      ) : multimedia.type === "video" ? (
+        <video
+          src={resolvedSrc}
+          className="h-full w-full object-contain"
+          controls
+          preload="metadata"
+          onError={() => setError(true)}
+        />
+      ) : (
+        <div
+          className={cn(
+            "bg-muted/10 flex h-full flex-col items-center justify-center gap-4 p-4"
+          )}
+        >
+          <TbMusic className="text-muted-foreground size-7" />
+          <audio
+            src={resolvedSrc}
+            controls
+            className="w-full max-w-xs"
+            onError={() => setError(true)}
+          />
         </div>
-      </div>
+      )}
     </motion.div>
   )
 }

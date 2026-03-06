@@ -80,7 +80,17 @@
     "add": "Agregar respuesta"
   },
   "quiz:edit:question:multimedia": {
-    "label": "Agrega aquí el contenido multimedia de tu pregunta (ej. imágenes, videos, audio, etc.)"
+    "audio": "Audio",
+    "chooseFile": "Elegir archivo",
+    "file": "Archivo",
+    "image": "Imagen",
+    "label": "Clic para agregar multimedia",
+    "remove": "Eliminar",
+    "save": "Guardar",
+    "title": "Multimedia",
+    "url": "URL",
+    "urlPlaceholder": "https://...",
+    "video": "Video"
   },
   "quiz:edit:settings:reset": {
     "description": "¿Estás seguro de que quieres restablecer el quiz a su versión guardada anterior? Se perderán los cambios no guardados.",

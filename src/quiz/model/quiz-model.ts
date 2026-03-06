@@ -42,6 +42,12 @@ export const QuestionAnswer = z.object({
 })
 export type QuestionAnswer = z.infer<typeof QuestionAnswer>
 
+export const QuizMultimedia = z.object({
+  type: z.enum(["image", "video", "audio"]),
+  src: z.string().min(1),
+})
+export type QuizMultimedia = z.infer<typeof QuizMultimedia>
+
 export const QuizQuestion = z.object({
   title: z
     .string()
@@ -53,6 +59,7 @@ export const QuizQuestion = z.object({
     error: () => quizModelErrorMessages.get().minAnswers,
   }),
   timeLimitSeconds: z.optional(TimeLimitSeconds),
+  multimedia: z.optional(QuizMultimedia),
 })
 export type QuizQuestion = z.infer<typeof QuizQuestion>
 
