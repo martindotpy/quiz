@@ -1,4 +1,4 @@
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import z from "zod"
 
 // i18n

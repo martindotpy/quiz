@@ -4,7 +4,7 @@ import { LanguageOptionSelect } from "@/settings/components/molecules/language-o
 import { PwaInstallButton } from "@/settings/components/molecules/pwa-install-button"
 import { ThemeOptionSelect } from "@/settings/components/molecules/theme-option-select"
 import { usePwaInstall } from "@/settings/hook/use-pwa-install"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import type { IconType } from "react-icons/lib"
 import {

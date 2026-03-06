@@ -1,7 +1,7 @@
 import { Separator } from "@/core/components/ui/separator"
 import { Tabs, TabsList, TabsTrigger } from "@/core/components/ui/tabs"
 import type { LinkRoute } from "@/pages/_app/routes/-routes-types"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { Link, useLocation } from "@tanstack/react-router"
 

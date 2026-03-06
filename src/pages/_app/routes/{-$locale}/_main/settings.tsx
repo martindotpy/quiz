@@ -1,5 +1,6 @@
 import { SettingsTabs } from "@/settings/components/molecules/settings-tabs"
-import { getLocaleParam, i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
+import { getLocaleParam } from "@/translation/kit/i18n-kit"
 import { localePreferenceStore } from "@/translation/store/i18n-store"
 import { useStore } from "@nanostores/react"
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router"

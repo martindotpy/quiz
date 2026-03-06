@@ -11,7 +11,7 @@ import {
 import type { NewQuizDropdownMenuButtonItem } from "@/quiz/components/molecules/items/new-quiz-dropdown-menu-items"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { TimeLimitSeconds } from "@/quiz/model/quiz-model"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useStore } from "@nanostores/react"
 import type React from "react"

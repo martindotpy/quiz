@@ -1,4 +1,4 @@
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { TbLoader } from "react-icons/tb"
 

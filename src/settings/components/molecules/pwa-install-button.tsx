@@ -1,6 +1,6 @@
 import { Button } from "@/core/components/ui/button"
 import { usePwaInstall } from "@/settings/hook/use-pwa-install"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { TbDownload } from "react-icons/tb"
 

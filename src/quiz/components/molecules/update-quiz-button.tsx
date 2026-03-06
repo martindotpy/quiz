@@ -3,7 +3,7 @@ import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { useCurrentQuiz } from "@/quiz/hook/use-current-quiz"
 import { useHasUnsavedChanges } from "@/quiz/hook/use-edit-quiz"
 import { initialEditQuizStore } from "@/quiz/store/edit-quiz-store"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { toast } from "sonner"
 

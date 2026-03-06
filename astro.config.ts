@@ -23,6 +23,7 @@ import { appName, appShortName } from "./src/core/constant/seo-constant"
 import { satoriFonts } from "./src/core/lib/satori"
 import { OpenGraphImage } from "./src/core/opengraph/opengraph-image"
 import es from "./src/translation/json/es.json"
+import { replaceLocaleInPath } from "./src/translation/kit/i18n-kit"
 
 // Context
 const site = process.env.COOLIFY_URL || "https://quiz.martindotpy.dev"
@@ -47,9 +48,12 @@ export default defineConfig({
     }),
     sitemap({
       changefreq: "monthly",
-      priority: 0.8,
+      priority: 0.5,
       serialize(item) {
-        if (item.url === `${site}/`) item.priority = 1
+        const { pathname } = new URL(item.url)
+        const normalizedPath = replaceLocaleInPath(pathname, defaultLocale)
+
+        if (normalizedPath === "/") item.priority = 1
 
         return item
       },

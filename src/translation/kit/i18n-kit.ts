@@ -3,11 +3,7 @@ import {
   nonDefaultLocales,
   type Locale,
   type NonDefaultLocale,
-} from "@/core/configuration/i18n-configuration"
-import {
-  getFormatterInstance,
-  getI18nInstance,
-} from "astro-nanostores-i18n:runtime"
+} from "../../core/configuration/i18n-configuration"
 
 // Kit
 
@@ -59,6 +55,3 @@ export function replaceLocaleInPath(path: string, newLocale: Locale) {
 export function getLocaleParam(locale: string) {
   return isNonDefaultLocale(locale) ? locale : undefined
 }
-
-export const i18nInstance = getI18nInstance()
-export const formatterInstance = getFormatterInstance()

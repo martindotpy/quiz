@@ -2,7 +2,7 @@ import {
   NativeSelect,
   NativeSelectOption,
 } from "@/core/components/ui/native-select"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { useTheme } from "next-themes"
 import { useEffect, useRef } from "react"

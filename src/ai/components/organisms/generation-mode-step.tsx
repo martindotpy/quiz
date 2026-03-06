@@ -14,7 +14,7 @@ import {
   FieldTitle,
 } from "@/core/components/ui/field"
 import { RadioGroup, RadioGroupItem } from "@/core/components/ui/radio-group"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 
 // i18n

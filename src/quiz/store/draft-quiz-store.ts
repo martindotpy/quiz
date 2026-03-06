@@ -4,7 +4,7 @@ import {
   Quiz,
   type QuizQuestion,
 } from "@/quiz/model/quiz-model"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { persistentAtom } from "@nanostores/persistent"
 import { v7 as uuidv7 } from "uuid"
 

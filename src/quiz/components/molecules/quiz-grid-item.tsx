@@ -16,7 +16,7 @@ import {
 } from "@/core/components/ui/item"
 import { quizCollection } from "@/quiz/collection/quiz-collection"
 import type { Quiz } from "@/quiz/model/quiz-model"
-import { formatterInstance, i18nInstance } from "@/translation/kit/i18n-kit"
+import { formatterInstance, i18nInstance } from "@/translation/i18n-instance"
 import { params } from "@nanostores/i18n"
 import { useStore } from "@nanostores/react"
 import { Link } from "@tanstack/react-router"

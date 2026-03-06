@@ -1,6 +1,6 @@
 import { QuizGridItem } from "@/quiz/components/molecules/quiz-grid-item"
 import { useLiveQuiz } from "@/quiz/hook/use-live-quiz"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { TbInbox } from "react-icons/tb"
 

@@ -1,4 +1,4 @@
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 
 export const titleMessages = i18nInstance("title", {
   home: "My Quizzes",

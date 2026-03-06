@@ -1,7 +1,7 @@
 import { Section } from "@/core/components/organisms/section"
 import { Link } from "@/core/components/ui/link"
 import { useLocaleParam } from "@/translation/hook/i18n-hook"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 
 // i18n

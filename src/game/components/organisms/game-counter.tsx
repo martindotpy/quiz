@@ -1,6 +1,6 @@
 import { useCounter } from "@/game/hook/use-counter"
 import { MIN_COUNTER_VALUE } from "@/game/store/counter-store"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { AnimatePresence, motion } from "motion/react"
 

@@ -3,7 +3,7 @@ import { GenerationModeStep } from "@/ai/components/organisms/generation-mode-st
 import { JsonQuizFormStep } from "@/ai/components/organisms/json-quiz-form-step"
 import { FieldGroup, FieldSeparator } from "@/core/components/ui/field"
 import { Separator } from "@/core/components/ui/separator"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 
 // i18n

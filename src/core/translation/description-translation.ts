@@ -1,4 +1,4 @@
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 
 export const descriptionMessages = i18nInstance("description", {
   home: "Create engaging quizzes in minutes. Build custom questions with AI assistance, track your progress, and challenge yourself. Free quiz maker.",

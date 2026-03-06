@@ -1,7 +1,7 @@
 import { getTitle } from "@/core/kit/title-kit"
 import { titleMessages } from "@/core/translation/title-translation"
 import { PreferencesOptions } from "@/settings/components/organisms/preferences-options"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { createFileRoute } from "@tanstack/react-router"
 

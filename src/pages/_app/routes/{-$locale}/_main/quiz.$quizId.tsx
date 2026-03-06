@@ -6,7 +6,7 @@ import { quizCollection } from "@/quiz/collection/quiz-collection"
 import { Quiz } from "@/quiz/model/quiz-model"
 import { currentQuizStore } from "@/quiz/store/current-quiz-store"
 import { editQuizStore, resetEditedQuiz } from "@/quiz/store/edit-quiz-store"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import {
   createFileRoute,

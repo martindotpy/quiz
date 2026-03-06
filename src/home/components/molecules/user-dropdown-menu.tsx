@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/core/components/ui/dropdown-menu"
 import type { LinkRoute } from "@/pages/_app/routes/-routes-types"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { Link } from "@tanstack/react-router"
 import type { IconType } from "react-icons/lib"

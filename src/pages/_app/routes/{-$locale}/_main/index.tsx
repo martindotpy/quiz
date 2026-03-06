@@ -1,7 +1,7 @@
 import { Separator } from "@/core/components/ui/separator"
 import { QuizGridSkeleton } from "@/home/components/atoms/quiz-grid-skeleton"
 import { QuizGrid } from "@/quiz/components/organisms/quiz-grid"
-import { i18nInstance } from "@/translation/kit/i18n-kit"
+import { i18nInstance } from "@/translation/i18n-instance"
 import { useStore } from "@nanostores/react"
 import { ClientOnly, createFileRoute } from "@tanstack/react-router"
 
